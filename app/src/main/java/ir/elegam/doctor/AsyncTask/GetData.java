@@ -122,7 +122,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         String content = jsonObject2.getString("Content");
                         String image_url = jsonObject2.getString("Photo");
 
-                        MyObject myObject=new MyObject(id,"",title,content,image_url,"");
+                        MyObject myObject=new MyObject(id,faction,title,content,image_url,"0");
                         myObjectArrayList.add(myObject);
 
                         // TODO : save to DB

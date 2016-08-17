@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import ir.elegam.doctor.Classes.Variables;
+import ir.elegam.doctor.Helper.MyObject;
 
 public class database extends SQLiteOpenHelper {
 
@@ -136,26 +138,17 @@ public class database extends SQLiteOpenHelper {
 		Log.i(TAG, "update");
 	}
 
-
-
-
-	///**************************************************///
-
-
-
-
-
-	/*public void insertNews(Object_News_Full ob){
+	public void Insert(MyObject ob){
 		ContentValues cv = new ContentValues();
-		cv.put(Sid, ob.getOid());
-		cv.put(Title,ob.getOTile());
-		cv.put(Context,ob.getOMatn());
-		cv.put(Date,ob.getODate());
-		cv.put(ImageUrl,ob.getOImageUrl());
+		cv.put(Sid, ob.getSid());
+		cv.put(Faction,ob.getFaction());
+		cv.put(Title,ob.getTitle());
+		cv.put(Content,ob.getContent());
+		cv.put(ImageUrl,ob.getImage_url());
 		cv.put(Favorite,"0");
-		db.insert(TABLE_NAME, Sid, cv);
+		db.insert(TABLE_NEWS, Sid, cv);
 		Log.i(TAG, "insert");
-	}*/
+	}
 
 	public boolean CheckExistanceNews(String MColumn,String MIndex,String Column, String Index){
 		Cursor cursor = db.rawQuery("select * from "+ TABLE_NEWS +" where "+ MColumn +" = '"+ MIndex +"'  and "+ Column +" = '"+ Index +"' ;", null);
