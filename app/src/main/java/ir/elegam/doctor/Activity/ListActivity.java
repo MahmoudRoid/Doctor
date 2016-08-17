@@ -88,6 +88,9 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             case "care":
                 txtToolbar.setText("مراقبت ها");
                 break;
+            case "bime":
+                txtToolbar.setText("بیمه");
+                break;
         }
     }
 
@@ -190,6 +193,16 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
 
                     case "care":
 
+                        intent.putExtra("faction",faction);
+                        intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
+                        intent.putExtra("title",myObjectArrayList.get(position).getTitle());
+                        intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        startActivity(intent);
+
+                        break;
+
+                    case "bime":
+                        // mitavanad har applicationi in ghesmta ra dashte bashad ya nadashte bashad
                         intent.putExtra("faction",faction);
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
