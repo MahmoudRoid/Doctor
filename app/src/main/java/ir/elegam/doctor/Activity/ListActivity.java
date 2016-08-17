@@ -161,17 +161,35 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(ListActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                // todo
+                Intent intent = new Intent(ListActivity.this,DetailListActivity.class);
                 switch (faction){
                     case "service":
-                       // startActivity(new Intent(ListActivity.this,DetailServiceActivity.class));
+
+                        intent.putExtra("faction",faction);
+                        intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
+                        intent.putExtra("title",myObjectArrayList.get(position).getTitle());
+                        intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        startActivity(intent);
+
                         break;
                     case "news":
-                        // startActivity(new Intent(ListActivity.this,DetailServiceActivity.class));
+
+                        intent.putExtra("faction",faction);
+                        intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
+                        intent.putExtra("title",myObjectArrayList.get(position).getTitle());
+                        intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        startActivity(intent);
+
                         break;
 
                     case "care":
-                        // startActivity(new Intent(ListActivity.this,DetailServiceActivity.class));
+
+                        intent.putExtra("faction",faction);
+                        intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
+                        intent.putExtra("title",myObjectArrayList.get(position).getTitle());
+                        intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        startActivity(intent);
+
                         break;
                 }
             }
