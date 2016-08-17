@@ -4,12 +4,29 @@
     package="ir.elegam.doctor">
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+
+        <meta-data
+            android:name="DATABASE"
+            android:value="doctor.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="ir.elegam.doctor" />
+
+
+
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ListActivity" />
-        <activity android:name=".Activity.DetailListActivity"></activity>
+        <activity android:name=".Activity.DetailListActivity"/>
     </application>
 
 </manifest>
