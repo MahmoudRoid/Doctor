@@ -19,6 +19,7 @@ import ir.elegam.doctor.Adapter.ServiceAdapter;
 import ir.elegam.doctor.AsyncTask.GetData;
 import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.RecyclerItemClickListener;
+import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
 import ir.elegam.doctor.R;
@@ -33,6 +34,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     private Typeface San;
     private TextView  txtToolbar;
     private String faction;
+    private database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     }
 
     private void define() {
+        db = new database(this);
         San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
         toolbar = (Toolbar) findViewById(R.id.toolbar_service);
         setSupportActionBar(toolbar);
@@ -90,33 +93,36 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
 
     public void init(){
         //  check offline database
-        ArrayList<MyObject> arrayList=new ArrayList<MyObject>();
-//        List<db_BankAsatid> list= Select.from(db_BankAsatid.class).list();
-//        if(list.size()>0){
-//            // show offline list
-//            for(int i=0;i<list.size();i++){
-//                BankAsatid cs=new BankAsatid(list.get(i).getName(),list.get(i).getSemat(),list.get(i).getImage_url());
-//                arrayList.add(cs);
-//            }
-//            showList(arrayList);
-//        }
-//        else {
-        // dar gheire in soorat check net va dl
+        ArrayList<MyObject> arrayList=new ArrayList<>();
+        db.open();
+        int count = db.CountAll("Faction",faction);
+        db.close();
 
-        if(Internet.isNetworkAvailable(ListActivity.this)){
-            // call webservice
-            GetData getdata=new GetData(ListActivity.this,ListActivity.this,faction);
-            getdata.execute();
+        if(count>0){
+            for(int i=0;i<arrayList.size();i++){
+                MyObject ob = new MyObject(
+                        db.DisplayAll(i,1,"Faction",faction),
+                        db.DisplayAll(i,2,"Faction",faction),
+                        db.DisplayAll(i,3,"Faction",faction),
+                        db.DisplayAll(i,4,"Faction",faction),
+                        db.DisplayAll(i,5,"Faction",faction),
+                        db.DisplayAll(i,6,"Faction",faction)
+                );
+                arrayList.add(ob);
+            }
+            showList(arrayList);
+        }else{
+            if(Internet.isNetworkAvailable(ListActivity.this)){
+                // call webservice
+                GetData getdata=new GetData(ListActivity.this,ListActivity.this,faction);
+                getdata.execute();
+            }
+            else {
+                Snackbar snackbar = Snackbar
+                        .make(findViewById(R.id.service_relative), "هیچ داده ای جهت نمایش وجود ندارد", Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         }
-        else {
-            Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.service_relative), "هیچ داده ای جهت نمایش وجود ندارد", Snackbar.LENGTH_LONG);
-            snackbar.show();
-        }
-//        }
-
-
-
 
     }
     @Override

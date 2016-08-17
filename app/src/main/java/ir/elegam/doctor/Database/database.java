@@ -16,6 +16,7 @@ import android.util.Log;
 
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Helper.MyObject;
+import ir.elegam.doctor.Helper.Object_Extra;
 
 public class database extends SQLiteOpenHelper {
 
@@ -147,6 +148,14 @@ public class database extends SQLiteOpenHelper {
 		cv.put(ImageUrl,ob.getImage_url());
 		cv.put(Favorite,"0");
 		db.insert(TABLE_NEWS, Sid, cv);
+		Log.i(TAG, "insert");
+	}
+
+	public void InsertExtra(Object_Extra ob){
+		ContentValues cv = new ContentValues();
+		cv.put(Title, ob.getTitle());
+		cv.put(Content,ob.getContent());
+		db.insert(TABLE_EXTRA, Title, cv);
 		Log.i(TAG, "insert");
 	}
 

@@ -117,7 +117,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                        int id = jsonObject2.getInt("Id");
+                        String id = jsonObject2.optString("Id");
                         String title = jsonObject2.getString("Title");
                         String content = jsonObject2.getString("Content");
                         String image_url = jsonObject2.getString("Photo");
