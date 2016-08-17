@@ -39,10 +39,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ListActivity" />
-        <activity android:name=".Activity.DetailListActivity" />
         <activity android:name=".Activity.FavoriteActivity" />
         <activity android:name=".Activity.ShowActivity"></activity>
-        <activity android:name=".Activity.FavoriteActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

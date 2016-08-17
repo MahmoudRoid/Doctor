@@ -1,13 +1,10 @@
 package ir.elegam.doctor.Activity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -76,7 +73,7 @@ public class SupportActivity extends AppCompatActivity {
         final Dialog d = new Dialog(this);
         d.setCancelable(true);
         d.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        d.setContentView(R.layout.linear_choose_dialog);
+        d.setContentView(R.layout.linear_choose_dialog_2taee);
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         Window window = d.getWindow();
@@ -123,7 +120,7 @@ public class SupportActivity extends AppCompatActivity {
         final Dialog d = new Dialog(this);
         d.setCancelable(true);
         d.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        d.setContentView(R.layout.linear_choose_dialog);
+        d.setContentView(R.layout.linear_choose_dialog_2taee);
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         Window window = d.getWindow();
