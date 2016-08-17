@@ -15,19 +15,12 @@
             android:id="@+id/toolbar_service"
             layout="@layout/app_bar" />
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/service_recycler"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/service_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical"/>
-
-        </LinearLayout>
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/service_fab"

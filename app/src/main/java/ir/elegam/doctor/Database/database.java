@@ -160,6 +160,25 @@ public class database extends SQLiteOpenHelper {
 		Log.i(TAG, "insert");
 	}
 
+	public void Update(MyObject ob){
+		ContentValues cv = new ContentValues();
+		cv.put(Sid, ob.getSid());
+		cv.put(Faction,ob.getFaction());
+		cv.put(Title,ob.getTitle());
+		cv.put(Content,ob.getContent());
+		cv.put(ImageUrl,ob.getImage_url());
+		db.update(TABLE_NEWS, cv, Sid, null);
+		Log.i(TAG, "update");
+	}
+
+	public void UpdateExtra(Object_Extra ob){
+		ContentValues cv = new ContentValues();
+		cv.put(Title, ob.getTitle());
+		cv.put(Content,ob.getContent());
+		db.update(TABLE_EXTRA,cv,Title,null);
+		Log.i(TAG, "update");
+	}
+
 	public boolean CheckExistanceNews(String MColumn,String MIndex,String Column, String Index){
 		Cursor cursor = db.rawQuery("select * from "+ TABLE_NEWS +" where "+ MColumn +" = '"+ MIndex +"'  and "+ Column +" = '"+ Index +"' ;", null);
 		cursor.moveToFirst();

@@ -11,7 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-
         <meta-data
             android:name="DATABASE"
             android:value="doctor.db" />
@@ -25,8 +24,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="ir.elegam.doctor" />
 
-
-
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +32,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.ListActivity" />
-        <activity android:name=".Activity.DetailListActivity"/>
+        <activity android:name=".Activity.DetailListActivity" />
+        <activity android:name=".Activity.FavoriteActivity"></activity>
     </application>
 
 </manifest>
