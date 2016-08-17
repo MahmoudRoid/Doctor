@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.Classes.URLS;
+import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
 import okhttp3.FormBody;
@@ -31,12 +32,14 @@ public class GetData extends AsyncTask<Void,Void,String> {
     private IWebservice delegate = null;
     public String faction;
     SweetAlertDialog pDialog ;
+    private database db;
 
     public GetData(Context context, IWebservice delegate,String faction) {
         this.context = context;
         this.delegate = delegate;
         this.faction=faction;
         pDialog= new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+        db = new database(context);
     }
 
     @Override
@@ -96,16 +99,9 @@ public class GetData extends AsyncTask<Void,Void,String> {
             }
         }
         else {
-            // pak kardane database ha baraye rikhtane data e jadid
-            // TODO : delete database
-//            try {
-//                List<db_BankAsatid> list = db_BankAsatid.listAll(db_BankAsatid.class);
-//                if(list.size()>0){
-//                    db_BankAsatid.deleteAll(db_BankAsatid.class);
-//                }
-//            }
-//            catch (Exception e){e.printStackTrace();}
-
+            db.open();
+            db.DeleteTabele1("Faction",faction);
+            db.close();
 
             try {
 
@@ -125,9 +121,9 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         MyObject myObject=new MyObject(id,faction,title,content,image_url,"0");
                         myObjectArrayList.add(myObject);
 
-                        // TODO : save to DB
-//                        db_BankAsatid db_bankAsatid=new db_BankAsatid(name,semat,image_url);
-//                        db_bankAsatid.save();
+                        db.open();
+                        db.Insert(myObject);
+                        db.close();
 
                     }
 

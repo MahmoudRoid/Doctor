@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -172,5 +173,20 @@ public class database extends SQLiteOpenHelper {
 			return true;
 		}
 	}
+
+	public boolean DeleteTabele1(String Column,String Index){
+		Log.i(TAG,"delte");
+		return db.delete(TABLE_NEWS, Column + "=" + Index, null) > 0;
+	}
+
+	@SuppressLint("DefaultLocale")
+	public void DeleteTabele2(String Column, String Index) {
+		db.execSQL(String.format(
+				"DELETE FROM %s WHERE %s = %d",
+				TABLE_NEWS,
+				Column,Index
+		));
+	}
+
 
 }// end class
