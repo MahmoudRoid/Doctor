@@ -4,10 +4,14 @@ package ir.elegam.doctor.Helper;
  * Created by Droid on 8/17/2016.
  */
 public class MyObject {
-    public int sid;
-    public String faction,title,content,image_url,favorite;
+    public String sid;
+    public String faction;
+    public String title;
+    public String content;
+    public String image_url;
+    public String favorite;
 
-    public MyObject(int sid,String faction,String title,String content,String image_url,String favorite){
+    public MyObject(String sid,String faction,String title,String content,String image_url,String favorite){
         this.sid=sid;
         this.faction=faction;
         this.title=title;
@@ -16,11 +20,51 @@ public class MyObject {
         this.favorite=favorite;
     }
 
-    public int getSid(){return  this.sid;}
-    public  String getFaction(){return  this.faction;}
-    public String getTitle(){return  this.title;}
-    public  String getContent(){return  this.content;}
-    public String getImage_url(){return  this.image_url;}
-    public String getFavorite(){return  this.favorite;}
+    public String getSid() {
+        return sid;
+    }
 
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getFaction() {
+        return faction;
+    }
+
+    public void setFaction(String faction) {
+        this.faction = faction;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public String getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(String favorite) {
+        this.favorite = favorite;
+    }
 }
