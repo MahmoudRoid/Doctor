@@ -13,6 +13,7 @@ public class DetailListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_list);
+        // TODO : agar faction=="bime"  ===>  favorite_fab = invisible
         init();
 
     }
