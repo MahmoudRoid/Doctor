@@ -99,16 +99,16 @@ public class GetData extends AsyncTask<Void,Void,String> {
             }
         }
         else {
-            db.open();
+            /*db.open();
             db.DeleteTabele1("Faction",faction);
-            db.close();
+            db.close();*/
 
             try {
 
                 JSONObject jsonObject=new JSONObject(result);
                 int Type=jsonObject.getInt("Type");
                 if(Type==1){
-                    myObjectArrayList = new ArrayList<MyObject>();
+                    myObjectArrayList = new ArrayList<>();
                     JSONArray jsonArray = new JSONArray(result);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -122,7 +122,12 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         myObjectArrayList.add(myObject);
 
                         db.open();
-                        db.Insert(myObject);
+                        if(!db.CheckExistanceNews("Faction",faction,"Sid",id)){
+                            db.Insert(myObject);
+
+                        }else{
+                            db.Update(myObject);
+                        }
                         db.close();
 
                     }
