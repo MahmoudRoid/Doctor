@@ -31,16 +31,10 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="ir.elegam.doctor" />
 
-        <activity android:name=".Activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.ListActivity" />
         <activity android:name=".Activity.FavoriteActivity" />
-        <activity android:name=".Activity.ShowActivity"></activity>
+        <activity android:name=".Activity.ShowActivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -57,7 +51,14 @@
         <activity
             android:name=".Activity.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activity.SupportActivity"></activity>
+        <activity android:name=".Activity.SupportActivity" />
+        <activity android:name=".Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
