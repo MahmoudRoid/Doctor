@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/tamasbamaback">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center"
+        android:layout_gravity="center_vertical|center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آدرس"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_gravity="right"/>
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آدرس"
+                android:textSize="14sp"
+                android:maxLines="4"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"/>
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/googlemap"
+                android:onClick="goto_map"/>
+
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/horizontal"></View>
+
+
+        <LinearLayout
+            android:id="@+id/phone_relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="تلفن"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_gravity="right"/>
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="091235055555"
+                android:textSize="14sp"
+                android:maxLines="4"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:onClick="click1"/>
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:id="@+id/phone2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="091235055555"
+                android:textSize="14sp"
+                android:maxLines="4"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:onClick="click2"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/horizontal"></View>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ساعات کاری"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_gravity="right"/>
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:id="@+id/rooz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="روز"
+                android:textSize="14sp"
+                android:maxLines="4"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"/>
+
+            <ir.elegam.doctor.Classes.CustomTextView
+                android:id="@+id/saat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ساعت"
+                android:textSize="14sp"
+                android:maxLines="4"
+                android:textColor="#000000"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
