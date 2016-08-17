@@ -33,7 +33,8 @@
         </activity>
         <activity android:name=".Activity.ListActivity" />
         <activity android:name=".Activity.DetailListActivity" />
-        <activity android:name=".Activity.FavoriteActivity"></activity>
+        <activity android:name=".Activity.FavoriteActivity" />
+        <activity android:name=".Activity.ShowActivity"></activity>
     </application>
 
 </manifest>

@@ -11,17 +11,17 @@ public class CustomTextView extends TextView {
 
     public CustomTextView(Context context) {
         super(context);
-        if(FONT_NAME == null) FONT_NAME = Typeface.createFromAsset(context.getAssets(), "BNAZANB.TTF");
+        if(FONT_NAME == null) FONT_NAME = Typeface.createFromAsset(context.getAssets(), "fonts/SansLight.ttf");
         this.setTypeface(FONT_NAME);
     }
     public CustomTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        if(FONT_NAME == null) FONT_NAME = Typeface.createFromAsset(context.getAssets(), "BNAZANB.TTF");
+        if(FONT_NAME == null) FONT_NAME = Typeface.createFromAsset(context.getAssets(), "fonts/SansLight.ttf");
         this.setTypeface(FONT_NAME);
     }
     public CustomTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if(FONT_NAME == null) FONT_NAME = Typeface.createFromAsset(context.getAssets(), "BNAZANB.TTF");
+        if(FONT_NAME == null) FONT_NAME = Typeface.createFromAsset(context.getAssets(), "fonts/SansLight.ttf");
         this.setTypeface(FONT_NAME);
     }
 }

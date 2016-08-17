@@ -170,7 +170,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(ListActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(ListActivity.this,DetailListActivity.class);
+                Intent intent = new Intent(ListActivity.this,ShowActivity.class);
                 switch (faction){
                     case "service":
 
@@ -178,6 +178,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        intent.putExtra("fav",myObjectArrayList.get(position).getFavorite());
                         startActivity(intent);
 
                         break;
@@ -187,6 +188,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        intent.putExtra("fav",myObjectArrayList.get(position).getFavorite());
                         startActivity(intent);
 
                         break;
@@ -197,6 +199,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        intent.putExtra("fav",myObjectArrayList.get(position).getFavorite());
                         startActivity(intent);
 
                         break;
@@ -207,6 +210,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        intent.putExtra("fav",myObjectArrayList.get(position).getFavorite());
                         startActivity(intent);
 
                         break;
