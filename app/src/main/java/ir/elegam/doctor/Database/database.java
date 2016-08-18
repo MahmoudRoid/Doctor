@@ -108,14 +108,14 @@ public class database extends SQLiteOpenHelper {
 	}
 
 	public int CountAll(String Column,String Index){
-		Cursor cu = db.rawQuery("select * from "+ TABLE_NEWS +" where "+Column+" = '"+ Index +" ;", null);
+		Cursor cu = db.rawQuery("select * from "+ TABLE_NEWS +" where "+Column+" = '"+ Index +"' ;", null);
 		int s = cu.getCount();
 		Log.i(TAG, "Count is: " + s);
 		return s;
 	}
 
 	public String DisplayAll(int row,int field,String Column,String Index){
-		Cursor cu = db.rawQuery("select * from "+ TABLE_NEWS +" where "+Column+" = '"+ Index +" ;", null);
+		Cursor cu = db.rawQuery("select * from "+ TABLE_NEWS +" where "+Column+" = '"+ Index +"' ;", null);
 		cu.moveToPosition(row);
 		String result = cu.getString(field);
 		return result;

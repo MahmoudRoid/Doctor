@@ -10,11 +10,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +26,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        database db = new database(this);
+        db.useable();
+
+        TextView txt = (TextView) findViewById(R.id.txtMain);
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+                intent.putExtra("faction","services");
+                intent.putExtra("image_url","");
+                intent.putExtra("title","onvan");
+                intent.putExtra("content","matn");
+                intent.putExtra("fav","0");
+                startActivity(intent);
+            }
+        });
 
     }
 
