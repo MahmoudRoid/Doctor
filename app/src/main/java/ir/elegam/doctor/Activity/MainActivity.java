@@ -30,19 +30,7 @@ public class MainActivity extends AppCompatActivity {
         database db = new database(this);
         db.useable();
 
-        TextView txt = (TextView) findViewById(R.id.txtMain);
-        txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShowActivity.class);
-                intent.putExtra("faction","services");
-                intent.putExtra("image_url","");
-                intent.putExtra("title","onvan");
-                intent.putExtra("content","matn");
-                intent.putExtra("fav","0");
-                startActivity(intent);
-            }
-        });
+
 
     }
 

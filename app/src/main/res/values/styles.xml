@@ -36,4 +36,20 @@
         <item name="android:textColorHint">@color/white</item>
     </style>
 
+
+    <style name="txt_setting" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+
 </resources>
