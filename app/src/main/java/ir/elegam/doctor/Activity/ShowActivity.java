@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.common.util.concurrent.ExecutionError;
 
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
