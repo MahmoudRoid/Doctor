@@ -34,6 +34,49 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClick(View view){
+        switch (view.getId()){
+
+            case R.id.btn_aboutdoctor:
+                startActivity(new Intent(MainActivity.this,AboutUsActivity.class));
+                break;
+
+            case R.id.btn_services:
+                Intent intent_service=new Intent(MainActivity.this,ListActivity.class);
+                intent_service.putExtra("faction","service");
+                startActivity(intent_service);
+                break;
+
+            case R.id.btn_magazine:
+                Intent intent_magazine=new Intent(MainActivity.this,ListActivity.class);
+                intent_magazine.putExtra("faction","magazine");
+                startActivity(intent_magazine);
+                break;
+
+            case R.id.btn_photo_gallery:
+                startActivity(new Intent(MainActivity.this,ImageCategoryActivity.class));
+                break;
+
+            case R.id.btn_care:
+                Intent intent_care=new Intent(MainActivity.this,ListActivity.class);
+                intent_care.putExtra("faction","care");
+                startActivity(intent_care);
+                break;
+
+            case R.id.btn_social:
+                show_social_dialog();
+                break;
+
+            case R.id.btn_soalat_motadavel:
+                startActivity(new Intent(MainActivity.this,QuestionActivity.class));
+                break;
+
+            case R.id.btn_tamas_ba_ma:
+                startActivity(new Intent(MainActivity.this,TamasBaMaDetailActivity.class));
+                break;
+        }
+    }
+
 
     public  void show_social_dialog(){
         final Dialog d = new Dialog(this);
@@ -48,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
 
-        final LinearLayout linear_1=(LinearLayout)findViewById(R.id.dialog_linear_1);
-        final LinearLayout linear_12=(LinearLayout)findViewById(R.id.dialog_linear_2);
-        final LinearLayout linear_13=(LinearLayout)findViewById(R.id.dialog_linear_3);
+        final LinearLayout linear_1=(LinearLayout)d.findViewById(R.id.dialog_linear_1);
+        final LinearLayout linear_12=(LinearLayout)d.findViewById(R.id.dialog_linear_2);
+        final LinearLayout linear_13=(LinearLayout)d.findViewById(R.id.dialog_linear_3);
 
         final TextView txtOne= (TextView) d.findViewById(R.id.dilog_text_1);
         final TextView txtTWo = (TextView) d.findViewById(R.id.dilog_text_2);
@@ -60,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         txtTWo.setText("اینستاگرام");
         txtThree.setText("وب سایت");
 
-        final Intent callIntent = new Intent(Intent.ACTION_DIAL);
         linear_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 d.dismiss();
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.ir"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
                 startActivity(browserIntent);
 
             }

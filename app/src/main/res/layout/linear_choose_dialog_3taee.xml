@@ -48,10 +48,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal|center_vertical"
-                                    android:layout_marginBottom="@dimen/_20sdp"
+                                    android:layout_marginBottom="@dimen/_15sdp"
                                     android:text="text"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_16sdp"
+                                    android:textSize="@dimen/_14sdp"
                                     android:clickable="true"
                                     android:onClick="harekat_dast"/>
                             </LinearLayout>
@@ -72,11 +72,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal|center_vertical"
-                                    android:layout_marginTop="@dimen/_20sdp"
-                                    android:layout_marginBottom="@dimen/_20sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:layout_marginBottom="@dimen/_15sdp"
                                     android:text="text"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_16sdp"/>
+                                    android:textSize="@dimen/_14sdp"/>
 
                             </LinearLayout>
 
@@ -97,10 +97,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal|center_vertical"
-                                    android:layout_marginTop="@dimen/_20sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
                                     android:text="text"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_16sdp"/>
+                                    android:textSize="@dimen/_14sdp"/>
 
                             </LinearLayout>
 

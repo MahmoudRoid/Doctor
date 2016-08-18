@@ -81,8 +81,8 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             case "service":
                 txtToolbar.setText("خدمات");
                 break;
-            case "news":
-                txtToolbar.setText("اخبار");
+            case "magazine":
+                txtToolbar.setText("مجله");
                 break;
 
             case "care":
@@ -182,7 +182,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         startActivity(intent);
 
                         break;
-                    case "news":
+                    case "magazine":
 
                         intent.putExtra("faction",faction);
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
