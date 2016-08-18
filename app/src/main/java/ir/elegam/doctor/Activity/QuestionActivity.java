@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -15,11 +17,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import ir.elegam.doctor.Adapter.ExpandableListAdapter;
+import ir.elegam.doctor.AsyncTask.GetData;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
+import ir.elegam.doctor.Interface.IWebservice;
 import ir.elegam.doctor.R;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity implements IWebservice{
 
     private Typeface San;
     private Toolbar toolbar;
@@ -65,6 +69,32 @@ public class QuestionActivity extends AppCompatActivity {
         registerForContextMenu(elv);
     }// end define()
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        switch(id){
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_refresh:
+                GetData getData = new GetData(QuestionActivity.this,QuestionActivity.this,"common_question");
+                getData.execute();
+                break;
+
+            default:
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void init(){
         db.open();
         db.Insert(new MyObject("1","question","Salam1","matn1","url","0"));
@@ -91,4 +121,13 @@ public class QuestionActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void getResult(Object result) throws Exception {
+
+    }
+
+    @Override
+    public void getError(String ErrorCodeTitle) throws Exception {
+
+    }
 }// end class
