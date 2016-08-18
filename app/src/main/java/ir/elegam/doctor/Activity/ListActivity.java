@@ -175,6 +175,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                     case "service":
 
                         intent.putExtra("faction",faction);
+                        intent.putExtra("sid",myObjectArrayList.get(position).getSid());
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
@@ -185,6 +186,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                     case "magazine":
 
                         intent.putExtra("faction",faction);
+                        intent.putExtra("sid",myObjectArrayList.get(position).getSid());
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
@@ -196,6 +198,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                     case "care":
 
                         intent.putExtra("faction",faction);
+                        intent.putExtra("sid",myObjectArrayList.get(position).getSid());
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
@@ -207,6 +210,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                     case "bime":
                         // mitavanad har applicationi in ghesmta ra dashte bashad ya nadashte bashad
                         intent.putExtra("faction",faction);
+                        intent.putExtra("sid",myObjectArrayList.get(position).getSid());
                         intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
                         intent.putExtra("title",myObjectArrayList.get(position).getTitle());
                         intent.putExtra("content",myObjectArrayList.get(position).getContent());
