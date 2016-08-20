@@ -52,7 +52,7 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
     private FloatingActionButton fab;
     private TextView txtToolbar;
     private Thumbnail_Adapter mAdapter;
-    SweetAlertDialog pDialog ;
+    private SweetAlertDialog pDialog ;
     final AppCompatActivity activity = null;
     private String URL = URLS.WEB_SERVICE_URL, TOKEN="";
     public int category_id;
