@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import org.json.JSONArray;
@@ -35,6 +36,7 @@ import ir.elegam.doctor.AsyncTask.Async_GetVideoInfo;
 import ir.elegam.doctor.Classes.ItemClickSupport;
 import ir.elegam.doctor.Classes.URLS;
 import ir.elegam.doctor.Classes.Variables;
+import ir.elegam.doctor.Database.orm.db_ImagesDetailGallery;
 import ir.elegam.doctor.Database.orm.tbl_Videos;
 import ir.elegam.doctor.Helper.Object_Video;
 import ir.elegam.doctor.R;
@@ -53,11 +55,13 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
     SweetAlertDialog pDialog ;
     final AppCompatActivity activity = null;
     private String URL = URLS.WEB_SERVICE_URL, TOKEN="";
+    public int category_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_gallary);
+        this.category_id=getIntent().getExtras().getInt("id");
         define();
         init();
 
@@ -122,10 +126,14 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
     public void init(){
         myList.clear();
         //  check offline database
-        List<tbl_Videos> list= Select.from(tbl_Videos.class).list();
+       // List<tbl_Videos> list= Select.from(tbl_Videos.class).list();
+
+        List<tbl_Videos> list = Select.from(tbl_Videos.class).where(Condition.prop("category_id").eq(this.category_id)).list();
+
         if(list.size()>0){
             for(int i=0;i<list.size();i++){
                 myList.add(new Object_Video(
+                        category_id,
                         list.get(i).getid()+"",
                         list.get(i).getThumbnail(),
                         list.get(i).getVideo_url(),
@@ -168,9 +176,11 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
         Log.i(Variables.Tag,"onFinishedRequest");
 
         try {
-            List<tbl_Videos> list = tbl_Videos.listAll(tbl_Videos.class);
+
+            List<tbl_Videos> list = Select.from(tbl_Videos.class).where(Condition.prop("category_id").eq(this.category_id)).list();
+
             if(list.size()>0){
-                tbl_Videos.deleteAll(tbl_Videos.class);
+                tbl_Videos.deleteAll(tbl_Videos.class,"category_id = ?", String.valueOf(this.category_id));
             }
             myList.clear();
         }
@@ -194,10 +204,10 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
 
                 String ImageUrl = URLS.DOMAIN + "image/video/"+ id +".jpg";
 
-                myList.add(new Object_Video(id+"",ImageUrl,video_url,title));
+                myList.add(new Object_Video(category_id,id+"",ImageUrl,video_url,title));
 
                 // Save in database
-                tbl_Videos tbl_videos = new tbl_Videos(id,title,ImageUrl,video_url);
+                tbl_Videos tbl_videos = new tbl_Videos(category_id,id,title,ImageUrl,video_url);
                 tbl_videos.save();
 
             }// end for loop

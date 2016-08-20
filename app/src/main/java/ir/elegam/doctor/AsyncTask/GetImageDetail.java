@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,9 +98,10 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
 
             // pak kardane database ha baraye rikhtane data e jadid
             try {
-                List<db_ImagesDetailGallery> list = db_ImagesDetailGallery.listAll(db_ImagesDetailGallery.class);
+                List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("category_id").eq(this.category_id)).list();
+
                 if(list.size()>0){
-                    db_ImagesDetailGallery.deleteAll(db_ImagesDetailGallery.class);
+                    db_ImagesDetailGallery.deleteAll(db_ImagesDetailGallery.class,"category_id = ?", String.valueOf(this.category_id));
                 }
             }
             catch (Exception e){e.printStackTrace();}
@@ -116,11 +120,11 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
                         int id=obj.getInt("Id");
                         String image_url=obj.getString("Photo");
 
-                        ImagesDetailGallery category=new ImagesDetailGallery(id,image_url);
+                        ImagesDetailGallery category=new ImagesDetailGallery(this.category_id,id,image_url);
                         imageGalleryArrayList.add(category);
 
                         // TODO : add too database
-                        db_ImagesDetailGallery db = new db_ImagesDetailGallery(id,image_url);
+                        db_ImagesDetailGallery db = new db_ImagesDetailGallery(this.category_id,id,image_url);
                         db.save();
                     }
 

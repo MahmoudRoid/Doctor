@@ -63,30 +63,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Activity.MainActivity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.ListActivity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.FavoriteActivity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.ShowActivity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.MapsActivity"
             android:label="@string/title_activity_maps"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.SupportActivity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.QuestionActivity"
             android:label=""
@@ -100,6 +101,8 @@
             android:label=""
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.MailActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.VideoCategoryActivity"></activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.orm.query.Condition;
 import com.orm.query.Select;
 
 
@@ -59,11 +60,11 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     public void init() {
         //  check offline database
         ArrayList<ImagesDetailGallery> arrayList = new ArrayList<ImagesDetailGallery>();
-        List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).list();
+        List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("category_id").eq(getIntent().getExtras().getInt("id"))).list();
         if (list.size() > 0) {
             // show offline list
             for (int i = 0; i < list.size(); i++) {
-                ImagesDetailGallery cs = new ImagesDetailGallery(list.get(i).getid(), list.get(i).getImage_url());
+                ImagesDetailGallery cs = new ImagesDetailGallery(list.get(i).getCategory_id(),list.get(i).getid(), list.get(i).getImage_url());
                 arrayList.add(cs);
             }
             showList(arrayList);

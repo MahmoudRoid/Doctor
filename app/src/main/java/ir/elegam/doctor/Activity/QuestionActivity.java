@@ -2,6 +2,7 @@ package ir.elegam.doctor.Activity;
 
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
 import ir.elegam.doctor.R;
 
-public class QuestionActivity extends AppCompatActivity implements IWebservice{
+public class QuestionActivity extends AppCompatActivity implements IWebservice {
 
     private Typeface San;
     private Toolbar toolbar;
@@ -34,6 +36,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice{
     private List<String> listDataHeader = new ArrayList<>();
     private HashMap<String, List<String>> listDataChild;
     private ExpandableListAdapter listAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,14 +98,20 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice{
         return super.onOptionsItemSelected(item);
     }
 
-    private void init(){
-        db.open();
-        db.Insert(new MyObject("1","question","Salam1","matn1","url","0"));
-        db.Insert(new MyObject("2","question","Salam2","matn2","url","0"));
-        db.Insert(new MyObject("3","question","Salam3","matn3","url","0"));
-        db.Insert(new MyObject("4","question","Salam4","matn4","url","0"));
-        db.close();
-    }// end init()
+//    private void init(){
+//
+//        if (number==0) {
+//            db.open();
+//            db.Insert(new MyObject("1","question","Salam1","matn1","url","0"));
+//            db.Insert(new MyObject("2","question","Salam2","matn2","url","0"));
+//            db.Insert(new MyObject("3","question","Salam3","matn3","url","0"));
+//            db.Insert(new MyObject("4","question","Salam4","matn4","url","0"));
+//            db.close();
+//            number++;
+//        } else {
+//            Toast.makeText(getApplicationContext(),"ssxfv", Toast.LENGTH_SHORT).show();
+//        }
+//    }// end init()
 
     private void prepareListData() {
         listDataHeader = new ArrayList<>();
@@ -114,20 +123,22 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice{
             listDataHeader.add(db.DisplayAll(i,3,"Faction","question"));
             List<String> comingSoon = new ArrayList<>();
             comingSoon.add(db.DisplayAll(i,4,"Faction","question"));
-            listDataChild.put(listDataHeader.get(0), comingSoon);
+            listDataChild.put(listDataHeader.get(i), comingSoon);
         }
         db.close();
-
-
     }
 
     @Override
     public void getResult(Object result) throws Exception {
-
+        Snackbar snackbar = Snackbar
+                .make(findViewById(R.id.question_coordinator), "با موفقیت آپدیت شد", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     @Override
     public void getError(String ErrorCodeTitle) throws Exception {
-
+        Snackbar snackbar = Snackbar
+                .make(findViewById(R.id.question_coordinator), "مشکلی پیش آمده است . مجددا تلاش نمایید", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 }// end class

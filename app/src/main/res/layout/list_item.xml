@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="55dip"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:gravity="right"
+    android:background="@drawable/rounded_corners"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lblListItem"
-        android:layout_width="fill_parent"
+  <ir.elegam.doctor.Classes.CustomTextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="@color/pri500"
+        android:gravity="right|center_vertical"
+        android:textSize="14dip"/>
 
-</LinearLayout>
+</RelativeLayout>

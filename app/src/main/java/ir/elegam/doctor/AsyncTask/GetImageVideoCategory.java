@@ -16,6 +16,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import ir.elegam.doctor.Classes.URLS;
 import ir.elegam.doctor.Database.orm.db_ImageCategoryGallery;
+import ir.elegam.doctor.Database.orm.db_VideoCategoryGallery;
 import ir.elegam.doctor.Helper.ImageCategoryGallery;
 import ir.elegam.doctor.Interface.IWebservice;
 import okhttp3.FormBody;
@@ -27,16 +28,17 @@ import okhttp3.Response;
 /**
  * Created by Droid on 8/14/2016.
  */
-public class GetImageCategory extends AsyncTask<String,Void,String> {
+public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
     public ArrayList<ImageCategoryGallery> imageGalleryArrayList;
     public Context context;
     private IWebservice delegate = null;
-
+    private String category;
     SweetAlertDialog pDialog ;
 
-    public GetImageCategory(Context context, IWebservice delegate){
+    public GetImageVideoCategory(Context context, IWebservice delegate,String category){
         this.context=context;
         this.delegate=delegate;
+        this.category=category;
         pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
     }
 
@@ -58,7 +60,7 @@ public class GetImageCategory extends AsyncTask<String,Void,String> {
             try {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
-                        .add("Code","Image_Category")
+                        .add("Code",this.category)
                         .build();
                 Request request = new Request.Builder()
                         .url(URLS.WEB_SERVICE_URL)
@@ -90,13 +92,24 @@ public class GetImageCategory extends AsyncTask<String,Void,String> {
         else {
 
             // pak kardane database ha baraye rikhtane data e jadid
-            try {
-                List<db_ImageCategoryGallery> list = db_ImageCategoryGallery.listAll(db_ImageCategoryGallery.class);
-                if(list.size()>0){
-                    db_ImageCategoryGallery.deleteAll(db_ImageCategoryGallery.class);
+            if(this.category.equals("image_category")){
+                try {
+                    List<db_ImageCategoryGallery> list = db_ImageCategoryGallery.listAll(db_ImageCategoryGallery.class);
+                    if(list.size()>0){
+                        db_ImageCategoryGallery.deleteAll(db_ImageCategoryGallery.class);
+                    }
                 }
+                catch (Exception e){e.printStackTrace();}
             }
-            catch (Exception e){e.printStackTrace();}
+            else {
+                try {
+                    List<db_VideoCategoryGallery> list = db_VideoCategoryGallery.listAll(db_VideoCategoryGallery.class);
+                    if(list.size()>0){
+                        db_VideoCategoryGallery.deleteAll(db_VideoCategoryGallery.class);
+                    }
+                }
+                catch (Exception e){e.printStackTrace();}
+            }
 
 
             try {
@@ -117,8 +130,15 @@ public class GetImageCategory extends AsyncTask<String,Void,String> {
                         imageGalleryArrayList.add(category);
 
                         // TODO : add too database
-                        db_ImageCategoryGallery db = new db_ImageCategoryGallery(id,title);
-                        db.save();
+                        if(this.category.equals("image_category")){
+
+                            db_ImageCategoryGallery db = new db_ImageCategoryGallery(id,title);
+                            db.save();
+                        }
+                        else {
+                            db_VideoCategoryGallery db = new db_VideoCategoryGallery(id,title);
+                            db.save();
+                        }
                     }
 
                     if(imageGalleryArrayList.size()>0){

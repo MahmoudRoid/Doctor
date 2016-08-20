@@ -116,7 +116,11 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         String id = jsonObject2.optString("Id");
                         String title = jsonObject2.getString("Title");
                         String content = jsonObject2.getString("Content");
-                        String image_url = jsonObject2.getString("Photo");
+                        String image_url;
+                        if(!this.faction.equals("common_question")){
+                            image_url = jsonObject2.getString("Photo");
+                        }
+                        else image_url ="";
 
                         MyObject myObject=new MyObject(id,faction,title,content,image_url,"0");
                         myObjectArrayList.add(myObject);
