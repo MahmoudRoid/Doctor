@@ -25,13 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.AsyncTask.Async_SendMessage;
 import ir.elegam.doctor.Classes.URLS;
