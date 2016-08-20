@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:text="معرفی پزشک"
                         android:onClick="onClick"
                         android:clickable="true"
@@ -72,7 +72,8 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:drawableLeft="@drawable/c1"
-                        android:drawableRight="@drawable/b1" />
+                        android:drawableRight="@drawable/b1"
+                        android:padding="10dp" />
                 </FrameLayout>
 
 
@@ -104,14 +105,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="معرفی خدمات کلینیک"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:id="@+id/btn_services"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:drawableLeft="@drawable/c2"
-                        android:drawableRight="@drawable/b2"/>
+                        android:drawableRight="@drawable/b2"
+                        android:padding="10dp" />
                 </FrameLayout>
 
             </LinearLayout>
@@ -139,14 +141,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="مجله پزشکی"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:id="@+id/btn_magazine"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:drawableLeft="@drawable/c5"
-                        android:drawableRight="@drawable/b5"/>
+                        android:drawableRight="@drawable/b5"
+                        android:padding="10dp" />
 
                 </FrameLayout>
             </LinearLayout>
@@ -174,14 +177,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="گالری تصاویر"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:id="@+id/btn_photo_gallery"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:drawableLeft="@drawable/c4"
-                        android:drawableRight="@drawable/b4"/>
+                        android:drawableRight="@drawable/b4"
+                        android:padding="10dp" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -210,14 +214,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="مراقبت ها"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:id="@+id/btn_care"
                         android:drawableLeft="@drawable/c7"
-                        android:drawableRight="@drawable/b7"/>
+                        android:drawableRight="@drawable/b7"
+                        android:padding="10dp" />
 
                 </FrameLayout>
             </LinearLayout>
@@ -283,14 +288,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="شبکه های اجتماعی"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:id="@+id/btn_social"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:drawableLeft="@drawable/c3"
-                        android:drawableRight="@drawable/b3"/>
+                        android:drawableRight="@drawable/b3"
+                        android:padding="10dp" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -317,14 +323,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="سوالات متداول"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:id="@+id/btn_soalat_motadavel"
                         android:drawableLeft="@drawable/c6"
-                        android:drawableRight="@drawable/b6"/>
+                        android:drawableRight="@drawable/b6"
+                        android:padding="10dp" />
 
                 </FrameLayout>
             </LinearLayout>
@@ -352,14 +359,15 @@
                         android:layout_gravity="center"
                         android:gravity="center_horizontal|center_vertical"
                         android:text="تماس با ما"
-                        android:background="#BFffffff"
+                        android:background="@drawable/shape_main"
                         android:onClick="onClick"
                         android:clickable="true"
                         android:paddingLeft="5dp"
                         android:paddingRight="15dp"
                         android:id="@+id/btn_tamas_ba_ma"
                         android:drawableLeft="@drawable/c7"
-                        android:drawableRight="@drawable/b7"/>
+                        android:drawableRight="@drawable/b7"
+                        android:padding="10dp" />
 
                 </FrameLayout>
             </LinearLayout>

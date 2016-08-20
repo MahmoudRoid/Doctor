@@ -163,7 +163,6 @@ public class ShowActivity extends AppCompatActivity {
         }
     }// end setContent()
 
-
     private void ctext(String text){
         Log.i(Variables.Tag,"text: "+text);
         TextView tv=new TextView(ShowActivity.this);
@@ -175,8 +174,6 @@ public class ShowActivity extends AppCompatActivity {
         lay.addView(tv,lp);
 
     }// end ctext()
-
-
 
     private void cimg(String image_url){
         Log.i(Variables.Tag,"imageurl: "+image_url);

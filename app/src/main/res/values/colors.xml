@@ -31,6 +31,8 @@
     <color name="V_Sorkhabi">#E82C2D</color>
     <color name="V_Cyan">#07C4B0</color>
     <color name="V_VioPink">#A80369</color>
+    <color name="V_Gray">#BF999999</color>
+    <color name="V_White">#BFffffff</color>
 
     <color name="mdtp_accent_color">#7F1416</color>
     <color name="mdtp_accent_color_dark">#7F1416</color>

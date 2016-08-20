@@ -92,6 +92,14 @@
             android:name=".Activity.QuestionActivity"
             android:label=""
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activity.AboutUsActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activity.MessageActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

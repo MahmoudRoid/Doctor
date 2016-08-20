@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Doctor</string>
     <string name="app_version">1.0.0</string>
+
     <string name="menu_save">ذخیره بروی دستگاه</string>
     <string name="menu_refresh">آپدیت</string>
+    <string name="menu_send">ارسال</string>
+
+
     <string name="error_invalid">معتبر نیست!</string>
     <string name="error_length">تعداد کاراکترها نامعتبر است.</string>
     <string name="error_empty">خالیست!</string>
@@ -16,4 +20,11 @@
     </string>
     <string name="error_nework">تلاش برای اتصال به اینترنت</string>
     <string name="error_empty_list">لیست علاقمندی های شما خالیست!</string>
+
+    <string name="prompt_name">نام و نام خانوادگی</string>
+    <string name="prompt_phone">شماره تماس</string>
+    <string name="prompt_email">ایمیل</string>
+    <string name="prompt_title">عنوان</string>
+    <string name="prompt_message">شرح پیام</string>
+    <string name="prompt_download">در حال دانلود...</string>
 </resources>
