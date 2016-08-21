@@ -27,6 +27,7 @@ import ir.elegam.doctor.AsyncTask.Async_Extra;
 import ir.elegam.doctor.AsyncTask.Async_Message;
 import ir.elegam.doctor.Classes.ItemClickSupport;
 import ir.elegam.doctor.Classes.URLS;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Helper.ObjectMessage;
@@ -135,7 +136,7 @@ public class MailActivity extends AppCompatActivity implements Async_Message.Get
         if(isNetworkAvailable()){
             Async_Message async = new Async_Message();
             async.mListener = MailActivity.this;
-            async.execute(URL,"TOKEN","CODE","CLASS_ID");
+            async.execute(URLS.SendMessagePm,Variables.Token,"CODE","CLASS_ID");
         }else{
             Toast.makeText(MailActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }

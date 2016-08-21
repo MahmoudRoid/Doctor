@@ -33,9 +33,8 @@ public class Async_GetVideoInfo extends AsyncTask<Object, Object, Object> {
         BufferedReader reader = null;
         try {
             String data = URLEncoder.encode("Token", "UTF8")  +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Code", "UTF8")   +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Kind", "UTF8")   +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Category", "UTF8")+"="+ URLEncoder.encode(params[4].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Id", "UTF8")   +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
+
 
             URL link=new URL(params[0].toString());
             HttpURLConnection connect = (HttpURLConnection) link.openConnection();

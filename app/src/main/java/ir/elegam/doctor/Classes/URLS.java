@@ -2,7 +2,7 @@ package ir.elegam.doctor.Classes;
 
 public class URLS {
 
-    public static final String DOMAIN ="/api/";
+    public static final String DOMAIN ="http://drkhademi.elegam.ir/api/";
     public static final String WEB_SERVICE_URL = DOMAIN + "";
 
     public static final String GetServices=DOMAIN+"GetServices";
@@ -15,8 +15,8 @@ public class URLS {
     public static final String GetImages=DOMAIN+"GetImages";
     public static final String GetImagesById=DOMAIN+"GetImagesById";
     public static final String GetVideosById=DOMAIN+"GetVideosById";
-
-
+    public static final String SendMessagePm=DOMAIN+"SendMessagePm";
+    public static final String GetAboutUs=DOMAIN+"GetAboutUs";
 
 
 

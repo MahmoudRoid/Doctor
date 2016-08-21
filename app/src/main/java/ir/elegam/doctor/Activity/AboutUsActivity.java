@@ -108,7 +108,7 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
         if(isNetworkAvailable()){
             Async_Extra async = new Async_Extra();
             async.mListener = AboutUsActivity.this;
-            async.execute(URL,"TOKEN","CODE","CLASS_ID");
+            async.execute(URLS.GetAboutUs,Variables.Token);
         }else{
             Toast.makeText(AboutUsActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
