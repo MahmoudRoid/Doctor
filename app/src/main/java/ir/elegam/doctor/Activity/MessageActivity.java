@@ -25,6 +25,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.AsyncTask.Async_SendMessage;
 import ir.elegam.doctor.Classes.URLS;
@@ -268,8 +271,22 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
             }
         }
         else {
-            Toast.makeText(MessageActivity.this, "پیام شما با موفقیت ثبت شد!", Toast.LENGTH_SHORT).show();
-            finish();
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                if(jsonObject.getInt("Status")==1){
+                    // ok
+                    Toast.makeText(MessageActivity.this, "پیام شما با موفقیت ثبت شد!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else {
+                    // error
+                    Toast.makeText(MessageActivity.this, "متاسفانه پیام شما ارسال نشد", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }// end class

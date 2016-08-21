@@ -196,11 +196,11 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                 int id = jsonObject.optInt("Id");
-                String video_url = jsonObject.optString("url");
+                String video_url = jsonObject.optString("Url");
                 String title = jsonObject.optString("Title");
                 title = title.replace(' ','_');
-                String content = jsonObject.optString("Content");
-                String date = jsonObject.optString("datecreated");
+//                String content = jsonObject.optString("Content");
+//                String date = jsonObject.optString("datecreated");
 
                 String ImageUrl = URLS.DOMAIN + "image/video/"+ id +".jpg";
 

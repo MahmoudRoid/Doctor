@@ -111,15 +111,15 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
                 imageGalleryArrayList = new ArrayList<ImagesDetailGallery>();
 
                 JSONObject jsonObject =new JSONObject(result);
-                if(jsonObject.getInt("Type")==1){
+                if(jsonObject.getInt("Status")==1){
                     // save Token into my application class
-                    JSONArray jsonArray=jsonObject.getJSONArray("List");
+                    JSONArray jsonArray=jsonObject.getJSONArray("Data");
 
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
 
                         int id=obj.getInt("Id");
-                        String image_url=obj.getString("Photo");
+                        String image_url=obj.getString("Url");
 
                         ImagesDetailGallery category=new ImagesDetailGallery(this.category_id,id,image_url);
                         imageGalleryArrayList.add(category);
