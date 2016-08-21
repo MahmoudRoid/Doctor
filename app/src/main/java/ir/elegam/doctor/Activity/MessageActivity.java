@@ -41,8 +41,7 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
     private TextInputLayout til1,til2, til3, til4, til5;
     private Button btnSend;
     private CoordinatorLayout coordinatorLayout;
-    private boolean isForAdmin;
-    private String namefamily, email, phone1, title, content, toWhome;
+    private String namefamily, email, phone1, title, content;
     private String URL= URLS.WEB_SERVICE_URL,TOKEN="";
 
     @Override
@@ -83,8 +82,6 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
         edtNameFamily = (EditText) findViewById(R.id.edtName_form);
         pDialog= new SweetAlertDialog(MessageActivity.this, SweetAlertDialog.PROGRESS_TYPE);
 
-
-        isForAdmin = getIntent().getBooleanExtra("dr",false);
 
         txtToolbar.setTypeface(San);
         btnSend.setTypeface(San);
@@ -192,13 +189,6 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
             cancel = true;
         }
 
-        // Check send the message to whom
-        if(isForAdmin){
-            toWhome = "1";
-        }else{
-            toWhome = "2";
-        }
-
         if (cancel) {
             focusView.requestFocus();
         } else {
@@ -217,7 +207,7 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
         if (isNetworkAvailable()){
             Async_SendMessage asyncSendMessage = new Async_SendMessage();
             asyncSendMessage.mListener = MessageActivity.this;
-            asyncSendMessage.execute(URL,"Contact",TOKEN,toWhome,namefamily,email,phone1,title,content,"");
+            asyncSendMessage.execute(URLS.InsertContactUs,Variables.Token,namefamily,email,phone1,title,content);
         }else{
             Snackbar_show(getResources().getString(R.string.error_internet));
         }

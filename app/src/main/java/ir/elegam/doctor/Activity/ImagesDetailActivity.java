@@ -1,15 +1,18 @@
 package ir.elegam.doctor.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -40,6 +43,9 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     private ImageDetailAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public ArrayList<ImagesDetailGallery> imagesDetailGalleryArrayList;
+    private Typeface San;
+    private Toolbar toolbar;
+    private TextView txtToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +53,14 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         setContentView(R.layout.activity_images_detail);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
+        toolbar = (Toolbar) findViewById(R.id.toolbar_imagedetail);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
+        txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
+        txtToolbar.setTypeface(San);
+        txtToolbar.setText("گالری عکس");
 
         init();
     }
@@ -83,6 +91,11 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -90,7 +103,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         if (itemId == android.R.id.home) {
             startActivity(new Intent(ImagesDetailActivity.this, ImageCategoryActivity.class));
         }
-        if (itemId == R.id.custom_refresh) {
+        if (itemId == R.id.action_refresh) {
             if (Internet.isNetworkAvailable(ImagesDetailActivity.this)) {
                 // call webservice
                 GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getInt("id"));

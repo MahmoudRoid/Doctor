@@ -12,5 +12,19 @@ public class Variables {
     public static final String IMAGES = ROOT + "/images";
     public static final String VIDEO = ROOT + "/videos";
 
+    public static final String Token="Y9@ie_7u";
+
+    public static final String getMagazine="getMagazine";
+    public static final String getServices="getServices";
+    public static final String getInsurance="getInsurance";
+    public static final String getCare="getCare";
+    public static final String getFaq="getFaq";
+
+    public static final String getVideosCategory="getVideosCategory";
+    public static final String getImagesCategory="getImagesCategory";
+
+    public static final String getVideosDetail = "getVideosDetail";
+    public static final String getImagesDetail = "getImagesDetail";
+
 
 }// end Variables

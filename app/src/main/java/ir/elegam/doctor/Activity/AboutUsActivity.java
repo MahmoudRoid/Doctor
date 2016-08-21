@@ -1,6 +1,7 @@
 package ir.elegam.doctor.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -158,6 +159,5 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
         setupViewPager(viewPager);
 
     }
-
 
 }// end class

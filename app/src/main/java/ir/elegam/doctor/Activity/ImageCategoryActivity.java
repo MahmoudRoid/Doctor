@@ -1,6 +1,7 @@
 package ir.elegam.doctor.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,7 @@ import ir.elegam.doctor.Adapter.ImageCategoryAdapter;
 import ir.elegam.doctor.AsyncTask.GetImageVideoCategory;
 import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.RecyclerItemClickListener;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.orm.db_ImageCategoryGallery;
 import ir.elegam.doctor.Helper.ImageCategoryGallery;
 import ir.elegam.doctor.Interface.IWebservice;
@@ -33,21 +35,25 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
     private ImageCategoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public ArrayList<ImageCategoryGallery> imageCategoryGalleryArrayList;
-
+    private Typeface San;
+    private Toolbar toolbar;
+    private TextView txtToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_category);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
+        toolbar = (Toolbar) findViewById(R.id.toolbar_imagecategory);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.custom_title);
-        mTitle.setText("گالری عکس");
+        txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
+        txtToolbar.setTypeface(San);
+        txtToolbar.setText("گالری عکس");
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.images_category_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +61,8 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
             public void onClick(View view) {
                 if(Internet.isNetworkAvailable(ImageCategoryActivity.this)){
                     // call webservice
-//                   GetImageVideoCategory getdata=new GetImageVideoCategory(ImageCategoryActivity.this,ImageCategoryActivity.this,"image_category");
-//                    getdata.execute();
+                    GetImageVideoCategory getdata=new GetImageVideoCategory(ImageCategoryActivity.this,ImageCategoryActivity.this, Variables.getImagesCategory);
+                    getdata.execute();
                 }
                 else {
                     Snackbar snackbar = Snackbar
@@ -87,7 +93,7 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
 
             if(Internet.isNetworkAvailable(ImageCategoryActivity.this)){
                 // call webservice
-                GetImageVideoCategory getdata=new GetImageVideoCategory(ImageCategoryActivity.this,ImageCategoryActivity.this,"image_category");
+                GetImageVideoCategory getdata=new GetImageVideoCategory(ImageCategoryActivity.this,ImageCategoryActivity.this,Variables.getImagesCategory);
                 getdata.execute();
             }
             else {

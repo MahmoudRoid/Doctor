@@ -78,17 +78,17 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     public void getFaction(){
         this.faction=getIntent().getExtras().getString("faction");
         switch (faction){
-            case "service":
+            case "getServices":
                 txtToolbar.setText("خدمات");
                 break;
-            case "magazine":
+            case "getMagazine":
                 txtToolbar.setText("مجله");
                 break;
 
-            case "care":
+            case "getCare":
                 txtToolbar.setText("مراقبت ها");
                 break;
-            case "bime":
+            case "getInsurance":
                 txtToolbar.setText("بیمه");
                 break;
         }
@@ -172,7 +172,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(ListActivity.this,ShowActivity.class);
                 switch (faction){
-                    case "service":
+                    case "getServices":
 
                         intent.putExtra("faction",faction);
                         intent.putExtra("sid",myObjectArrayList.get(position).getSid());
@@ -183,19 +183,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         startActivity(intent);
 
                         break;
-                    case "magazine":
-
-                        intent.putExtra("faction",faction);
-                        intent.putExtra("sid",myObjectArrayList.get(position).getSid());
-                        intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
-                        intent.putExtra("title",myObjectArrayList.get(position).getTitle());
-                        intent.putExtra("content",myObjectArrayList.get(position).getContent());
-                        intent.putExtra("fav",myObjectArrayList.get(position).getFavorite());
-                        startActivity(intent);
-
-                        break;
-
-                    case "care":
+                    case "getMagazine":
 
                         intent.putExtra("faction",faction);
                         intent.putExtra("sid",myObjectArrayList.get(position).getSid());
@@ -207,7 +195,19 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
 
                         break;
 
-                    case "bime":
+                    case "getCare":
+
+                        intent.putExtra("faction",faction);
+                        intent.putExtra("sid",myObjectArrayList.get(position).getSid());
+                        intent.putExtra("image_url",myObjectArrayList.get(position).getImage_url());
+                        intent.putExtra("title",myObjectArrayList.get(position).getTitle());
+                        intent.putExtra("content",myObjectArrayList.get(position).getContent());
+                        intent.putExtra("fav",myObjectArrayList.get(position).getFavorite());
+                        startActivity(intent);
+
+                        break;
+
+                    case "getInsurance":
                         // mitavanad har applicationi in ghesmta ra dashte bashad ya nadashte bashad
                         intent.putExtra("faction",faction);
                         intent.putExtra("sid",myObjectArrayList.get(position).getSid());

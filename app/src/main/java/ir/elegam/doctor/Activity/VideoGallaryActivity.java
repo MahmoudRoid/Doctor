@@ -229,7 +229,7 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
             Async_GetVideoInfo async_getVideoInfo = new Async_GetVideoInfo();
             async_getVideoInfo.mListener = VideoGallaryActivity.this;
             pDialog.show();
-            async_getVideoInfo.execute(URL,TOKEN,"Gallery","Video","");
+            async_getVideoInfo.execute(URLS.GetVideosById,Variables.Token,"Gallery","Video","");
         }else{
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }

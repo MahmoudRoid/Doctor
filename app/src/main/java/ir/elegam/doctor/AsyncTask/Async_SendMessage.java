@@ -34,15 +34,12 @@ public class Async_SendMessage extends AsyncTask<Object, Object, Object> {
     protected Object doInBackground(Object... params) {
         BufferedReader reader = null;
         try {
-            String data = URLEncoder.encode("Code", "UTF8")     +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Token", "UTF8")    +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("RecieverId", "UTF8") +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Name", "UTF8")   +"="+ URLEncoder.encode(params[4].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Email", "UTF8")    +"="+ URLEncoder.encode(params[5].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Phone", "UTF8")    +"="+ URLEncoder.encode(params[6].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Title", "UTF8")    +"="+ URLEncoder.encode(params[7].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Content", "UTF8")  +"="+ URLEncoder.encode(params[8].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Category", "UTF8") +"="+ URLEncoder.encode(params[9].toString(),"UTF8");
+            String data = URLEncoder.encode("Token", "UTF8")    +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Name", "UTF8")   +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Email", "UTF8")    +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Phone", "UTF8")    +"="+ URLEncoder.encode(params[4].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Title", "UTF8")    +"="+ URLEncoder.encode(params[5].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Content", "UTF8")  +"="+ URLEncoder.encode(params[6].toString(),"UTF8");
 
             URL link=new URL(params[0].toString());
             HttpURLConnection connect = (HttpURLConnection) link.openConnection();

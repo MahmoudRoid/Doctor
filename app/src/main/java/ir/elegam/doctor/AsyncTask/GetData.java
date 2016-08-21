@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.Classes.URLS;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
@@ -33,6 +34,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
     public String faction;
     SweetAlertDialog pDialog ;
     private database db;
+    public String Url;
 
     public GetData(Context context, IWebservice delegate,String faction) {
         this.context = context;
@@ -40,6 +42,29 @@ public class GetData extends AsyncTask<Void,Void,String> {
         this.faction=faction;
         pDialog= new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
         db = new database(context);
+
+        getUrl(faction);
+    }
+
+    public void getUrl(String faction){
+
+        switch (faction){
+            case "getServices":
+                this.Url=URLS.GetServices;
+                break;
+            case "getMagazine":
+                this.Url=URLS.GetMagazine;
+                break;
+            case "getInsurance":
+                this.Url=URLS.GetInsurance;
+                break;
+            case "getCare":
+                this.Url=URLS.GetCare;
+            case "getFaq":
+                this.Url=URLS.GetFaq;
+                break;
+        }
+
     }
 
     @Override
@@ -61,10 +86,10 @@ public class GetData extends AsyncTask<Void,Void,String> {
             try {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
-                        .add("Faction",this.faction)
+                        .add("Token", Variables.Token)
                         .build();
                 Request request = new Request.Builder()
-                        .url(URLS.WEB_SERVICE_URL)
+                        .url(this.Url)
                         .post(body)
                         .build();
 
@@ -106,10 +131,10 @@ public class GetData extends AsyncTask<Void,Void,String> {
             try {
 
                 JSONObject jsonObject=new JSONObject(result);
-                int Type=jsonObject.getInt("Type");
+                int Type=jsonObject.getInt("Status");
                 if(Type==1){
                     myObjectArrayList = new ArrayList<>();
-                    JSONArray jsonArray = new JSONArray(result);
+                    JSONArray jsonArray = jsonObject.getJSONArray("Data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
@@ -117,8 +142,8 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         String title = jsonObject2.getString("Title");
                         String content = jsonObject2.getString("Content");
                         String image_url;
-                        if(!this.faction.equals("common_question")){
-                            image_url = jsonObject2.getString("Photo");
+                        if(!this.faction.equals("getInsurance")){
+                            image_url = jsonObject2.getString("Url");
                         }
                         else image_url ="";
 

@@ -103,6 +103,25 @@
         <activity android:name=".Activity.MailActivity"></activity>
             android:screenOrientation="portrait" />
         <activity android:name=".Activity.VideoCategoryActivity"></activity>
+
+        <activity
+            android:name=".Activity.TamasBaMaDetailActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+
+        <activity
+        android:name=".Activity.ImageCategoryActivity"
+        android:label=""
+        android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.ImagesDetailActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+
+
+
+
     </application>
 
 </manifest>

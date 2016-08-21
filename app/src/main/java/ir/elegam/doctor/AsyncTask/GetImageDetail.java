@@ -18,6 +18,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import ir.elegam.doctor.Classes.URLS;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.orm.db_ImagesDetailGallery;
 import ir.elegam.doctor.Helper.ImagesDetailGallery;
 import ir.elegam.doctor.Interface.IWebservice;
@@ -64,11 +65,11 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
 
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
+                        .add("Token", Variables.Token)
                         .add("Category_id",String.valueOf(category_id))
-                        .add("Code","Image_Category")
                         .build();
                 Request request = new Request.Builder()
-                        .url(URLS.WEB_SERVICE_URL)
+                        .url(URLS.GetImagesById)
                         .post(body)
                         .build();
 

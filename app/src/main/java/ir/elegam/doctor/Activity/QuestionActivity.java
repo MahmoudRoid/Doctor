@@ -20,6 +20,7 @@ import java.util.List;
 
 import ir.elegam.doctor.Adapter.ExpandableListAdapter;
 import ir.elegam.doctor.AsyncTask.GetData;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
@@ -87,7 +88,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
                 finish();
                 break;
             case R.id.action_refresh:
-                GetData getData = new GetData(QuestionActivity.this,QuestionActivity.this,"common_question");
+                GetData getData = new GetData(QuestionActivity.this,QuestionActivity.this, Variables.getFaq);
                 getData.execute();
                 break;
 

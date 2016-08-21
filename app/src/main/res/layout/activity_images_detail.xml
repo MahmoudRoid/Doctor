@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     android:id="@+id/images_detail_relative">
 
-    <include layout="@layout/gallery_toolbar"/>
+    <include
+        android:id="@+id/toolbar_imagedetail"
+        layout="@layout/app_bar" />
 
     <RelativeLayout
         android:layout_width="match_parent"

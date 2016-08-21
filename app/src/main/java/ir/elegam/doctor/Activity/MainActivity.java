@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
@@ -39,28 +40,33 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btn_aboutdoctor:
                 startActivity(new Intent(MainActivity.this,AboutUsActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 
             case R.id.btn_services:
                 Intent intent_service=new Intent(MainActivity.this,ListActivity.class);
-                intent_service.putExtra("faction","service");
+                intent_service.putExtra("faction", Variables.getServices);
                 startActivity(intent_service);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 
             case R.id.btn_magazine:
                 Intent intent_magazine=new Intent(MainActivity.this,ListActivity.class);
-                intent_magazine.putExtra("faction","magazine");
+                intent_magazine.putExtra("faction",Variables.getMagazine);
                 startActivity(intent_magazine);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 
             case R.id.btn_photo_gallery:
                 startActivity(new Intent(MainActivity.this,ImageCategoryActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 
             case R.id.btn_care:
                 Intent intent_care=new Intent(MainActivity.this,ListActivity.class);
-                intent_care.putExtra("faction","care");
+                intent_care.putExtra("faction",Variables.getCare);
                 startActivity(intent_care);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 
             case R.id.btn_social:
@@ -69,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btn_soalat_motadavel:
                 startActivity(new Intent(MainActivity.this,QuestionActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 
             case R.id.btn_tamas_ba_ma:
                 startActivity(new Intent(MainActivity.this,TamasBaMaDetailActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
         }
     }

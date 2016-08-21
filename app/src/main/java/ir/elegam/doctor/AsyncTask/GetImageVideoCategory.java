@@ -15,6 +15,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import ir.elegam.doctor.Classes.URLS;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.orm.db_ImageCategoryGallery;
 import ir.elegam.doctor.Database.orm.db_VideoCategoryGallery;
 import ir.elegam.doctor.Helper.ImageCategoryGallery;
@@ -34,12 +35,25 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
     private IWebservice delegate = null;
     private String category;
     SweetAlertDialog pDialog ;
+    public String url;
 
     public GetImageVideoCategory(Context context, IWebservice delegate,String category){
         this.context=context;
         this.delegate=delegate;
         this.category=category;
+        getUrl(category);
         pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+    }
+
+    public void getUrl(String category){
+        switch (category){
+            case "getVideosCategory":
+                this.url=URLS.GetVideos;
+                break;
+            case "getImagesCategory":
+                this.url=URLS.GetImages;
+                break;
+        }
     }
 
     @Override
@@ -60,10 +74,10 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
             try {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
-                        .add("Code",this.category)
+                        .add("Token", Variables.Token)
                         .build();
                 Request request = new Request.Builder()
-                        .url(URLS.WEB_SERVICE_URL)
+                        .url(this.url)
                         .post(body)
                         .build();
 
@@ -92,7 +106,7 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
         else {
 
             // pak kardane database ha baraye rikhtane data e jadid
-            if(this.category.equals("image_category")){
+            if(this.category.equals("getImagesCategory")){
                 try {
                     List<db_ImageCategoryGallery> list = db_ImageCategoryGallery.listAll(db_ImageCategoryGallery.class);
                     if(list.size()>0){
@@ -116,9 +130,9 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
                 imageGalleryArrayList = new ArrayList<ImageCategoryGallery>();
 
                 JSONObject jsonObject =new JSONObject(result);
-                if(jsonObject.getInt("Type")==1){
+                if(jsonObject.getInt("Status")==1){
                     // save Token into my application class
-                    JSONArray jsonArray=jsonObject.getJSONArray("List");
+                    JSONArray jsonArray=jsonObject.getJSONArray("Data");
 
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
@@ -130,7 +144,7 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
                         imageGalleryArrayList.add(category);
 
                         // TODO : add too database
-                        if(this.category.equals("image_category")){
+                        if(this.category.equals("getImagesCategory")){
 
                             db_ImageCategoryGallery db = new db_ImageCategoryGallery(id,title);
                             db.save();
