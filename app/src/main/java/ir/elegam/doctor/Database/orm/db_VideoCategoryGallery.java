@@ -7,15 +7,15 @@ import com.orm.SugarRecord;
  */
 public class db_VideoCategoryGallery extends SugarRecord {
     public int id;
-    public CharSequence title;
+    public String title;
 
     public db_VideoCategoryGallery(){}
 
-    public db_VideoCategoryGallery(int id, CharSequence title){
+    public db_VideoCategoryGallery(int id, String title){
         this.id=id;
         this.title=title;
     }
 
     public int getid(){return this.id;}
-    public CharSequence getTitle(){return this.title;}
+    public String getTitle(){return this.title;}
 }

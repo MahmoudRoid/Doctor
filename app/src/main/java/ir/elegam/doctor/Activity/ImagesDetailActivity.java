@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -70,7 +71,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     public void init() {
         //  check offline database
         ArrayList<ImagesDetailGallery> arrayList = new ArrayList<ImagesDetailGallery>();
-        List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("category_id").eq(getIntent().getExtras().getInt("id"))).list();
+        List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("categoryid").eq(getIntent().getExtras().getInt("id"))).list();
         if (list.size() > 0) {
             // show offline list
             for (int i = 0; i < list.size(); i++) {
@@ -153,7 +154,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
 
     public void showList(ArrayList<ImagesDetailGallery> arrayList) {
         this.imagesDetailGalleryArrayList = arrayList;
-        mRecyclerView = (RecyclerView) findViewById(R.id.images_category_recycler);
+        mRecyclerView = (RecyclerView) findViewById(R.id.images_detail_recycler);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new ImageDetailAdapter(ImagesDetailActivity.this, imagesDetailGalleryArrayList);

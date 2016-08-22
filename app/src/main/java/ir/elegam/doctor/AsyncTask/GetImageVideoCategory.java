@@ -138,7 +138,7 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
                         JSONObject obj = jsonArray.getJSONObject(i);
 
                         int id=obj.getInt("Id");
-                        CharSequence title=obj.getString("Title");
+                        String title=obj.getString("Title");
 
                         ImageCategoryGallery category=new ImageCategoryGallery(id,title);
                         imageGalleryArrayList.add(category);

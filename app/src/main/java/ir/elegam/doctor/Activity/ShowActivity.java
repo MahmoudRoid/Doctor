@@ -189,10 +189,12 @@ public class ShowActivity extends AppCompatActivity {
         text = Html.fromHtml(text).toString();
         Log.i(Variables.Tag,"text: "+text);
         TextView tv=new TextView(ShowActivity.this);
+        tv.setTypeface(San);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 10, 0, 10);
         tv.setPadding(10, 10, 10, 10);
         lp.gravity= Gravity.TOP;
+
         tv.setText(text);
         lay.addView(tv,lp);
 

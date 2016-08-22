@@ -40,6 +40,7 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
     private Toolbar toolbar;
     private TextView txtToolbar;
     private View snack_view;
+    private GridLayoutManager lLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,8 +151,9 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
         this.imageCategoryGalleryArrayList=arrayList;
 
         mRecyclerView = (RecyclerView) findViewById(R.id.images_category_recycler);
-        mLayoutManager = new GridLayoutManager(ImageCategoryActivity.this,2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mLayoutManager = new GridLayoutManager(ImageCategoryActivity.this,3);
+        lLayout = new GridLayoutManager(ImageCategoryActivity.this, 2);
+        mRecyclerView.setLayoutManager(lLayout);
         mAdapter = new ImageCategoryAdapter(imageCategoryGalleryArrayList);
         mRecyclerView.setAdapter(mAdapter);
 

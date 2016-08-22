@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ir.elegam.doctor.Classes.CustomTextView;
 import ir.elegam.doctor.Helper.ImageCategoryGallery;
 import ir.elegam.doctor.R;
 
@@ -25,11 +26,11 @@ public class ImageCategoryAdapter extends RecyclerView.Adapter<ImageCategoryAdap
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder{
 
-        TextView tv_title;
+        CustomTextView tv_title;
 
         public DataObjectHolder(View itemView){
             super(itemView);
-            tv_title = (TextView) itemView.findViewById(R.id.image_category_title);
+            tv_title = (CustomTextView) itemView.findViewById(R.id.image_category_title);
         }
 
     }

@@ -66,7 +66,7 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
                         .add("Token", Variables.Token)
-                        .add("Category_id",String.valueOf(category_id))
+                        .add("Id",String.valueOf(category_id))
                         .build();
                 Request request = new Request.Builder()
                         .url(URLS.GetImagesById)
