@@ -111,6 +111,8 @@ public class GetData extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String result) {
         pDialog.dismiss();
 
+        Log.i(Variables.Tag,"res: "+result);
+
         if (result.equals("nothing_got")) {
             try {
                 delegate.getError("NoData");
@@ -127,9 +129,6 @@ public class GetData extends AsyncTask<Void,Void,String> {
             }
         }
         else {
-            /*db.open();
-            db.DeleteTabele1("Faction",faction);
-            db.close();*/
 
             try {
 
@@ -147,6 +146,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         String image_url;
                         if(!this.faction.equals("getInsurance")){
                             image_url = jsonObject2.getString("Url");
+                            // image_url = URLS.
                         }
                         else image_url ="";
 
@@ -154,13 +154,20 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         myObjectArrayList.add(myObject);
 
                         db.open();
-                        if(!db.CheckExistanceNews("Faction",faction,"Sid",id)){
+                        Log.i(Variables.Tag,"id: "+id +" and faction: "+faction);
+                        boolean isExist = db.CheckExistanceNews("Faction",faction,"Sid",id);
+                        db.close();
+                        if(!isExist){
+                            db.open();
                             db.Insert(myObject);
+                            db.close();
 
                         }else{
+                            Log.i(Variables.Tag,"in update id: "+id);
+                            /*db.open();
                             db.Update(myObject);
+                            db.close();*/
                         }
-                        db.close();
 
                     }
 

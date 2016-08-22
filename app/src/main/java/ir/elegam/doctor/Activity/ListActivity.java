@@ -55,7 +55,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             public void onClick(View view) {
                 if(Internet.isNetworkAvailable(ListActivity.this)){
                     // call webservice
-                    GetData getdata=new GetData(ListActivity.this,ListActivity.this,faction);
+                    GetData getdata = new GetData(ListActivity.this,ListActivity.this,faction);
                     getdata.execute();
                 }
                 else {
