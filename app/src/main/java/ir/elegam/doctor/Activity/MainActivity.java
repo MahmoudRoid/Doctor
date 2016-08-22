@@ -8,9 +8,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View;
 import android.view.Window;
@@ -18,12 +20,14 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
 public class MainActivity extends AppCompatActivity {
-
+    private DrawerLayout mDrawerLayout;
+    private RelativeLayout mDrawerList;
     View snack_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +37,20 @@ public class MainActivity extends AppCompatActivity {
         database db = new database(this);
         db.useable();
 
-
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (RelativeLayout) findViewById(R.id.relativeLayout2);
 
     }
 
     public void onClick(View view){
         switch (view.getId()){
 
+            case R.id.img_drawer:
+                if (mDrawerLayout.isDrawerOpen(mDrawerList))
+                    mDrawerLayout.closeDrawer(mDrawerList);
+                else
+                    mDrawerLayout.openDrawer(mDrawerList);
+                break;
             case R.id.btn_aboutdoctor:
                 startActivity(new Intent(MainActivity.this,AboutUsActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
@@ -230,5 +241,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("اخطار")
+                .setContentText("مایل به خروج از برنامه هستید ؟")
+                .setConfirmText("بله")
+                .setCancelText("خیر")
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog dd) {
+                        dd.dismiss();
+                    }
+                })
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                        moveTaskToBack(true);
+                        finish();
+                        System.exit(0);
+                    }
+                })
+                .show();
+    }
 
 }

@@ -60,7 +60,7 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
     protected void onPreExecute() {
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("در حال دریافت اطلاعات");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.show();
     }
 

@@ -32,6 +32,7 @@
                     android:background="@drawable/drawer"
                     android:id="@+id/img_drawer"
                     android:layout_gravity="right"
+                    android:onClick="onClick"
                     android:visibility="visible" />
 
 

@@ -82,8 +82,8 @@ public class SupportActivity extends AppCompatActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
 
-        final LinearLayout linear_1=(LinearLayout)findViewById(R.id.dialog_linear_1);
-        final LinearLayout linear_12=(LinearLayout)findViewById(R.id.dialog_linear_2);
+        final LinearLayout linear_1=(LinearLayout)d.findViewById(R.id.dialog_linear_1);
+        final LinearLayout linear_12=(LinearLayout)d.findViewById(R.id.dialog_linear_2);
 
         final TextView txtOne= (TextView) d.findViewById(R.id.dilog_text_1);
         final TextView txtTWo = (TextView) d.findViewById(R.id.dilog_text_2);
@@ -129,8 +129,8 @@ public class SupportActivity extends AppCompatActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
 
-        final LinearLayout linear_1=(LinearLayout)findViewById(R.id.dialog_linear_1);
-        final LinearLayout linear_12=(LinearLayout)findViewById(R.id.dialog_linear_2);
+        final LinearLayout linear_1=(LinearLayout)d.findViewById(R.id.dialog_linear_1);
+        final LinearLayout linear_12=(LinearLayout)d.findViewById(R.id.dialog_linear_2);
 
         final TextView txtOne= (TextView) d.findViewById(R.id.dilog_text_1);
         final TextView txtTWo = (TextView) d.findViewById(R.id.dilog_text_2);

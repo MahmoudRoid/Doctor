@@ -62,6 +62,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
                 break;
             case "getCare":
                 this.Url=URLS.GetCare;
+                break;
             case "getFaq":
                 this.Url=URLS.GetFaq;
                 break;
