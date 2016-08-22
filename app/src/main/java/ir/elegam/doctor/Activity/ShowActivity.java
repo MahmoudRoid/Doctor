@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -111,13 +112,17 @@ public class ShowActivity extends AppCompatActivity {
         Sid = getIntent().getStringExtra("sid");
         Content = getIntent().getStringExtra("content")+"<>";
 
-//        Content = "salam dostan <http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-//                "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
-//                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg> baraye hamin" +
-//                "ma bayad be dostane khod ehtram bogzarim." +
-//                "bale in goone ast ke ma ija dar olaviat hastim." +
-//                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-//                "tamam shod."+"<>";
+        Log.i(Variables.Tag,"Content before html: "+Content);
+        //Content = Html.fromHtml(Content).toString();
+        Log.i(Variables.Tag,"Content after html: "+Content);
+
+        /*Content = "salam dostan <src=\"http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg\">" +
+                "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
+                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg> baraye hamin" +
+                "ma bayad be dostane khod ehtram bogzarim." +
+                "bale in goone ast ke ma ija dar olaviat hastim." +
+                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
+                "tamam shod."+"<>";*/
         ImageUrl = getIntent().getStringExtra("image_url");
         Fav = getIntent().getStringExtra("fav");
         if(Fav.equals("1")){
@@ -140,7 +145,7 @@ public class ShowActivity extends AppCompatActivity {
             fab.setVisibility(View.INVISIBLE);
         }
 
-        setContent(Content);
+         setContent(Content);
 
     }// end getWhat()
 
@@ -157,14 +162,19 @@ public class ShowActivity extends AppCompatActivity {
 
             }
             if(text.charAt(i)=='>'){
-                c3=i;
-                cimg(text.substring(c2+1,c3));
-                c1=i+1;
+                if(text.charAt(c2+1)=='s'){
+                    if(text.charAt(c2+2)=='r'){
+                        c3=i-1;
+                        cimg(text.substring(c2+6,c3));
+                        c1=i+1;
+                    }
+                }
             }
         }
     }// end setContent()
 
     private void ctext(String text){
+        text = Html.fromHtml(text).toString();
         Log.i(Variables.Tag,"text: "+text);
         TextView tv=new TextView(ShowActivity.this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -178,6 +188,8 @@ public class ShowActivity extends AppCompatActivity {
 
     private void cimg(String image_url){
         Log.i(Variables.Tag,"imageurl: "+image_url);
+
+
 
         if(!image_url.equals("")){
             ImageView img=new ImageView(ShowActivity.this);
