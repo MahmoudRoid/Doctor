@@ -33,7 +33,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     private RecyclerView mRecyclerView;
     private ServiceAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    public ArrayList<MyObject> myObjectArrayList;
+    public ArrayList<MyObject> myObjectArrayList= new ArrayList<>();
     Toolbar toolbar;
     private Typeface San;
     private TextView  txtToolbar;
@@ -70,7 +70,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             }
         });
 
-        init();
+//        init();
     }
 
     private void define() {
@@ -110,6 +110,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     }
 
     public void init(){
+
         //  check offline database
         ArrayList<MyObject> arrayList=new ArrayList<>();
         db.open();
@@ -248,4 +249,10 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myObjectArrayList.clear();
+        init();
+    }
 }

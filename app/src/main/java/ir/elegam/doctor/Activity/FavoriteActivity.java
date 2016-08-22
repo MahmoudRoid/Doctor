@@ -46,6 +46,12 @@ public class FavoriteActivity extends AppCompatActivity {
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 MyObject p = mylist.get(position);
                 Intent intent = new Intent(FavoriteActivity.this, ShowActivity.class);
+                intent.putExtra("faction",p.getFaction());
+                intent.putExtra("sid",p.getSid());
+                intent.putExtra("image_url",p.getImage_url());
+                intent.putExtra("title",p.getTitle());
+                intent.putExtra("content",p.getContent());
+                intent.putExtra("fav",p.getFavorite());
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
