@@ -89,7 +89,7 @@ public class ShowActivity extends AppCompatActivity {
 
         ivHeader = (ImageView) findViewById(R.id.ivHeader_show);
         txtToolbar = (TextView) findViewById(R.id.toolbar_invisible_title);
-        fabShare = (FloatingActionButton) findViewById(R.id.fab_show);
+        fabShare = (FloatingActionButton) findViewById(R.id.fabShare_show);
         fab = (FloatingActionButton) findViewById(R.id.fab_show);
         lay = (LinearLayout) findViewById(R.id.layMatn_show);
 
@@ -155,6 +155,7 @@ public class ShowActivity extends AppCompatActivity {
         for(int i=0;i<text.length();i++){
 
             if(text.charAt(i)=='<'){
+                Log.i(Variables.Tag,"in < ");
                 c2=i;
                 if(!text.substring(c1,c2).equals("")){
                     ctext(text.substring(c1,c2));
@@ -188,8 +189,6 @@ public class ShowActivity extends AppCompatActivity {
 
     private void cimg(String image_url){
         Log.i(Variables.Tag,"imageurl: "+image_url);
-
-
 
         if(!image_url.equals("")){
             ImageView img=new ImageView(ShowActivity.this);

@@ -147,7 +147,7 @@ public class database extends SQLiteOpenHelper {
 		cv.put(Title,ob.getTitle());
 		cv.put(Content,ob.getContent());
 		cv.put(ImageUrl,ob.getImage_url());
-		cv.put(Favorite,"0");
+		cv.put(Favorite,ob.getFaction());
 		db.insert(TABLE_NEWS, Sid, cv);
 		Log.i(TAG, "insert");
 	}
@@ -167,7 +167,7 @@ public class database extends SQLiteOpenHelper {
 		cv.put(Title,ob.getTitle());
 		cv.put(Content,ob.getContent());
 		cv.put(ImageUrl,ob.getImage_url());
-		db.update(TABLE_NEWS, cv, Sid, null);
+		db.update(TABLE_NEWS, cv, " id='"+ob.getSid()+"' and "+" Faction='"+ob.getFaction()+"'", null);
 		Log.i(TAG, "update");
 	}
 
@@ -175,7 +175,7 @@ public class database extends SQLiteOpenHelper {
 		ContentValues cv = new ContentValues();
 		cv.put(Title, ob.getTitle());
 		cv.put(Content,ob.getContent());
-		db.update(TABLE_EXTRA,cv,Title,null);
+		db.update(TABLE_EXTRA,cv," Title='"+ob.getTitle()+"'",null);
 		Log.i(TAG, "update");
 	}
 
