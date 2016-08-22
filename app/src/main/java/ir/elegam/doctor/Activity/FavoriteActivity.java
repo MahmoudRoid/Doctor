@@ -39,7 +39,7 @@ public class FavoriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
         define();
-        init();
+
 
         ItemClickSupport.addTo(rv).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -104,6 +104,7 @@ public class FavoriteActivity extends AppCompatActivity {
             rv.setAdapter(mAdapter);
         }
         else {
+            finish();
             Toast.makeText(FavoriteActivity.this, getResources().getString(R.string.error_empty_list), Toast.LENGTH_SHORT).show();
         }
     }// end init()
@@ -130,4 +131,9 @@ public class FavoriteActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+    }
 }// end class

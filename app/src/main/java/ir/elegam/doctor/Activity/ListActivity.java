@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,7 +33,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     private ServiceAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public ArrayList<MyObject> myObjectArrayList= new ArrayList<>();
-    Toolbar toolbar;
+    private Toolbar toolbar;
     private Typeface San;
     private TextView  txtToolbar;
     private String faction;
