@@ -2,9 +2,13 @@ package ir.elegam.doctor.Activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,10 +20,24 @@ import ir.elegam.doctor.R;
 
 public class SupportActivity extends AppCompatActivity {
 
+    private Typeface San;
+    private Toolbar toolbar;
+    private TextView txtToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
+
+        San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
+        toolbar = (Toolbar) findViewById(R.id.toolbar_imagedetail);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
+        txtToolbar.setTypeface(San);
+        txtToolbar.setText("ارتباط با پشتیبانی");
+
 
         View.OnClickListener cj = new View.OnClickListener() {
 
@@ -163,4 +181,19 @@ public class SupportActivity extends AppCompatActivity {
         d.show();
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_empty, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+           finish();
+        }
+        return true;
+    }
 }

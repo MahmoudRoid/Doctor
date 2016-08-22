@@ -101,9 +101,13 @@
             android:name=".Activity.MessageActivity"
             android:label=""
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.MailActivity"></activity>
-            android:screenOrientation="portrait" />
-        <activity android:name=".Activity.VideoCategoryActivity"></activity>
+        <activity android:name=".Activity.MailActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Activity.VideoCategoryActivity"
+            android:label=""
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Activity.TamasBaMaDetailActivity"

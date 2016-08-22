@@ -89,7 +89,7 @@ public class ShowActivity extends AppCompatActivity {
 
         ivHeader = (ImageView) findViewById(R.id.ivHeader_show);
         txtToolbar = (TextView) findViewById(R.id.toolbar_invisible_title);
-        fabShare = (FloatingActionButton) findViewById(R.id.fab_show);
+        fabShare = (FloatingActionButton) findViewById(R.id.fabShare_show);
         fab = (FloatingActionButton) findViewById(R.id.fab_show);
         lay = (LinearLayout) findViewById(R.id.layMatn_show);
 
@@ -219,7 +219,7 @@ public class ShowActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case android.R.id.home:
-                finish();
+               finish();
                 break;
 
             default:
