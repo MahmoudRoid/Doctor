@@ -125,6 +125,11 @@ public class ShowActivity extends AppCompatActivity {
                 "tamam shod."+"<>";*/
         ImageUrl = getIntent().getStringExtra("image_url");
         Fav = getIntent().getStringExtra("fav");
+
+        db.open();
+        Fav = db.DisplayOne(6,"Sid",Sid,"Faction",Faction);
+        db.close();
+
         if(Fav.equals("1")){
             isFav = true;
             fab.setImageResource(R.drawable.favorite_black);

@@ -70,7 +70,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             }
         });
 
-//        init();
+        init();
     }
 
     private void define() {
@@ -249,10 +249,10 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     }
 
 
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();
         myObjectArrayList.clear();
         init();
-    }
+    }*/
 }
