@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import ir.elegam.doctor.Adapter.ServiceAdapter;
 import ir.elegam.doctor.AsyncTask.GetData;
 import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.RecyclerItemClickListener;
+import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
@@ -80,10 +82,16 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.service_recycler);
+        mLayoutManager = new LinearLayoutManager(ListActivity.this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
     }
 
     public void getFaction(){
         this.faction=getIntent().getExtras().getString("faction");
+        Log.i(Variables.Tag,"faction: "+faction);
         switch (faction){
             case "getServices":
                 txtToolbar.setText("خدمات");
@@ -106,10 +114,12 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
         ArrayList<MyObject> arrayList=new ArrayList<>();
         db.open();
         int count = db.CountAll("Faction",faction);
+        Log.i(Variables.Tag,"count: "+count);
         db.close();
 
         if(count>0){
-            for(int i=0;i<arrayList.size();i++){
+            db.open();
+            for(int i=0;i<count;i++){
                 MyObject ob = new MyObject(
                         db.DisplayAll(i,1,"Faction",faction),
                         db.DisplayAll(i,2,"Faction",faction),
@@ -118,8 +128,10 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         db.DisplayAll(i,5,"Faction",faction),
                         db.DisplayAll(i,6,"Faction",faction)
                 );
+                Log.i(Variables.Tag,"ob.Title: "+ob.getContent());
                 arrayList.add(ob);
             }
+            db.close();
             showList(arrayList);
         }else{
             if(Internet.isNetworkAvailable(ListActivity.this)){
@@ -175,9 +187,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     public void showList(ArrayList<MyObject> arrayList){
         this.myObjectArrayList=arrayList;
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.service_recycler);
-        mLayoutManager = new LinearLayoutManager(ListActivity.this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+
         mAdapter = new ServiceAdapter(ListActivity.this,myObjectArrayList);
         mRecyclerView.setAdapter(mAdapter);
 

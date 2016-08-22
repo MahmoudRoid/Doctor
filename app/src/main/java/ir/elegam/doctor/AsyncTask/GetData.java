@@ -3,6 +3,7 @@ package ir.elegam.doctor.AsyncTask;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +41,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
         this.context = context;
         this.delegate = delegate;
         this.faction=faction;
+        Log.i(Variables.Tag,"faction in Async: "+faction);
         pDialog= new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
         db = new database(context);
 
