@@ -6,14 +6,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +21,6 @@ import ir.elegam.doctor.Adapter.ExpandableListAdapter;
 import ir.elegam.doctor.AsyncTask.GetData;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
-import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Interface.IWebservice;
 import ir.elegam.doctor.R;
 
@@ -49,11 +46,6 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
 
         // preparing list data
         prepareListData();
-
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-
-        // setting list adapter
-        elv.setAdapter(listAdapter);
 
     }// end onCreate()
 
@@ -100,35 +92,24 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void init(){
-//
-//        if (number==0) {
-//            db.open();
-//            db.Insert(new MyObject("1","question","Salam1","matn1","url","0"));
-//            db.Insert(new MyObject("2","question","Salam2","matn2","url","0"));
-//            db.Insert(new MyObject("3","question","Salam3","matn3","url","0"));
-//            db.Insert(new MyObject("4","question","Salam4","matn4","url","0"));
-//            db.close();
-//            number++;
-//        } else {
-//            Toast.makeText(getApplicationContext(),"ssxfv", Toast.LENGTH_SHORT).show();
-//        }
-//    }// end init()
-
     private void prepareListData() {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
         db.open();
-        int count = db.CountAll("Faction","question");
+        int count = db.CountAll("Faction","getFaq");
         for(int i=0;i<count;i++){
-            listDataHeader.add(db.DisplayAll(i,3,"Faction","question"));
+            listDataHeader.add(db.DisplayAll(i,3,"Faction","getFaq"));
             List<String> comingSoon = new ArrayList<>();
-            comingSoon.add(db.DisplayAll(i,4,"Faction","question"));
+            comingSoon.add(db.DisplayAll(i,4,"Faction","getFaq"));
             listDataChild.put(listDataHeader.get(i), comingSoon);
         }
         db.close();
-    }
+
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        elv.setAdapter(listAdapter);
+
+    }// end prepareListData()
 
     @Override
     public void getResult(Object result) throws Exception {
@@ -139,6 +120,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
         tv.setTextColor(Color.WHITE);
         snackbar.show();
+        prepareListData();
     }
 
     @Override
@@ -150,5 +132,6 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
         tv.setTextColor(Color.WHITE);
         snackbar.show();
-    }
+    }// end getError()
+
 }// end class

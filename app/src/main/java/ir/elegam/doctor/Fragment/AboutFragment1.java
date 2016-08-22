@@ -69,13 +69,13 @@ public class AboutFragment1 extends Fragment {
             e.printStackTrace();
         }
 
-        Content = "salam dostan <http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
+        /*Content = "salam dostan <http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
                 "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
                 "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg> baraye hamin" +
                 "ma bayad be dostane khod ehtram bogzarim." +
                 "bale in goone ast ke ma ija dar olaviat hastim." +
                 "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-                "tamam shod."+"<>";
+                "tamam shod."+"<>";*/
 
         setContent(Content);
 
@@ -87,6 +87,7 @@ public class AboutFragment1 extends Fragment {
         for(int i=0;i<text.length();i++){
 
             if(text.charAt(i)=='<'){
+                Log.i(Variables.Tag,"in < ");
                 c2=i;
                 if(!text.substring(c1,c2).equals("")){
                     ctext(text.substring(c1,c2));
@@ -94,9 +95,13 @@ public class AboutFragment1 extends Fragment {
 
             }
             if(text.charAt(i)=='>'){
-                c3=i;
-                cimg(text.substring(c2+1,c3));
-                c1=i+1;
+                if(text.charAt(c2+1)=='s'){
+                    if(text.charAt(c2+2)=='r'){
+                        c3=i-1;
+                        cimg(text.substring(c2+6,c3));
+                        c1=i+1;
+                    }
+                }
             }
         }
     }// end setContent()

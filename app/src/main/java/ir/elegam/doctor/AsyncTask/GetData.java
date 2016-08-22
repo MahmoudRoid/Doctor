@@ -144,7 +144,8 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         String title = jsonObject2.getString("Title");
                         String content = jsonObject2.getString("Content");
                         String image_url;
-                        if(!this.faction.equals("getInsurance")){
+                        Log.i(Variables.Tag,"faction in getData: "+this.faction);
+                        if(!this.faction.equals("getInsurance") && !this.faction.equals("getFaq")){
                             image_url = jsonObject2.getString("Url");
                             // image_url = URLS.
                         }

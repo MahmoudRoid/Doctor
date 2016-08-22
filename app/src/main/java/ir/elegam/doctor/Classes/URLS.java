@@ -9,7 +9,7 @@ public class URLS {
     public static final String GetCare=DOMAIN+"GetCares";
     public static final String GetInsurance=DOMAIN+"GetInsurances";
     public static final String GetMagazine=DOMAIN+"GetMagazines";
-    public static final String GetFaq=DOMAIN+"GetFaqs";
+    public static final String GetFaq=DOMAIN+"GetFaq";
     public static final String InsertContactUs=DOMAIN+"InsertContactUs";
     public static final String GetVideos=DOMAIN+"GetVideos";
     public static final String GetImages=DOMAIN+"GetImages";

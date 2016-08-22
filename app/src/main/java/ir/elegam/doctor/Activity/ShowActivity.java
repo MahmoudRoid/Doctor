@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.regex.Pattern;
+
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
@@ -153,6 +155,10 @@ public class ShowActivity extends AppCompatActivity {
          setContent(Content);
 
     }// end getWhat()
+
+    private void TextWatcher(){
+        Pattern pattern = Pattern.compile("");
+    }
 
     private void setContent(String text){
         int c1=0,c2=0,c3=0;
