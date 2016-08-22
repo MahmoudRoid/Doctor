@@ -1,6 +1,7 @@
 package ir.elegam.doctor.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,6 +38,7 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
     private ImageCategoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     public ArrayList<ImageCategoryGallery> videoCategoryGalleries;
+    View snack_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,10 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
                 else {
                     Snackbar snackbar = Snackbar
                             .make(findViewById(R.id.images_category_relative), "اتصال اینترنت خود را چک نمایید", Snackbar.LENGTH_LONG);
+                    snack_view = snackbar.getView();
+                    snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+                    TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 }
             }
@@ -96,6 +102,10 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
             else {
                 Snackbar snackbar = Snackbar
                         .make(findViewById(R.id.images_category_relative), "هیچ داده ای جهت نمایش وجود ندارد", Snackbar.LENGTH_LONG);
+                snack_view = snackbar.getView();
+                snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+                TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setTextColor(Color.WHITE);
                 snackbar.show();
             }
         }
@@ -126,7 +136,10 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
     public void getError(String ErrorCodeTitle) throws Exception {
         Snackbar snackbar = Snackbar
                 .make(findViewById(R.id.images_category_relative), "مشکلی پیش آمده است . مجددا تلاش نمایید", Snackbar.LENGTH_LONG);
-
+        snack_view = snackbar.getView();
+        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
         snackbar.show();
     }
 

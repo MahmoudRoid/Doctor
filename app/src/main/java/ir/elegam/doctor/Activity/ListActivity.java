@@ -1,9 +1,11 @@
 package ir.elegam.doctor.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +37,7 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     private TextView  txtToolbar;
     private String faction;
     private database db;
+    View snack_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,10 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                 else {
                     Snackbar snackbar = Snackbar
                             .make(findViewById(R.id.service_relative), "اتصال اینترنت خود را چک نمایید", Snackbar.LENGTH_LONG);
+                    snack_view = snackbar.getView();
+                    snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+                    TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 }
             }
@@ -123,6 +130,10 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
             else {
                 Snackbar snackbar = Snackbar
                         .make(findViewById(R.id.service_relative), "هیچ داده ای جهت نمایش وجود ندارد", Snackbar.LENGTH_LONG);
+                snack_view = snackbar.getView();
+                snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+                TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setTextColor(Color.WHITE);
                 snackbar.show();
             }
         }
@@ -154,7 +165,10 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
     public void getError(String ErrorCodeTitle) throws Exception {
         Snackbar snackbar = Snackbar
                 .make(findViewById(R.id.service_relative), "مشکلی پیش آمده است . مجددا تلاش نمایید", Snackbar.LENGTH_LONG);
-
+        snack_view = snackbar.getView();
+        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
         snackbar.show();
     }
 

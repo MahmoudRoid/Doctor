@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import ir.elegam.doctor.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    View snack_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,45 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btn_tamas_ba_ma:
                 startActivity(new Intent(MainActivity.this,TamasBaMaDetailActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                break;
+
+            // item haye navigation drawer
+
+            case R.id.relative_login:
+                break;
+            case R.id.relative_social:
+                show_social_dialog();
+                break;
+            case R.id.relative_website:
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Variables.getDoctorWebSite));
+                startActivity(i);
+                break;
+            case R.id.relative_enteghad:
+                startActivity(new Intent(MainActivity.this,MessageActivity.class));
+                break;
+            case R.id.relative_introduce:
+
+                try{
+                    String shareBody = "  زیبایی را به خودتان هدیه کنید."+"\n "+"http://cafebazaar.ir/app/ir.elegam/?l=fa"+"";
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("text/plain");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, ""+ "\n\n");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                    startActivity(Intent.createChooser(sharingIntent, "اشتراک گذاری"));
+                }catch (Exception e) {}
+
+                break;
+            case R.id.relative_favorite:
+                startActivity(new Intent(MainActivity.this,FavoriteActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                break;
+            case R.id.relative_contacts:
+                startActivity(new Intent(MainActivity.this,TamasBaMaDetailActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                break;
+            case R.id.relative_support:
+                startActivity(new Intent(MainActivity.this,SupportActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
         }
@@ -154,6 +195,10 @@ public class MainActivity extends AppCompatActivity {
             Snackbar snackbar = Snackbar
                     .make(findViewById(R.id.relative), "اپلیکیشن تلگرام یافت نشد", Snackbar.LENGTH_LONG);
 
+            snack_view = snackbar.getView();
+            snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+            TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+            tv.setTextColor(Color.WHITE);
             snackbar.show();
         }
     }
@@ -181,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse("http://instagram.com/xxx")));
+
         }
     }
 

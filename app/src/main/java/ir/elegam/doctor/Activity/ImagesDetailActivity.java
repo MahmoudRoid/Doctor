@@ -1,6 +1,7 @@
 package ir.elegam.doctor.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -46,6 +47,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     private Typeface San;
     private Toolbar toolbar;
     private TextView txtToolbar;
+    private View snack_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,10 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
             } else {
                 Snackbar snackbar = Snackbar
                         .make(findViewById(R.id.images_detail_relative), "هیچ داده ای جهت نمایش وجود ندارد", Snackbar.LENGTH_LONG);
+                snack_view = snackbar.getView();
+                snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+                TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setTextColor(Color.WHITE);
                 snackbar.show();
             }
         }
@@ -111,6 +117,10 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
             } else {
                 Snackbar snackbar = Snackbar
                         .make(findViewById(R.id.images_detail_relative), "اتصال اینترنت خود را چک نمایید", Snackbar.LENGTH_LONG);
+                snack_view = snackbar.getView();
+                snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+                TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setTextColor(Color.WHITE);
                 snackbar.show();
             }
         }
@@ -133,6 +143,10 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         Snackbar snackbar = Snackbar
                 .make(findViewById(R.id.images_detail_relative), "مشکلی پیش آمده است . مجددا تلاش نمایید", Snackbar.LENGTH_LONG);
 
+        snack_view = snackbar.getView();
+        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
         snackbar.show();
     }
 

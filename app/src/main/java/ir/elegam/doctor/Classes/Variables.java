@@ -27,4 +27,10 @@ public class Variables {
     public static final String getImagesDetail = "getImagesDetail";
 
 
+
+
+
+    public static final String getDoctorWebSite="http://google.com";
+
+
 }// end Variables

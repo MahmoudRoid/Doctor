@@ -115,7 +115,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
                 e.printStackTrace();
             }
         }
-        else if(!result.startsWith("[")){
+        else if(!result.startsWith("{")){
             // moshkel dare kollan
             try {
                 delegate.getError("problem");

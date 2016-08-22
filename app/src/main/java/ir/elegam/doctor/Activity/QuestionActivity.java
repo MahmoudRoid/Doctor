@@ -1,5 +1,6 @@
 package ir.elegam.doctor.Activity;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,7 +38,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
     private List<String> listDataHeader = new ArrayList<>();
     private HashMap<String, List<String>> listDataChild;
     private ExpandableListAdapter listAdapter;
-
+    private View snack_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +134,10 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
     public void getResult(Object result) throws Exception {
         Snackbar snackbar = Snackbar
                 .make(findViewById(R.id.question_coordinator), "با موفقیت آپدیت شد", Snackbar.LENGTH_LONG);
+        snack_view = snackbar.getView();
+        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
         snackbar.show();
     }
 
@@ -140,6 +145,10 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
     public void getError(String ErrorCodeTitle) throws Exception {
         Snackbar snackbar = Snackbar
                 .make(findViewById(R.id.question_coordinator), "مشکلی پیش آمده است . مجددا تلاش نمایید", Snackbar.LENGTH_LONG);
+        snack_view = snackbar.getView();
+        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
+        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setTextColor(Color.WHITE);
         snackbar.show();
     }
 }// end class

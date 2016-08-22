@@ -121,8 +121,9 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
         snackbar.show();
         snackbar.setActionTextColor(getResources().getColor(R.color.Myred));
         View sbView = snackbar.getView();
+        sbView.setBackgroundColor(getResources().getColor(R.color.pri500));
         TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(getResources().getColor(R.color.TXTcolor));
+        textView.setTextColor(Color.WHITE);
         textView.setTypeface(San);
         sbView.setBackgroundColor(ContextCompat.getColor(MessageActivity.this, R.color.FABcolor));
         snackbar.show();

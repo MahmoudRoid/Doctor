@@ -44,6 +44,7 @@ public class MailActivity extends AppCompatActivity implements Async_Message.Get
     private MailAdapter mAdapter;
     private SweetAlertDialog pDialog;
     private String URL= URLS.WEB_SERVICE_URL;
+    private database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +54,13 @@ public class MailActivity extends AppCompatActivity implements Async_Message.Get
 
         //AskServer();
 
-        TestInit();
+        //TestInit();
 
     }// end onCreate()
 
     private void define(){
+        db = new database(this);
+        db.useable();
         San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
         toolbar = (Toolbar) findViewById(R.id.toolbar_service);
         setSupportActionBar(toolbar);
