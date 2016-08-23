@@ -112,7 +112,7 @@ public class ShowActivity extends AppCompatActivity {
         Faction = getIntent().getStringExtra("faction");
         Title = getIntent().getStringExtra("title");
         Sid = getIntent().getStringExtra("sid");
-        Content = getIntent().getStringExtra("content")+"<>";
+        Content = getIntent().getStringExtra("content");
 
         ImageUrl = getIntent().getStringExtra("image_url");
         Fav = getIntent().getStringExtra("fav");
@@ -141,7 +141,7 @@ public class ShowActivity extends AppCompatActivity {
             fab.setVisibility(View.INVISIBLE);
         }
 
-         setContent(Content);
+        ctext(Content+"<\"\">");
 
     }// end getWhat()
 
@@ -155,7 +155,6 @@ public class ShowActivity extends AppCompatActivity {
         for(int i=0;i<text.length();i++){
 
             if(text.charAt(i)=='<'){
-                Log.i(Variables.Tag,"in < ");
                 c2=i;
                 if(!text.substring(c1,c2).equals("")){
                     ctext(text.substring(c1,c2));
@@ -163,13 +162,9 @@ public class ShowActivity extends AppCompatActivity {
 
             }
             if(text.charAt(i)=='>'){
-                if(text.charAt(c2+1)=='s'){
-                    if(text.charAt(c2+2)=='r'){
-                        c3=i-1;
-                        cimg(text.substring(c2+6,c3));
-                        c1=i+1;
-                    }
-                }
+                c3=i;
+                cimg(text.substring(c2+2,c3-1));
+                c1=i+1;
             }
         }
     }// end setContent()

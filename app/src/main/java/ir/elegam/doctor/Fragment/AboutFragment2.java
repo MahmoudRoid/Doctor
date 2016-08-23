@@ -66,22 +66,10 @@ public class AboutFragment2 extends Fragment {
             e.printStackTrace();
         }
 
-        Log.i(Variables.Tag,"Contetn in frag: "+Content);
-
-        /*Content = "salam dostan <http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-                "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
-                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg> baraye hamin" +
-                "ma bayad be dostane khod ehtram bogzarim." +
-                "bale in goone ast ke ma ija dar olaviat hastim." +
-                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-                "tamam shod."+"<>";*/
-
-        //setContent(Content);
-        //Content = Html.fromHtml(Content).toString();
-        ctext(Content);
+        setContent(Content+"<\"\">");
     }
 
-    /*private void setContent(String text){
+    private void setContent(String text){
         int c1=0,c2=0,c3=0;
 
         for(int i=0;i<text.length();i++){
@@ -95,33 +83,8 @@ public class AboutFragment2 extends Fragment {
             }
             if(text.charAt(i)=='>'){
                 c3=i;
-                cimg(text.substring(c2+1,c3));
+                cimg(text.substring(c2+2,c3-1));
                 c1=i+1;
-            }
-        }
-    }// end setContent()*/
-
-    private void setContent(String text){
-        int c1=0,c2=0,c3=0;
-
-        for(int i=0;i<text.length();i++){
-
-            if(text.charAt(i)=='<'){
-                Log.i(Variables.Tag,"in < ");
-                c2=i;
-                if(!text.substring(c1,c2).equals("")){
-                    ctext(text.substring(c1,c2));
-                }
-
-            }
-            if(text.charAt(i)=='>'){
-                if(text.charAt(c2+1)=='s'){
-                    if(text.charAt(c2+2)=='r'){
-                        c3=i-1;
-                        cimg(text.substring(c2+6,c3));
-                        c1=i+1;
-                    }
-                }
             }
         }
     }// end setContent()
