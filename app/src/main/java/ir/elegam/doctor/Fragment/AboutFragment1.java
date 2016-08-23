@@ -66,8 +66,21 @@ public class AboutFragment1 extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        ctext(Content+"<\"\">");
+        /*Content = "بودند، برای خود برد قائل میشدند. در آن مسابقه هم ناداوری وجود داشت و در چند صحنه باید به او کارت قرمز میدادند.\n" +
+                "\n" +
+                "* احساس میشد در بازی رده بندی انگیزه لازم را نداشتی؟\n" +
+                "\n" +
+                "انگیزه داشتم که صد در صد مدال بگیرم، اما آن ناداوری مقابل حریف آمریکایی روحیه من را به شدت کاهش داد. متاسفانه در آن مسابقه برگشتم، اما خیلی دیر شده بود.\n" +
+                "\n" +
+                "<  \"http://media.farsnews.com/media/Uploaded/Files/Images/1395/06/01/13950601000846_PhotoL.jpg\" >\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "* قبل از مسابقات آیا فکر ناداوری ها را کرده بودید؟\n" +
+                "\n" +
+                "در یک سال گذشته که ما در جامهای جهانی حاضر شدیم، همیشه قبل از مسابقه 2 تا سه ضربه را برای ناداوری ها کنار\n";
+*/
+        setContent(Content+"<\"   \">");
     }
 
     private void setContent(String text){
@@ -84,7 +97,7 @@ public class AboutFragment1 extends Fragment {
             }
             if(text.charAt(i)=='>'){
                 c3=i;
-                cimg(text.substring(c2+2,c3-1));
+                cimg(text.substring(c2+4,c3-2));
                 c1=i+1;
             }
         }

@@ -104,8 +104,6 @@ public class ShowActivity extends AppCompatActivity {
         txtToolbar.setText("توضیحات");
         db = new database(this);
 
-
-
     }// end define()
 
     private void getWhat(){
@@ -141,13 +139,9 @@ public class ShowActivity extends AppCompatActivity {
             fab.setVisibility(View.INVISIBLE);
         }
 
-        ctext(Content+"<\"\">");
+        setContent(Content+"<\"   \">");
 
     }// end getWhat()
-
-    private void TextWatcher(){
-        Pattern pattern = Pattern.compile("");
-    }
 
     private void setContent(String text){
         int c1=0,c2=0,c3=0;
@@ -163,7 +157,7 @@ public class ShowActivity extends AppCompatActivity {
             }
             if(text.charAt(i)=='>'){
                 c3=i;
-                cimg(text.substring(c2+2,c3-1));
+                cimg(text.substring(c2+4,c3-2));
                 c1=i+1;
             }
         }

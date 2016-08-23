@@ -66,7 +66,7 @@ public class AboutFragment2 extends Fragment {
             e.printStackTrace();
         }
 
-        setContent(Content+"<\"\">");
+        setContent(Content+"<\"   \">");
     }
 
     private void setContent(String text){
@@ -83,7 +83,7 @@ public class AboutFragment2 extends Fragment {
             }
             if(text.charAt(i)=='>'){
                 c3=i;
-                cimg(text.substring(c2+2,c3-1));
+                cimg(text.substring(c2+4,c3-2));
                 c1=i+1;
             }
         }
