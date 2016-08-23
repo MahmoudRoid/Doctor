@@ -23,7 +23,7 @@ import ir.elegam.doctor.R;
 
 public class AboutFragment1 extends Fragment {
 
-    private String Title = "سوابق علمی و حرفه ای",Content="";
+    private String Content="";
     private ViewGroup layout;
     private Typeface San;
     public static int w = 0,h = 0;

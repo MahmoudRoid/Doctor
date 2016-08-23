@@ -23,7 +23,7 @@ import ir.elegam.doctor.R;
 
 public class AboutFragment2 extends Fragment {
 
-    private String Title = "بیمارستان های مستقر",Content="";
+    private String Content="";
     private ViewGroup layout;
     private Typeface San;
     public static int w = 0,h = 0;

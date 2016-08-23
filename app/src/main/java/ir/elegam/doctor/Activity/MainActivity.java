@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mDrawerList;
     private Typeface San;
-    View snack_view;
+    private View snack_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             Log.i(Variables.Tag,"ver: "+getVersionCode());
             async.execute(URLS.GetUpdate,Variables.Token,"AppVersion",getVersionCode());
         }
-    }
+    }// end checkForUpdate()
 
     private String getVersionCode() {
         int verCode;
@@ -325,19 +325,20 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         else {
 
             try {
-                result= "["+result+"]";
-                JSONArray jsonArray = new JSONArray(result);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    String Type = jsonObject.optString("Type");
-                    String Message = jsonObject.optString("Message");
-                    Log.i(Variables.Tag,"Type: "+Type+" * Message: "+Message);
-                    if(Type.equals("1")){
-                        Toast.makeText(MainActivity.this, Message, Toast.LENGTH_SHORT).show();
-                    }else if(Type.equals("2")){
-                        DialogChoose(Message);
+                JSONObject jsonObject = new JSONObject(result);
+                if(jsonObject.getInt("Status")==1){
+                    // anjam shavad
+                    if(jsonObject.getString("Message").startsWith("http")){
+                        // show dialog
+                        DialogChoose(jsonObject.getString("Message"));
                     }
+                    else{
+                        // nothing to show
+
+                    }
+                }
+                else {
+                    // error darad
                 }
 
             } catch (JSONException e) {
