@@ -10,5 +10,5 @@ public class ImageCategoryGallery {
         this.category_neame=category_neame;
     }
 
-    public String getCategory_neame(){return this.category_neame;}
+    public String getCategory_name(){return this.category_neame;}
 }

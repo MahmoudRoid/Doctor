@@ -35,11 +35,11 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
     public ArrayList<ImagesDetailGallery> imageGalleryArrayList;
     public Context context;
     private IWebservice delegate = null;
-    public int category_id;
+    public String category_id;
 
     SweetAlertDialog pDialog ;
 
-    public GetImageDetail(Context context, IWebservice delegate,int category_id){
+    public GetImageDetail(Context context, IWebservice delegate,String category_id){
         this.context=context;
         this.delegate=delegate;
         this.category_id=category_id;

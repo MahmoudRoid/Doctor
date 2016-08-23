@@ -157,7 +157,7 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
             public void onItemClick(View view, int position) {
                 // TODO : check kardane id ( k doros bashe )
                 Intent intent = new Intent(VideoCategoryActivity.this,VideoGallaryActivity.class);
-                intent.putExtra("id",videoCategoryGalleries.get(position).getCategory_neame());
+                intent.putExtra("id",videoCategoryGalleries.get(position).getCategory_name());
                 startActivity(intent);
             }
         }));

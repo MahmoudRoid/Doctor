@@ -43,7 +43,7 @@ public class ImageCategoryAdapter extends RecyclerView.Adapter<ImageCategoryAdap
 
     @Override
     public void onBindViewHolder(ImageCategoryAdapter.DataObjectHolder holder, int position) {
-        holder.tv_title.setText(imageCategoryGalleries.get(position).getTitle());
+        holder.tv_title.setText(imageCategoryGalleries.get(position).getCategory_name());
     }
 
     @Override

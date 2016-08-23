@@ -50,6 +50,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     private TextView txtToolbar;
     private View snack_view;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +85,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
 
             if (Internet.isNetworkAvailable(ImagesDetailActivity.this)) {
                 // call webservice
-                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getInt("id"));
+                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getString("id"));
                 getdata.execute();
             } else {
                 Snackbar snackbar = Snackbar
@@ -113,7 +114,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         if (itemId == R.id.action_refresh) {
             if (Internet.isNetworkAvailable(ImagesDetailActivity.this)) {
                 // call webservice
-                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getInt("id"));
+                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getString("id"));
                 getdata.execute();
             } else {
                 Snackbar snackbar = Snackbar

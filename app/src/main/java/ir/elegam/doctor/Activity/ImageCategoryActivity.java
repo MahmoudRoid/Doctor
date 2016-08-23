@@ -162,7 +162,7 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
             public void onItemClick(View view, int position) {
                 // TODO : check kardane id ( k doros bashe )
                 Intent intent = new Intent(ImageCategoryActivity.this,ImagesDetailActivity.class);
-                intent.putExtra("id",imageCategoryGalleryArrayList.get(position).getCategory_neame());
+                intent.putExtra("id",imageCategoryGalleryArrayList.get(position).getCategory_name());
                 startActivity(intent);
             }
         }));
