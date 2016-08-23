@@ -32,5 +32,5 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         app:fabSize="normal"
-        android:src="@drawable/sync_white"/>
+        android:src="@drawable/ic_refresh"/>
 </android.support.design.widget.CoordinatorLayout>
