@@ -11,10 +11,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.Adapter.ViewPagerAdapter;
@@ -24,6 +32,7 @@ import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Fragment.AboutFragment1;
 import ir.elegam.doctor.Fragment.AboutFragment2;
+import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.Helper.Object_Extra;
 import ir.elegam.doctor.R;
 
@@ -146,15 +155,56 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
     }
 
     @Override
-    public void onFinishedRequest(String res) {
+    public void onFinishedRequest(String result) {
         pDialog.dismiss();
-        // get data form server and parse it than save it here
-        String GOTTEN_STRING = "";
+        Log.i(Variables.Tag,"res: "+result);
 
-        db.open();
-        db.UpdateExtra(new Object_Extra("بیمارستان های مستقر",GOTTEN_STRING));
-        db.UpdateExtra(new Object_Extra("سوابق علمی و حرفه ای",GOTTEN_STRING));
-        db.close();
+        if (result.equals("nothing_got")) {
+            Toast.makeText(AboutUsActivity.this, "مشکل از سرور!", Toast.LENGTH_SHORT).show();
+        }
+        else if(!result.startsWith("{")){
+            Toast.makeText(AboutUsActivity.this, "مشکل از سرور!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            try {
+                JSONObject jsonObject=new JSONObject(result);
+                int Type=jsonObject.getInt("Status");
+                if(Type==1){
+                    JSONArray jsonArray = jsonObject.getJSONArray("Data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                        String Title = jsonObject2.optString("Title");
+                        String Content = jsonObject2.getString("Content");
+
+                        Log.i(Variables.Tag,"Title: "+Title+" * "+"Content: "+Content);
+
+                        Object_Extra ob = new Object_Extra(Title,Content);
+
+                        db.open();
+                        boolean isExist = db.CheckExistanceExtra("Title",Title);
+                        db.close();
+                        if(!isExist){
+                            db.open();
+                            db.InsertExtra(ob);
+                            db.close();
+
+                        }else{
+                            db.open();
+                            db.UpdateExtra(ob);
+                            db.close();
+                        }
+
+                    }
+                }
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
         setupViewPager(viewPager);
 

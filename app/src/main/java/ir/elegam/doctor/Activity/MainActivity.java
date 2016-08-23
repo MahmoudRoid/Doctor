@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
@@ -38,11 +39,14 @@ import ir.elegam.doctor.R;
 public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion {
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mDrawerList;
+    private Typeface San;
     View snack_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
 
         database db = new database(this);
         db.useable();
@@ -169,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         }
     }
 
-
     public  void show_social_dialog(){
         final Dialog d = new Dialog(this);
         d.setCancelable(true);
@@ -225,6 +228,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
 
         d.show();
     }
+
     private void openTelegramChannel() {
         final String appName = "org.telegram.messenger";
         final boolean isAppInstalled = isAppAvailable(getApplicationContext(), appName);
@@ -245,6 +249,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             snackbar.show();
         }
     }
+
     public static boolean isAppAvailable(Context context, String appName) {
         PackageManager pm = context.getPackageManager();
         try
@@ -257,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             return false;
         }
     }
+
     private void openInstagramPage() {
 
         Uri uri = Uri.parse("http://instagram.com/_u/xxx");
@@ -272,7 +278,6 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
 
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -330,10 +335,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                     if(Type.equals("1")){
                         Toast.makeText(MainActivity.this, Message, Toast.LENGTH_SHORT).show();
                     }else if(Type.equals("2")){
-                        String url = Message;
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(url));
-                        startActivity(intent);
+                        DialogChoose(Message);
                     }
                 }
 
@@ -344,5 +346,56 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             }
         }
     }
-}
+
+    private void DialogChoose(final String Message) {
+        final Dialog d = new Dialog(this);
+        d.setCancelable(true);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.dialog_choose);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
+        final TextView txtHeader = (TextView) d.findViewById(R.id.txtHeader_dialog);
+        final TextView txtContext = (TextView) d.findViewById(R.id.txtContext_dialog);
+        final TextView txtOne = (TextView) d.findViewById(R.id.txtOne_dialog);
+        final TextView txtTwo = (TextView) d.findViewById(R.id.txtTwo_dialog);
+        final TextView txtThree = (TextView) d.findViewById(R.id.txtThree_dialog);
+
+        txtHeader.setTypeface(San);
+        txtContext.setTypeface(San);
+        txtOne.setTypeface(San);
+        txtTwo.setTypeface(San);
+        txtThree.setTypeface(San);
+
+        txtHeader.setText("آپدیت جدید");
+        txtContext.setText("آیا تمایل دارید ورژن جدید برنامه را دانلود کنید؟");
+        txtOne.setText("بله");
+        txtTwo.setVisibility(View.INVISIBLE);
+        txtThree.setText("خیر");
+
+        txtThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.dismiss();
+            }
+        });
+
+        txtOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = Message;
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        d.show();
+    }// end DialogChoose()
+
+}// end class
 

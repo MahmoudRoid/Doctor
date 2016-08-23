@@ -122,6 +122,7 @@ public class database extends SQLiteOpenHelper {
 	}// end Display()
 
 	public String DisplayExtra(String Column){
+		Log.i(Variables.Tag,"Column in db: "+Column);
 		Cursor cu = db.rawQuery("select * from "+ TABLE_EXTRA +" where Title = '"+ Column +"' ;", null);
 		cu.moveToFirst();
 		String result = cu.getString(2);
@@ -181,6 +182,20 @@ public class database extends SQLiteOpenHelper {
 
 	public boolean CheckExistanceNews(String MColumn,String MIndex,String Column, String Index){
 		Cursor cursor = db.rawQuery("select * from "+ TABLE_NEWS +" where "+ MColumn +" = '"+ MIndex +"'  and "+ Column +" = '"+ Index +"' ;", null);
+		cursor.moveToFirst();
+		int result = cursor.getCount();
+		if(result == 0){
+			Log.i(TAG,"false");
+			return false;
+		}
+		else{
+			Log.i(TAG,"true");
+			return true;
+		}
+	}
+
+	public boolean CheckExistanceExtra(String MColumn,String MIndex){
+		Cursor cursor = db.rawQuery("select * from "+ TABLE_EXTRA +" where "+ MColumn +" = '"+ MIndex +"' ;", null);
 		cursor.moveToFirst();
 		int result = cursor.getCount();
 		if(result == 0){

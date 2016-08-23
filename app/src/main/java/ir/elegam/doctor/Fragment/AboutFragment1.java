@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -63,11 +64,13 @@ public class AboutFragment1 extends Fragment {
 
         try {
             db.open();
-            Content = db.DisplayExtra(Title);
+            Content = db.DisplayExtra("درباره ما");
             db.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Log.i(Variables.Tag,"Contetn in frag: "+Content);
 
         /*Content = "salam dostan <http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
                 "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
@@ -77,8 +80,9 @@ public class AboutFragment1 extends Fragment {
                 "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
                 "tamam shod."+"<>";*/
 
-        setContent(Content);
-
+        //setContent(Content);
+        Content = Html.fromHtml(Content).toString();
+        ctext(Content);
     }
 
     private void setContent(String text){
@@ -109,10 +113,12 @@ public class AboutFragment1 extends Fragment {
     private void ctext(String text){
         Log.i(Variables.Tag,"text: "+text);
         TextView tv=new TextView(getActivity());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 10, 0, 10);
         tv.setPadding(10, 10, 10, 10);
-        lp.gravity= Gravity.TOP;
+        lp.gravity= Gravity.RIGHT & Gravity.TOP;
+        tv.setGravity(Gravity.RIGHT & Gravity.TOP);
+        //lp.gravity= Gravity.TOP;
         tv.setText(text);
         lay.addView(tv,lp);
 
