@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         if(Internet.isNetworkAvailable(MainActivity.this)){
             Async_GetVersion async = new Async_GetVersion();
             async.mListener = MainActivity.this;
+            Log.i(Variables.Tag,"ver: "+getVersionCode());
             async.execute(URLS.GetUpdate,Variables.Token,"AppVersion",getVersionCode());
         }
     }

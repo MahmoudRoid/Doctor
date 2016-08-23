@@ -227,7 +227,7 @@ public class ShowActivity extends AppCompatActivity {
                 break;
 
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 }// end class

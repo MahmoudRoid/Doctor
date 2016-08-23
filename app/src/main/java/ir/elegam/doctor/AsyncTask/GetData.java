@@ -165,9 +165,9 @@ public class GetData extends AsyncTask<Void,Void,String> {
 
                         }else{
                             Log.i(Variables.Tag,"in update id: "+id);
-                            /*db.open();
+                            db.open();
                             db.Update(myObject);
-                            db.close();*/
+                            db.close();
                         }
 
                     }

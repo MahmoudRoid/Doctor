@@ -21,9 +21,6 @@ import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
-/**
- * Created by Amoozesh on 8/6/2016.
- */
 public class AboutFragment1 extends Fragment {
 
     private String Title = "سوابق علمی و حرفه ای",Content="";
@@ -70,18 +67,6 @@ public class AboutFragment1 extends Fragment {
             e.printStackTrace();
         }
 
-        Log.i(Variables.Tag,"Contetn in frag: "+Content);
-
-        /*Content = "salam dostan <http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-                "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
-                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg> baraye hamin" +
-                "ma bayad be dostane khod ehtram bogzarim." +
-                "bale in goone ast ke ma ija dar olaviat hastim." +
-                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-                "tamam shod."+"<>";*/
-
-        //setContent(Content);
-        //Content = Html.fromHtml(Content).toString();
         ctext(Content);
     }
 

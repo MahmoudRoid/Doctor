@@ -21,9 +21,6 @@ import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
-/**
- * Created by Amoozesh on 8/6/2016.
- */
 public class AboutFragment2 extends Fragment {
 
     private String Title = "بیمارستان های مستقر",Content="";
