@@ -22,9 +22,9 @@
             <ImageView
                 android:id="@+id/images_detail_main_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:src="@drawable/favblack"
-                android:layout_centerInParent="true"/>
+                android:layout_centerVertical="true"/>
 
         </RelativeLayout>
 
