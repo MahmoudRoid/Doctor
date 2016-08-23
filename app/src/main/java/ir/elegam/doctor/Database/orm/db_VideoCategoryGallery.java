@@ -6,16 +6,13 @@ import com.orm.SugarRecord;
  * Created by Droid on 8/18/2016.
  */
 public class db_VideoCategoryGallery extends SugarRecord {
-    public int id;
-    public String title;
+    public String category_neame;
 
     public db_VideoCategoryGallery(){}
 
-    public db_VideoCategoryGallery(int id, String title){
-        this.id=id;
-        this.title=title;
+    public db_VideoCategoryGallery(String category_neame){
+        this.category_neame=category_neame;
     }
 
-    public int getid(){return this.id;}
-    public String getTitle(){return this.title;}
+    public String getCategory_neame(){return this.category_neame;}
 }

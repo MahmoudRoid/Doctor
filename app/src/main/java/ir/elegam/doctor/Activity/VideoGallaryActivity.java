@@ -55,13 +55,13 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
     private SweetAlertDialog pDialog ;
     final AppCompatActivity activity = null;
     private String URL = URLS.WEB_SERVICE_URL, TOKEN="";
-    public int category_id;
+    public String category_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_gallary);
-        this.category_id=getIntent().getExtras().getInt("id");
+        this.category_id=getIntent().getExtras().getString("id");
         define();
         init();
 

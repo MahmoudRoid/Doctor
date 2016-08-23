@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,13 +21,21 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import ir.elegam.doctor.AsyncTask.Async_GetVersion;
+import ir.elegam.doctor.Classes.Internet;
+import ir.elegam.doctor.Classes.URLS;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion {
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mDrawerList;
     View snack_view;
@@ -40,6 +50,28 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (RelativeLayout) findViewById(R.id.relativeLayout2);
 
+        checkForUpdate();
+
+    }
+
+    private void checkForUpdate() {
+        if(Internet.isNetworkAvailable(MainActivity.this)){
+            Async_GetVersion async = new Async_GetVersion();
+            async.mListener = MainActivity.this;
+            async.execute(URLS.GetUpdate,Variables.Token,"AppVersion",getVersionCode());
+        }
+    }
+
+    private String getVersionCode() {
+        int verCode;
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            verCode = pInfo.versionCode;
+            return String.valueOf(verCode);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "1";
     }
 
     public void onClick(View view){
@@ -267,4 +299,50 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    @Override
+    public void onFinishedRequest(String result) {
+        if (result.equals("nothing_got")) {
+            try {
+                Log.i(Variables.Tag,"No data error");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(result.startsWith("[")){
+            // moshkel dare kollan
+            try {
+                Log.i(Variables.Tag,"extra data error");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+
+            try {
+                result= "["+result+"]";
+                JSONArray jsonArray = new JSONArray(result);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    String Type = jsonObject.optString("Type");
+                    String Message = jsonObject.optString("Message");
+                    Log.i(Variables.Tag,"Type: "+Type+" * Message: "+Message);
+                    if(Type.equals("1")){
+                        Toast.makeText(MainActivity.this, Message, Toast.LENGTH_SHORT).show();
+                    }else if(Type.equals("2")){
+                        String url = Message;
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+

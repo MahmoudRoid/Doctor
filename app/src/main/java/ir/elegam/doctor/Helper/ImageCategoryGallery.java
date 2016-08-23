@@ -4,14 +4,11 @@ package ir.elegam.doctor.Helper;
  * Created by Droid on 8/14/2016.
  */
 public class ImageCategoryGallery {
-    public int id;
-    public String title;
+    public String category_neame;
 
-    public ImageCategoryGallery(int id, String title){
-        this.id=id;
-        this.title=title;
+    public ImageCategoryGallery(String category_neame){
+        this.category_neame=category_neame;
     }
 
-    public int getid(){return this.id;}
-    public String getTitle(){return this.title;}
+    public String getCategory_neame(){return this.category_neame;}
 }

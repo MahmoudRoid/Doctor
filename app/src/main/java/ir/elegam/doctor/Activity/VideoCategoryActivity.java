@@ -86,7 +86,7 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
         if(list.size()>0){
             // show offline list
             for(int i=0;i<list.size();i++){
-                ImageCategoryGallery cs=new ImageCategoryGallery(list.get(i).getid(),list.get(i).getTitle());
+                ImageCategoryGallery cs=new ImageCategoryGallery(list.get(i).getCategory_neame());
                 arrayList.add(cs);
             }
             showList(arrayList);
@@ -156,8 +156,8 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
             @Override
             public void onItemClick(View view, int position) {
                 // TODO : check kardane id ( k doros bashe )
-                Intent intent = new Intent(VideoCategoryActivity.this,ImagesDetailActivity.class);
-                intent.putExtra("id",videoCategoryGalleries.get(position).getid());
+                Intent intent = new Intent(VideoCategoryActivity.this,VideoGallaryActivity.class);
+                intent.putExtra("id",videoCategoryGalleries.get(position).getCategory_neame());
                 startActivity(intent);
             }
         }));

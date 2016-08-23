@@ -2,13 +2,13 @@ package ir.elegam.doctor.Helper;
 
 public class Object_Video {
 
-    public  int category_id;
+    public  String category_id;
     public String Oid;
     public String OThumb_url;
     public String OVideo_url;
     public String OText;
 
-    public Object_Video(int category_id,String Oid, String OThumb_url, String OVideo_url, String OText){
+    public Object_Video(String category_id,String Oid, String OThumb_url, String OVideo_url, String OText){
         this.Oid = Oid;
         this.category_id=category_id;
         this.OThumb_url = OThumb_url;
@@ -17,7 +17,7 @@ public class Object_Video {
     }
 
 
-    public int getCategory_id(){return this.category_id;}
+    public String getCategory_id(){return this.category_id;}
 
     public String getOid() {
         return Oid;

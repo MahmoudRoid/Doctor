@@ -137,20 +137,19 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
 
-                        int id=obj.getInt("Id");
-                        String title=obj.getString("Title");
+                        String category_neame=obj.getString("Category");
 
-                        ImageCategoryGallery category=new ImageCategoryGallery(id,title);
+                        ImageCategoryGallery category=new ImageCategoryGallery(category_neame);
                         imageGalleryArrayList.add(category);
 
                         // TODO : add too database
                         if(this.category.equals("getImagesCategory")){
 
-                            db_ImageCategoryGallery db = new db_ImageCategoryGallery(id,title);
+                            db_ImageCategoryGallery db = new db_ImageCategoryGallery(category_neame);
                             db.save();
                         }
                         else {
-                            db_VideoCategoryGallery db = new db_VideoCategoryGallery(id,title);
+                            db_VideoCategoryGallery db = new db_VideoCategoryGallery(category_neame);
                             db.save();
                         }
                     }

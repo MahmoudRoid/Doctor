@@ -4,14 +4,14 @@ import com.orm.SugarRecord;
 
 public class tbl_Videos extends SugarRecord {
 
-    public  int category_id;
+    public  String category_id;
     int id;
     String title,thumbnail,video_url;
 
 
     public tbl_Videos(){}
 
-    public tbl_Videos(int category_id,int id, String title, String thumbnail, String video_url){
+    public tbl_Videos(String category_id,int id, String title, String thumbnail, String video_url){
         this.id=id;
         this.category_id=category_id;
         this.title=title;
@@ -19,11 +19,11 @@ public class tbl_Videos extends SugarRecord {
         this.video_url=video_url;
     }
 
-    public int getCategory_id() {
+    public String getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategory_id(String category_id) {
         this.category_id = category_id;
     }
 
