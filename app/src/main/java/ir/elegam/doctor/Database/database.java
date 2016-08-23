@@ -168,7 +168,7 @@ public class database extends SQLiteOpenHelper {
 		cv.put(Title,ob.getTitle());
 		cv.put(Content,ob.getContent());
 		cv.put(ImageUrl,ob.getImage_url());
-		db.update(TABLE_NEWS, cv, " id='"+ob.getSid()+"' and "+" Faction='"+ob.getFaction()+"'", null);
+		db.update(TABLE_NEWS, cv, " Sid='"+ob.getSid()+"' and "+" Faction='"+ob.getFaction()+"'", null);
 		Log.i(TAG, "update");
 	}
 

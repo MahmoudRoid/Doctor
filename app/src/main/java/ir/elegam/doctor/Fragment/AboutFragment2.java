@@ -80,7 +80,7 @@ public class AboutFragment2 extends Fragment {
                 "tamam shod."+"<>";*/
 
         //setContent(Content);
-        Content = Html.fromHtml(Content).toString();
+        //Content = Html.fromHtml(Content).toString();
         ctext(Content);
     }
 

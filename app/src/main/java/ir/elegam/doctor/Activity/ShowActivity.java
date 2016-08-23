@@ -114,17 +114,6 @@ public class ShowActivity extends AppCompatActivity {
         Sid = getIntent().getStringExtra("sid");
         Content = getIntent().getStringExtra("content")+"<>";
 
-        Log.i(Variables.Tag,"Content before html: "+Content);
-        //Content = Html.fromHtml(Content).toString();
-        Log.i(Variables.Tag,"Content after html: "+Content);
-
-        /*Content = "salam dostan <src=\"http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg\">" +
-                "hale shoma chetore? baraye in lahze man lahze shomari mikardam." +
-                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg> baraye hamin" +
-                "ma bayad be dostane khod ehtram bogzarim." +
-                "bale in goone ast ke ma ija dar olaviat hastim." +
-                "<http://tashrifatroyaltop.com/img/portfolio-2-thumb.jpg>" +
-                "tamam shod."+"<>";*/
         ImageUrl = getIntent().getStringExtra("image_url");
         Fav = getIntent().getStringExtra("fav");
 

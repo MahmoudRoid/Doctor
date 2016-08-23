@@ -12,7 +12,6 @@
         android:id="@+id/txt1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
         android:padding="10dp"
         android:textColor="@color/pri500"
         android:gravity="right|center_vertical"
