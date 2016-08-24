@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/club_back">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"></FrameLayout>
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="0.2">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
+                android:layout_height="match_parent"></FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:layout_height="match_parent">
+                <ir.elegam.doctor.Classes.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="left|center_vertical"
+                    android:text="مراقبت ها"
+                    android:id="@+id/btn_care"
+                    android:drawableLeft="@drawable/care_icon" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:gravity="center_horizontal|top"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"></FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent">
+
+         <ir.elegam.doctor.Classes.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="پرسش و پاسخ"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/btn_porsesh_pasokh"
+                    android:drawableLeft="@drawable/porsesh_pasokh_icon" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent"></FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent">
+
+        <ir.elegam.doctor.Classes.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="left|center_vertical"
+                    android:text="چت"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/btn_chat"
+                    android:drawableLeft="@drawable/chat_icon" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
+                android:layout_height="match_parent"></FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.75"
+                android:layout_height="match_parent">
+               <ir.elegam.doctor.Classes.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="left|center_vertical"
+                    android:text="مسابقه"
+                    android:id="@+id/btn_competition"
+                    android:drawableLeft="@drawable/competition_icon" />
+            </FrameLayout>
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -120,9 +120,11 @@
             android:name=".Activity.ImagesDetailActivity"
             android:label=""
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.CompetitionActivity"
+        <activity
+            android:name=".Activity.CompetitionActivity"
             android:label=""
             android:screenOrientation="portrait" />
+        <activity android:name=".Activity.CustomerClubActivity"></activity>
     </application>
 
 </manifest>
