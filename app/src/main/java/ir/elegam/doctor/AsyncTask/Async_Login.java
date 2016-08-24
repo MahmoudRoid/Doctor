@@ -28,8 +28,9 @@ public class Async_Login extends AsyncTask <Object, Object, Object> {
         try {
             String data = URLEncoder.encode("Token", "UTF8")  +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
             data += "&"+  URLEncoder.encode("NationalCode", "UTF8")   +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
-            //data += "&"+  URLEncoder.encode("Class", "UTF8")  +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
-            //data += "&"+  URLEncoder.encode("Faction", "UTF8")+"="+ URLEncoder.encode(params[4].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Name", "UTF8")  +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Phone", "UTF8")+"="+ URLEncoder.encode(params[4].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Email", "UTF8")+"="+ URLEncoder.encode(params[4].toString(),"UTF8");
 
             URL link = new URL(params[0].toString());
             HttpURLConnection connect = (HttpURLConnection) link.openConnection();

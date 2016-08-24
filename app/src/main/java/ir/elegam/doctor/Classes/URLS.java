@@ -19,6 +19,6 @@ public class URLS {
     public static final String GetAboutUs=DOMAIN+"GetAboutUs";
     public static final String GetUpdate=DOMAIN+"AppVersion";
     public static final String LOGIN = DOMAIN+"login";
-
+    public static final String REGISTER = DOMAIN+"register";
 
 }

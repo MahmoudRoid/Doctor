@@ -31,6 +31,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.AsyncTask.Async_GetVersion;
 import ir.elegam.doctor.AsyncTask.Async_Login;
@@ -39,6 +41,7 @@ import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.URLS;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
+import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.R;
 
 public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion , Async_Login.GetAccess{
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     private Typeface San;
     private View snack_view;
     private SweetAlertDialog pDialog;
+    private String DName, DPhone, DEmail, DNationalCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,8 +150,8 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             // item haye navigation drawer
 
             case R.id.relative_login:
-
-                DialogLogin();
+                DialogRegister();
+                //DialogLogin();
                 break;
             case R.id.relative_social:
                 show_social_dialog();
@@ -186,52 +190,15 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         }
     }
 
-    private void DialogLogin(){
-        final Dialog d = new Dialog(this);
-        d.setCancelable(true);
-        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        d.setContentView(R.layout.dialog_login);
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        Window window = d.getWindow();
-        lp.copyFrom(window.getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        window.setAttributes(lp);
-
-        final TextView txtTitleLogin = (TextView) d.findViewById(R.id.txtTitle_dialoglogin);
-        final TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialoglogin);
-        final EditText edtlogin = (EditText) d.findViewById(R.id.edtLogin_dialoglogin);
-        final Button btnLogin = (Button) d.findViewById(R.id.btnLogin_dialoglogin);
-
-        till.setTypeface(San);
-        txtTitleLogin.setTypeface(San);
-        edtlogin.setTypeface(San);
-        btnLogin.setTypeface(San);
-
-
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String MeliNumber = edtlogin.getText().toString();
-                if(MeliNumber.length()>11||MeliNumber.length()<1){
-                    Toast.makeText(MainActivity.this, "تعداد ارقام کارت غیر مجاز است.", Toast.LENGTH_SHORT).show();
-
-                }else{
-                    AskSever(MeliNumber);
-                }
-            }
-        });
-
-
-    }// end DialogLogin()
-
     private void AskSever(String NationalCode){
         if (Internet.isNetworkAvailable(MainActivity.this)){
             Async_Login async = new Async_Login();
             async.mListener = MainActivity.this;
-            async.execute(URLS.LOGIN,Variables.Token,NationalCode);
+            if(NationalCode.equals("e")){
+                async.execute(URLS.REGISTER,Variables.Token,NationalCode);
+            }else{
+                async.execute(URLS.LOGIN,Variables.Token,NationalCode);
+            }
         }else{
             Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
@@ -466,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         pDialog= new SweetAlertDialog(MainActivity.this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("لطفا صبور باشید!");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
     }// end ArcLoader()
 
     @Override
@@ -475,10 +442,87 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     }
 
     @Override
-    public void onFinishedLogin(String res) {
+    public void onFinishedLogin(String result) {
         pDialog.dismiss();
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            int Type = jsonObject.getInt("Status");
+            if (Type == 1) {
+                // gotten answer ok
+                
+                String res = jsonObject.optString("res");
+                if(res.equals("ok")){
+                    // start activity bashgahe moshtarian
+                }else{
+                    DialogRegister();
+                }
+                
+            } else {
+                Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
+            }
+        }// end try
+        catch(JSONException e){ e.printStackTrace(); }
+        catch(Exception e){ e.printStackTrace(); }
+    }// end onFinishedLogin()
 
-    }
+    private void DialogLogin(){
+        final Dialog d = new Dialog(this);
+        d.setCancelable(true);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.dialog_login);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
+        final TextView txtTitleLogin = (TextView) d.findViewById(R.id.txtTitle_dialoglogin);
+        final TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialoglogin);
+        final EditText edtlogin = (EditText) d.findViewById(R.id.edtLogin_dialoglogin);
+        final Button btnLogin = (Button) d.findViewById(R.id.btnLogin_dialoglogin);
+
+        till.setTypeface(San);
+        txtTitleLogin.setTypeface(San);
+        edtlogin.setTypeface(San);
+        btnLogin.setTypeface(San);
+
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DNationalCode = edtlogin.getText().toString();
+                if(DNationalCode.length()>11||DNationalCode.length()<9){
+                    Toast.makeText(MainActivity.this, "تعداد ارقام کارت غیر مجاز است.", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    AskSever(DNationalCode);
+                    d.dismiss();
+                }
+            }
+        });
+
+        d.show();
+
+    }// end DialogLogin()
+
+    public void DialogRegister(){
+        final Dialog d = new Dialog(this);
+        d.setCancelable(true);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.dialog_register);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
+        d.show();
+    }// end DialogRegister()
 
 }// end class
 
