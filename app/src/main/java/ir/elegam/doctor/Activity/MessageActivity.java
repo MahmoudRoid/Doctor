@@ -83,8 +83,6 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
         edtEmail = (EditText) findViewById(R.id.edtEmail_form);
         edtPhone = (EditText) findViewById(R.id.edtPhone_form);
         edtNameFamily = (EditText) findViewById(R.id.edtName_form);
-        pDialog= new SweetAlertDialog(MessageActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-
 
         txtToolbar.setTypeface(San);
         btnSend.setTypeface(San);
@@ -104,6 +102,7 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
     }// end define()
 
     private void ArcLoader(){
+        pDialog= new SweetAlertDialog(MessageActivity.this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("لطفا صبور باشید!");
         pDialog.setCancelable(false);

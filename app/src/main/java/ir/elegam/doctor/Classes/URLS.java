@@ -18,6 +18,7 @@ public class URLS {
     public static final String SendMessagePm=DOMAIN+"SendMessagePm";
     public static final String GetAboutUs=DOMAIN+"GetAboutUs";
     public static final String GetUpdate=DOMAIN+"AppVersion";
+    public static final String LOGIN = DOMAIN+"login";
 
 
 }
