@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     private View snack_view;
     private SweetAlertDialog pDialog;
     private String DName, DPhone, DEmail, DNationalCode;
+    private boolean isOnReg = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,7 +196,8 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             Async_Login async = new Async_Login();
             async.mListener = MainActivity.this;
             if(NationalCode.equals("e")){
-                async.execute(URLS.REGISTER,Variables.Token,NationalCode);
+                isOnReg = true;
+                async.execute(URLS.REGISTER,Variables.Token,NationalCode,DName,DPhone,DEmail);
             }else{
                 async.execute(URLS.LOGIN,Variables.Token,NationalCode);
             }
@@ -445,20 +447,30 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     public void onFinishedLogin(String result) {
         pDialog.dismiss();
         try {
-            JSONObject jsonObject = new JSONObject(result);
-            int Type = jsonObject.getInt("Status");
-            if (Type == 1) {
-                // gotten answer ok
-                
-                String res = jsonObject.optString("res");
-                if(res.equals("ok")){
-                    // start activity bashgahe moshtarian
-                }else{
-                    DialogRegister();
+            if(isOnReg){
+                JSONObject jsonObject = new JSONObject(result);
+                int Type = jsonObject.getInt("Status");
+                if (Type == 1) {
+                    // Open Activity Bashgahe moshtarian
+                } else {
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
                 }
-                
-            } else {
-                Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
+            }else{
+                JSONObject jsonObject = new JSONObject(result);
+                int Type = jsonObject.getInt("Status");
+                if (Type == 1) {
+                    // gotten answer ok
+
+                    String res = jsonObject.optString("res");
+                    if(res.equals("ok")){
+                        // start activity bashgahe moshtarian
+                    }else{
+                        DialogRegister();
+                    }
+
+                } else {
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
+                }
             }
         }// end try
         catch(JSONException e){ e.printStackTrace(); }
