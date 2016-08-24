@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 isOnReg = true;
                 async.execute(URLS.REGISTER,Variables.Token,NationalCode,DName,DPhone,DEmail);
             }else{
-                async.execute(URLS.LOGIN,Variables.Token,NationalCode);
+                async.execute(URLS.LOGIN,Variables.Token,NationalCode,"","","");
             }
         }else{
             Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
