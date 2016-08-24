@@ -521,6 +521,12 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(lp);
 
+        Button btnCommit,btnCancel;
+        final TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialoglogin);
+        final EditText edtlogin = (EditText) d.findViewById(R.id.edtLogin_dialoglogin);
+        //btnCommit = (Button) d.findViewById(R.id.btn);
+        btnCancel = (Button) d.findViewById(R.id.btnLogin_dialoglogin);
+
         d.show();
     }// end DialogRegister()
 
