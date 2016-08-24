@@ -64,7 +64,7 @@ public class CustomerClubActivity extends AppCompatActivity {
         }
         else {
             Snackbar snackbar = Snackbar
-                    .make(findViewById(R.id.relative), "اپلیکیشن تلگرام یافت نشد", Snackbar.LENGTH_LONG);
+                    .make(findViewById(R.id.club_relative), "اپلیکیشن تلگرام یافت نشد", Snackbar.LENGTH_LONG);
 
             snack_view = snackbar.getView();
             snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));

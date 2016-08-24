@@ -68,7 +68,7 @@ public class MailActivity extends AppCompatActivity implements Async_Message.Get
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("لیست علاقمندی ها");
+        txtToolbar.setText("پرسش و پاسخ");
 
         rv = (RecyclerView) findViewById(R.id.service_recycler);
         LinearLayoutManager lm = new LinearLayoutManager(MailActivity.this, LinearLayoutManager.VERTICAL, false);
