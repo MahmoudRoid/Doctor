@@ -83,11 +83,11 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         switch (view.getId()){
 
             case R.id.img_drawer:
-//                if (mDrawerLayout.isDrawerOpen(mDrawerList))
-//                    mDrawerLayout.closeDrawer(mDrawerList);
-//                else
-//                    mDrawerLayout.openDrawer(mDrawerList);
-                startActivity(new Intent(MainActivity.this,CompetitionActivity.class));
+                if (mDrawerLayout.isDrawerOpen(mDrawerList))
+                    mDrawerLayout.closeDrawer(mDrawerList);
+                else
+                    mDrawerLayout.openDrawer(mDrawerList);
+
                 break;
             case R.id.btn_aboutdoctor:
                 startActivity(new Intent(MainActivity.this,AboutUsActivity.class));
