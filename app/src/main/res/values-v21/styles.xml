@@ -14,7 +14,7 @@
         <item name="android:textColor">@color/TXTcolor</item>
         <item name="android:textColorSecondary">@color/white</item>
 
-        <item name="android:windowBackground">@color/pri500</item>
+        <item name="android:windowBackground">@color/pri100</item>
 
         <item name="android:spinnerItemStyle">@style/MySpinner</item>
     </style>

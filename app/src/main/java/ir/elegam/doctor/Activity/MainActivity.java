@@ -10,11 +10,14 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View;
@@ -30,21 +33,26 @@ import org.json.JSONObject;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ir.elegam.doctor.AsyncTask.Async_GetVersion;
+import ir.elegam.doctor.AsyncTask.Async_Login;
+import ir.elegam.doctor.AsyncTask.Async_SendMessage;
 import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.URLS;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
 
-public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion {
+public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion , Async_Login.GetAccess{
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mDrawerList;
     private Typeface San;
     private View snack_view;
+    private SweetAlertDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ArcLoader();
 
         San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
 
@@ -137,6 +145,8 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             // item haye navigation drawer
 
             case R.id.relative_login:
+
+                DialogLogin();
                 break;
             case R.id.relative_social:
                 show_social_dialog();
@@ -172,6 +182,57 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 startActivity(new Intent(MainActivity.this,SupportActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
+        }
+    }
+
+    private void DialogLogin(){
+        final Dialog d = new Dialog(this);
+        d.setCancelable(true);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.dialog_login);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
+        final TextView txtTitleLogin = (TextView) d.findViewById(R.id.txtTitle_dialoglogin);
+        final TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialoglogin);
+        final EditText edtlogin = (EditText) d.findViewById(R.id.edtLogin_dialoglogin);
+        final Button btnLogin = (Button) d.findViewById(R.id.btnLogin_dialoglogin);
+
+        till.setTypeface(San);
+        txtTitleLogin.setTypeface(San);
+        edtlogin.setTypeface(San);
+        btnLogin.setTypeface(San);
+
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String MeliNumber = edtlogin.getText().toString();
+                if(MeliNumber.length()>11||MeliNumber.length()<1){
+                    Toast.makeText(MainActivity.this, "تعداد ارقام کارت غیر مجاز است.", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    AskSever(MeliNumber);
+                }
+            }
+        });
+
+
+    }// end DialogLogin()
+
+    private void AskSever(String NationalCode){
+        if (Internet.isNetworkAvailable(MainActivity.this)){
+            Async_Login async = new Async_Login();
+            async.mListener = MainActivity.this;
+            async.execute(URLS.LOGIN,Variables.Token,NationalCode);
+        }else{
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -399,6 +460,24 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         });
         d.show();
     }// end DialogChoose()
+
+    private void ArcLoader(){
+        pDialog= new SweetAlertDialog(MainActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("لطفا صبور باشید!");
+        pDialog.setCancelable(false);
+    }// end ArcLoader()
+
+    @Override
+    public void onStartLogin() {
+        pDialog.show();
+    }
+
+    @Override
+    public void onFinishedLogin(String res) {
+        pDialog.dismiss();
+
+    }
 
 }// end class
 
