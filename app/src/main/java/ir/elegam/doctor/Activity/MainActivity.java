@@ -522,10 +522,57 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         window.setAttributes(lp);
 
         Button btnCommit,btnCancel;
-        final TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialoglogin);
-        final EditText edtlogin = (EditText) d.findViewById(R.id.edtLogin_dialoglogin);
-        //btnCommit = (Button) d.findViewById(R.id.btn);
-        btnCancel = (Button) d.findViewById(R.id.btnLogin_dialoglogin);
+        TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialogreg);
+        TextInputLayout til2 = (TextInputLayout) d.findViewById(R.id.til2_dialogreg);
+        TextInputLayout til3 = (TextInputLayout) d.findViewById(R.id.til3_dialogreg);
+        TextInputLayout til4 = (TextInputLayout) d.findViewById(R.id.til4_dialogreg);
+        final EditText edtNationalcode = (EditText) d.findViewById(R.id.edtNationaCode_dialogreg);
+        final EditText edtName = (EditText) d.findViewById(R.id.edtName_dialogreg);
+        final EditText edtPhone = (EditText) d.findViewById(R.id.edtPhone_dialogreg);
+        final EditText edtEmail = (EditText) d.findViewById(R.id.edtEmail_dialogreg);
+        btnCommit = (Button) d.findViewById(R.id.btnCommit_dialogreg);
+        btnCancel = (Button) d.findViewById(R.id.btnCancel_dialogreg);
+
+        edtName.setTypeface(San);
+        edtPhone.setTypeface(San);
+        edtEmail.setTypeface(San);
+        edtNationalcode.setTypeface(San);
+        btnCancel.setTypeface(San);
+        btnCommit.setTypeface(San);
+        til2.setTypeface(San);
+        til3.setTypeface(San);
+        til4.setTypeface(San);
+        till.setTypeface(San);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+            }
+        });
+
+        btnCommit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+                DNationalCode = edtNationalcode.getText().toString();
+                DName = edtName.getText().toString();
+                DPhone = edtPhone.getText().toString();
+                DEmail = edtEmail.getText().toString();
+
+                if(        DNationalCode.length()>11
+                        || DNationalCode.length()<9
+                        || DName.equals("")
+                        || DPhone.equals("")
+                ){
+                    Toast.makeText(MainActivity.this, "لطفا اطلاعات خواسته شده را وارد کنید.", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    AskSever("e");
+                    d.dismiss();
+                }
+            }
+        });
 
         d.show();
     }// end DialogRegister()
