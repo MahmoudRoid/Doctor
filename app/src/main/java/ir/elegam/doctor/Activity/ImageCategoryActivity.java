@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -151,9 +152,9 @@ public class ImageCategoryActivity extends AppCompatActivity implements IWebserv
         this.imageCategoryGalleryArrayList=arrayList;
 
         mRecyclerView = (RecyclerView) findViewById(R.id.images_category_recycler);
-//        mLayoutManager = new GridLayoutManager(ImageCategoryActivity.this,3);
-        lLayout = new GridLayoutManager(ImageCategoryActivity.this, 2);
-        mRecyclerView.setLayoutManager(lLayout);
+        mLayoutManager = new LinearLayoutManager(ImageCategoryActivity.this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
         mAdapter = new ImageCategoryAdapter(imageCategoryGalleryArrayList);
         mRecyclerView.setAdapter(mAdapter);
 

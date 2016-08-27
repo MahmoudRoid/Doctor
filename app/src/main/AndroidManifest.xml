@@ -57,6 +57,7 @@
 
         <activity
             android:name=".Activity.SplashActivity"
+            android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,6 +68,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:label=""
+            android:theme="@style/FullscreenTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ListActivity"
