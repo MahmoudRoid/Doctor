@@ -5,10 +5,13 @@ package ir.elegam.doctor.Helper;
  */
 public class ImageCategoryGallery {
     public String category_neame;
+    public int imagecategoryid;
 
-    public ImageCategoryGallery(String category_neame){
+    public ImageCategoryGallery( int imagecategoryid,String category_neame){
         this.category_neame=category_neame;
+        this.imagecategoryid=imagecategoryid;
     }
 
+    public int getImagecategoryid(){return this.imagecategoryid;}
     public String getCategory_name(){return this.category_neame;}
 }

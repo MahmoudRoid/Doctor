@@ -36,6 +36,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
     SweetAlertDialog pDialog ;
     private database db;
     public String Url;
+    public String Type="";
 
     public GetData(Context context, IWebservice delegate,String faction) {
         this.context = context;
@@ -52,19 +53,26 @@ public class GetData extends AsyncTask<Void,Void,String> {
 
         switch (faction){
             case "getServices":
-                this.Url=URLS.GetServices;
+                this.Url= URLS.GetItemsbyType;
+                this.Type="3";
                 break;
             case "getMagazine":
-                this.Url=URLS.GetMagazine;
+                this.Url=URLS.GetItemsbyType;
+                this.Type="2";
                 break;
             case "getInsurance":
-                this.Url=URLS.GetInsurance;
+                this.Url=URLS.GetItemsbyType;
+                this.Type="12";
                 break;
             case "getCare":
                 this.Url=URLS.GetCare;
                 break;
+            case "getCareAfter":
+                this.Url=URLS.GetCare;
+                break;
             case "getFaq":
                 this.Url=URLS.GetFaq;
+                this.Type="";
                 break;
         }
 
@@ -85,25 +93,74 @@ public class GetData extends AsyncTask<Void,Void,String> {
         Response response = null;
         String strResponse = "nothing_got";
 
-        for(int i=0;i<=9;i++){
-            try {
-                OkHttpClient client = new OkHttpClient();
-                RequestBody body = new FormBody.Builder()
-                        .add("Token", Variables.Token)
-                        .build();
-                Request request = new Request.Builder()
-                        .url(this.Url)
-                        .post(body)
-                        .build();
+        if(this.faction.equals(Variables.getCare)){
+            for(int i=0;i<=9;i++){
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = new FormBody.Builder()
+                            .add("Token", Variables.Token)
+                            .add("Id","2")
+                            .build();
+                    Request request = new Request.Builder()
+                            .url(this.Url)
+                            .post(body)
+                            .build();
 
-                response = client.newCall(request).execute();
-                strResponse= response.body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
+                    response = client.newCall(request).execute();
+                    strResponse= response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if(response!=null) break;
             }
-
-            if(response!=null) break;
         }
+        else if(this.faction.equals(Variables.getCareAfter)){
+            for(int i=0;i<=9;i++){
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = new FormBody.Builder()
+                            .add("Token", Variables.Token)
+                            .add("Id","1")
+                            .build();
+                    Request request = new Request.Builder()
+                            .url(this.Url)
+                            .post(body)
+                            .build();
+
+                    response = client.newCall(request).execute();
+                    strResponse= response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if(response!=null) break;
+            }
+        }
+
+        else {
+            for(int i=0;i<=9;i++){
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = new FormBody.Builder()
+                            .add("Token", Variables.Token)
+                            .add("Type",this.Type)
+                            .build();
+                    Request request = new Request.Builder()
+                            .url(this.Url)
+                            .post(body)
+                            .build();
+
+                    response = client.newCall(request).execute();
+                    strResponse= response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if(response!=null) break;
+            }
+        }
+
         return strResponse;
     }
 
@@ -154,21 +211,41 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         MyObject myObject=new MyObject(id,faction,title,content,image_url,"0");
                         myObjectArrayList.add(myObject);
 
-                        db.open();
-                        Log.i(Variables.Tag,"id: "+id +" and faction: "+faction);
-                        boolean isExist = db.CheckExistanceNews("Faction",faction,"Sid",id);
-                        db.close();
-                        if(!isExist){
-                            db.open();
-                            db.Insert(myObject);
-                            db.close();
 
-                        }else{
-                            Log.i(Variables.Tag,"in update id: "+id);
+                        if(faction.equals("getFaq")){
                             db.open();
-                            db.Update(myObject);
+                            Log.i(Variables.Tag,"id: "+id +" and faction: "+faction);
+                            boolean isExist = db.CheckExistanceNews("Faction",faction,"Title",title);
                             db.close();
+                            if(!isExist){
+                                db.open();
+                                db.Insert(myObject);
+                                db.close();
+
+                            }else{
+                                Log.i(Variables.Tag,"in update id: "+id);
+                                db.open();
+                                db.UpdateQuestion(myObject);
+                                db.close();
+                            }
+                        }else {
+                            db.open();
+                            Log.i(Variables.Tag,"id: "+id +" and faction: "+faction);
+                            boolean isExist = db.CheckExistanceNews("Faction",faction,"Sid",id);
+                            db.close();
+                            if(!isExist){
+                                db.open();
+                                db.Insert(myObject);
+                                db.close();
+
+                            }else{
+                                Log.i(Variables.Tag,"in update id: "+id);
+                                db.open();
+                                db.Update(myObject);
+                                db.close();
+                            }
                         }
+
 
                     }
 

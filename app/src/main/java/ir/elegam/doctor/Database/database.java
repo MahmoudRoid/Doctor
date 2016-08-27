@@ -153,6 +153,17 @@ public class database extends SQLiteOpenHelper {
 		Log.i(TAG, "insert");
 	}
 
+	public void UpdateQuestion(MyObject ob){
+		ContentValues cv = new ContentValues();
+		cv.put(Sid, ob.getSid());
+		cv.put(Faction,ob.getFaction());
+		cv.put(Title,ob.getTitle());
+		cv.put(Content,ob.getContent());
+		cv.put(ImageUrl,ob.getImage_url());
+		db.update(TABLE_NEWS, cv, " Title='"+ob.getTitle()+"' and "+" Faction='"+ob.getFaction()+"'", null);
+		Log.i(TAG, "update");
+	}
+
 	public void InsertExtra(Object_Extra ob){
 		ContentValues cv = new ContentValues();
 		cv.put(Title, ob.getTitle());

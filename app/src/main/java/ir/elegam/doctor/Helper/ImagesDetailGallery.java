@@ -19,3 +19,4 @@ public class ImagesDetailGallery {
     public int getid(){return this.id;}
     public String getImage_url(){return this.image_url;}
 }
+

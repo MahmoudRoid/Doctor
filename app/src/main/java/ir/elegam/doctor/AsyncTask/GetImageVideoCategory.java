@@ -36,6 +36,7 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
     private String category;
     SweetAlertDialog pDialog ;
     public String url;
+    public String Type="";
 
     public GetImageVideoCategory(Context context, IWebservice delegate,String category){
         this.context=context;
@@ -49,9 +50,11 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
         switch (category){
             case "getVideosCategory":
                 this.url=URLS.GetVideos;
+                this.Type="7";
                 break;
             case "getImagesCategory":
                 this.url=URLS.GetImages;
+                this.Type="6";
                 break;
         }
     }
@@ -75,6 +78,7 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
                         .add("Token", Variables.Token)
+                        .add("Type",this.Type)
                         .build();
                 Request request = new Request.Builder()
                         .url(this.url)
@@ -137,19 +141,20 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject obj = jsonArray.getJSONObject(i);
 
-                        String category_neame=obj.getString("Category");
+                        int id = obj.getInt("Id");
+                        String category_neame=obj.getString("Name");
 
-                        ImageCategoryGallery category=new ImageCategoryGallery(category_neame);
+                        ImageCategoryGallery category=new ImageCategoryGallery(id,category_neame);
                         imageGalleryArrayList.add(category);
 
                         // TODO : add too database
                         if(this.category.equals("getImagesCategory")){
 
-                            db_ImageCategoryGallery db = new db_ImageCategoryGallery(category_neame);
+                            db_ImageCategoryGallery db = new db_ImageCategoryGallery(id,category_neame);
                             db.save();
                         }
                         else {
-                            db_VideoCategoryGallery db = new db_VideoCategoryGallery(category_neame);
+                            db_VideoCategoryGallery db = new db_VideoCategoryGallery(id,category_neame);
                             db.save();
                         }
                     }
@@ -172,4 +177,5 @@ public class GetImageVideoCategory extends AsyncTask<String,Void,String> {
         }
     }
 }
+
 

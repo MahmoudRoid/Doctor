@@ -86,7 +86,7 @@ public class VideoCategoryActivity extends AppCompatActivity implements IWebserv
         if(list.size()>0){
             // show offline list
             for(int i=0;i<list.size();i++){
-                ImageCategoryGallery cs=new ImageCategoryGallery(list.get(i).getCategory_neame());
+                ImageCategoryGallery cs=new ImageCategoryGallery(list.get(i).getVideocategoryid(),list.get(i).getCategory_neame());
                 arrayList.add(cs);
             }
             showList(arrayList);

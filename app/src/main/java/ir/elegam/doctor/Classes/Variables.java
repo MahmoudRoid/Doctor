@@ -19,7 +19,7 @@ public class Variables {
     public static final String getInsurance="getInsurance";
     public static final String getCare="getCare";
     public static final String getFaq="getFaq";
-
+    public static final String getCareAfter="getCareAfter";
     public static final String getVideosCategory="getVideosCategory";
     public static final String getImagesCategory="getImagesCategory";
 

@@ -66,7 +66,7 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = new FormBody.Builder()
                         .add("Token", Variables.Token)
-                        .add("Id",String.valueOf(category_id))
+                        .add("Id",category_id)
                         .build();
                 Request request = new Request.Builder()
                         .url(URLS.GetImagesById)
@@ -99,13 +99,15 @@ public class GetImageDetail extends AsyncTask<String,Void,String> {
 
             // pak kardane database ha baraye rikhtane data e jadid
             try {
-                List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("category_id").eq(this.category_id)).list();
+                List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("categoryid").eq(this.category_id)).list();
 
                 if(list.size()>0){
-                    db_ImagesDetailGallery.deleteAll(db_ImagesDetailGallery.class,"category_id = ?", String.valueOf(this.category_id));
+                    db_ImagesDetailGallery.deleteAll(db_ImagesDetailGallery.class,"categoryid = ?", String.valueOf(this.category_id));
                 }
             }
-            catch (Exception e){e.printStackTrace();}
+            catch (Exception e){
+                e.printStackTrace();
+            }
 
             try {
                 imageGalleryArrayList = new ArrayList<ImagesDetailGallery>();
