@@ -50,6 +50,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     private TextView txtToolbar;
     private View snack_view;
 
+    private String categoryId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +67,20 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         txtToolbar.setTypeface(San);
         txtToolbar.setText("گالری عکس");
 
+        getMyIntent();
         init();
     }
 
+    private void getMyIntent() {
+        int category_id = getIntent().getExtras().getInt("cat_id");
+        this.categoryId=String.valueOf(category_id);
+    }
+
     public void init() {
+
         //  check offline database
         ArrayList<ImagesDetailGallery> arrayList = new ArrayList<ImagesDetailGallery>();
-        List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("categoryid").eq(getIntent().getExtras().getInt("id"))).list();
+        List<db_ImagesDetailGallery> list = Select.from(db_ImagesDetailGallery.class).where(Condition.prop("categoryid").eq(this.categoryId)).list();
         if (list.size() > 0) {
             // show offline list
             for (int i = 0; i < list.size(); i++) {
@@ -85,7 +93,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
 
             if (Internet.isNetworkAvailable(ImagesDetailActivity.this)) {
                 // call webservice
-                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getString("id"));
+                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this,this.categoryId);
                 getdata.execute();
             } else {
                 Snackbar snackbar = Snackbar
@@ -98,6 +106,8 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
             }
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,7 +124,7 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         if (itemId == R.id.action_refresh) {
             if (Internet.isNetworkAvailable(ImagesDetailActivity.this)) {
                 // call webservice
-                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this, getIntent().getExtras().getString("id"));
+                GetImageDetail getdata = new GetImageDetail(ImagesDetailActivity.this, ImagesDetailActivity.this,this.categoryId);
                 getdata.execute();
             } else {
                 Snackbar snackbar = Snackbar
@@ -174,4 +184,3 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
     }
 
 }
-
