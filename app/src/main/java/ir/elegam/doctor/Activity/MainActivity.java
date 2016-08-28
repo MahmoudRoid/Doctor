@@ -128,10 +128,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 break;
 
             case R.id.btn_care:
-                Intent intent_care=new Intent(MainActivity.this,ListActivity.class);
-                intent_care.putExtra("faction",Variables.getCare);
-                startActivity(intent_care);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                show_care_dialog();
                 break;
 
             case R.id.btn_social:
@@ -255,6 +252,57 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 d.dismiss();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
                 startActivity(browserIntent);
+
+            }
+        });
+
+        d.show();
+    }
+
+    public void show_care_dialog(){
+        final Dialog d = new Dialog(this);
+        d.setCancelable(true);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.linear_choose_dialog_2taee);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
+        final LinearLayout linear_1=(LinearLayout)d.findViewById(R.id.dialog_linear_1);
+        final LinearLayout linear_12=(LinearLayout)d.findViewById(R.id.dialog_linear_2);
+
+        final TextView txtOne= (TextView) d.findViewById(R.id.dilog_text_1);
+        final TextView txtTWo = (TextView) d.findViewById(R.id.dilog_text_2);
+
+        txtOne.setText("مراقبت های قبل از درمان");
+        txtTWo.setText("مراقبت های پس از درمان");
+
+        linear_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ghable darman
+                d.dismiss();
+                Intent intent_care=new Intent(MainActivity.this,ListActivity.class);
+                intent_care.putExtra("faction",Variables.getCare);
+                startActivity(intent_care);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+            }
+        });
+
+        linear_12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // bad az darman
+                d.dismiss();
+                Intent intent_care=new Intent(MainActivity.this,ListActivity.class);
+                intent_care.putExtra("faction",Variables.getCareAfter);
+                startActivity(intent_care);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
 
             }
         });
