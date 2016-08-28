@@ -10,7 +10,7 @@
         <item name="colorAccent">@color/FABcolor</item>
         <item name="android:navigationBarColor">@color/pri700</item>
 
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/TXTcolor</item>
         <item name="android:textColor">@color/TXTcolor</item>
         <item name="android:textColorSecondary">@color/white</item>
 
