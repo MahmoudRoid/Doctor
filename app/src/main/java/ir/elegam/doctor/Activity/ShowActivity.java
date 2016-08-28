@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.regex.Pattern;
 
+import ir.elegam.doctor.Classes.TextViewEx;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.R;
@@ -166,14 +167,15 @@ public class ShowActivity extends AppCompatActivity {
     private void ctext(String text){
         text = Html.fromHtml(text).toString();
         Log.i(Variables.Tag,"text: "+text);
-        TextView tv=new TextView(ShowActivity.this);
+        TextViewEx tv=new TextViewEx(ShowActivity.this);
         tv.setTypeface(San);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0, 10, 0, 10);
-        tv.setPadding(10, 10, 10, 10);
+        lp.setMargins(10, 10, 10, 10);
+//        tv.setPadding(10, 10, 10, 10);
+        tv.setLineSpacing(20,1);
         lp.gravity= Gravity.TOP;
 
-        tv.setText(text);
+        tv.setText(text,true);
         lay.addView(tv,lp);
 
     }// end ctext()
