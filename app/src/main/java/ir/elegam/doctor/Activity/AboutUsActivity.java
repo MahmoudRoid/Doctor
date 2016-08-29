@@ -101,10 +101,13 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        db.open();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new AboutFragment2(), "بیمارستان های مستقر");
-        adapter.addFragment(new AboutFragment1(), "سوابق علمی و حرفه ای");
+        // TODO : change id for each app   91 & 92 should be changed
+        adapter.addFragment(new AboutFragment2(), db.DisplayExtra(2,"Sid","91"));
+        adapter.addFragment(new AboutFragment1(),  db.DisplayExtra(2,"Sid","91"));
         viewPager.setAdapter(adapter);
+        db.close();
     }
 
     private boolean isNetworkAvailable() {
