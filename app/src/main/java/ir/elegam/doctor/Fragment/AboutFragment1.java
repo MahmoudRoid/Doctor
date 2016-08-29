@@ -61,26 +61,18 @@ public class AboutFragment1 extends Fragment {
 
         try {
             db.open();
-            Content = db.DisplayExtra("درباره ما");
+            Content = db.DisplayExtra(3,"Sid","92");
             db.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*Content = "بودند، برای خود برد قائل میشدند. در آن مسابقه هم ناداوری وجود داشت و در چند صحنه باید به او کارت قرمز میدادند.\n" +
-                "\n" +
-                "* احساس میشد در بازی رده بندی انگیزه لازم را نداشتی؟\n" +
-                "\n" +
-                "انگیزه داشتم که صد در صد مدال بگیرم، اما آن ناداوری مقابل حریف آمریکایی روحیه من را به شدت کاهش داد. متاسفانه در آن مسابقه برگشتم، اما خیلی دیر شده بود.\n" +
-                "\n" +
-                "<  \"http://media.farsnews.com/media/Uploaded/Files/Images/1395/06/01/13950601000846_PhotoL.jpg\" >\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "* قبل از مسابقات آیا فکر ناداوری ها را کرده بودید؟\n" +
-                "\n" +
-                "در یک سال گذشته که ما در جامهای جهانی حاضر شدیم، همیشه قبل از مسابقه 2 تا سه ضربه را برای ناداوری ها کنار\n";
+
+
+        /*Content =  "دکتر حمیدرضا مفرد\r\n\r\n\r\n<  \"http://drmofrad.elegam.ir/Archive/Image/20160828110032723-tn.jpeg\" style=\"height:220px; width:220px\" > \r\n\r\n\r\nفوق تحصص جراحی پلاستیك\r\n\r\n \r\n\r\nعضو انجمن جراحان پلاستيك و زيبايي ايران\r\n\r\n \r\n\r\nسوابق علمی و حرفه ای :\r\n\r\n \r\n•فوق تخصص جراحی پلاستیک: دانشگاه علوم پزشکی شهید بهشتی ۱۳۸۹ (دستیار ارشد به مدت یکسال)\r\n• رتبه سوم بورد فوق تخصصی جراحی پلاستیک کشور درسال ۱۳۸۹\r\n• تخصص جراحی عمومی :دانشگاه علوم پزشکی تهران ۱۳۸۵ (دستیار ارشد به مدت یکسال)\r\n• رتبه پنجم بورد تخصصی جراحی عمومی کشور درسال ۱۳۸۵\r\n• دکترای پزشکی عمومی : دانشگاه علوم پزشکی تهران۱۳۷۸\r\n \r\n\r\n \r\n\r\n> جراحي پلاستيك و زيبايي بيني(رينو پلاستي)\r\n\r\n> جراحي زيبايي و جوانسازي صورت(ليفت)\r\n\r\n> جراحي زيبايي پلك و ابرو\r\n\r\n> تزريق ژل و بوتاكس\r\n\r\n> تزريق چربي,تعبيه پروتز گونه\r\n\r\n> جراحي زيبايي سينه,شكم و تعبيه پروتز سينه\r\n\r\n> ليپوساكشن صورت,تنه و اندمها\r\n"
+;
 */
-        setContent(Content+"<\"   \">");
+
+        setContent(Content+"<\"\">");
     }
 
     private void setContent(String text){
@@ -97,7 +89,7 @@ public class AboutFragment1 extends Fragment {
             }
             if(text.charAt(i)=='>'){
                 c3=i;
-                cimg(text.substring(c2+4,c3-2));
+                cimg(text.substring(c2+2,c3-1));
                 c1=i+1;
             }
         }
@@ -129,7 +121,7 @@ public class AboutFragment1 extends Fragment {
             Glide.with(this)
                     .load(image_url)
                     .override(200,200)
-                    .placeholder(R.drawable.favorite_black)
+                    .placeholder(R.drawable.ic_launcher)
                     .into(img);
 
             lay.addView(img, lp);

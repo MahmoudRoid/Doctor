@@ -5,12 +5,22 @@ package ir.elegam.doctor.Helper;
  */
 public class Object_Extra {
 
+    public String Sid;
     public String Title;
     public String Content;
 
-    public Object_Extra(String Title, String Content){
+    public Object_Extra(String Sid,String Title, String Content){
+        this.Sid = Sid;
         this.Title = Title;
         this.Content = Content;
+    }
+
+    public String getSid() {
+        return Sid;
+    }
+
+    public void setSid(String sid) {
+        Sid = sid;
     }
 
     public String getTitle() {

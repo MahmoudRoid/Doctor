@@ -130,7 +130,7 @@ public class ShowActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(ImageUrl)
                 .override(200,200)
-                .placeholder(R.drawable.sync_white)
+                .placeholder(R.drawable.icon_launcher)
                 .into(ivHeader);
 
 
@@ -140,7 +140,7 @@ public class ShowActivity extends AppCompatActivity {
             fab.setVisibility(View.INVISIBLE);
         }
 
-        setContent(Content+"<\"   \">");
+        setContent(Content+"<\"\">");
 
     }// end getWhat()
 
@@ -158,7 +158,7 @@ public class ShowActivity extends AppCompatActivity {
             }
             if(text.charAt(i)=='>'){
                 c3=i;
-                cimg(text.substring(c2+4,c3-2));
+                cimg(text.substring(c2+2,c3-1));
                 c1=i+1;
             }
         }
@@ -167,12 +167,14 @@ public class ShowActivity extends AppCompatActivity {
     private void ctext(String text){
         text = Html.fromHtml(text).toString();
         Log.i(Variables.Tag,"text: "+text);
+//        TextView tv=new TextView(ShowActivity.this);
         TextViewEx tv=new TextViewEx(ShowActivity.this);
         tv.setTypeface(San);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(10, 10, 10, 10);
 //        tv.setPadding(10, 10, 10, 10);
         tv.setLineSpacing(20,1);
+
         lp.gravity= Gravity.TOP;
 
         tv.setText(text,true);
@@ -211,7 +213,7 @@ public class ShowActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case android.R.id.home:
-               finish();
+                finish();
                 break;
 
             default:

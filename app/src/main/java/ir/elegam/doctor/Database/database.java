@@ -121,13 +121,6 @@ public class database extends SQLiteOpenHelper {
 		return result;
 	}// end Display()
 
-	public String DisplayExtra(String Column){
-		Log.i(Variables.Tag,"Column in db: "+Column);
-		Cursor cu = db.rawQuery("select * from "+ TABLE_EXTRA +" where Title = '"+ Column +"' ;", null);
-		cu.moveToFirst();
-		String result = cu.getString(2);
-		return result;
-	}// end Display()
 
 	public String DisplayOne(int field,String MColumn,String MIndex,String Column,String Index){
 		Cursor cu = db.rawQuery("select * from "+ TABLE_NEWS +" where "+ MColumn +" = '"+ MIndex +"' and "+ Column +" = '"+ Index +"' ;", null);
@@ -166,43 +159,28 @@ public class database extends SQLiteOpenHelper {
 
 	public void InsertExtra(Object_Extra ob){
 		ContentValues cv = new ContentValues();
+		cv.put(Sid,ob.getSid());
 		cv.put(Title, ob.getTitle());
 		cv.put(Content,ob.getContent());
-		db.insert(TABLE_EXTRA, Title, cv);
+		db.insert(TABLE_EXTRA, Sid, cv);
 		Log.i(TAG, "insert");
 	}
 
-	public void Update(MyObject ob){
-		ContentValues cv = new ContentValues();
-		cv.put(Sid, ob.getSid());
-		cv.put(Faction,ob.getFaction());
-		cv.put(Title,ob.getTitle());
-		cv.put(Content,ob.getContent());
-		cv.put(ImageUrl,ob.getImage_url());
-		db.update(TABLE_NEWS, cv, " Sid='"+ob.getSid()+"' and "+" Faction='"+ob.getFaction()+"'", null);
-		Log.i(TAG, "update");
-	}
+	public String DisplayExtra(int field,String Column,String Index){
+		Log.i(Variables.Tag,"Column in db: "+Column);
+		Cursor cu = db.rawQuery("select * from "+ TABLE_EXTRA +" where "+ Column +" = '"+ Index +"' ;", null);
+		cu.moveToFirst();
+		String result = cu.getString(field);
+		return result;
+	}// end Display()
 
 	public void UpdateExtra(Object_Extra ob){
 		ContentValues cv = new ContentValues();
+		cv.put(Sid,ob.getSid());
 		cv.put(Title, ob.getTitle());
 		cv.put(Content,ob.getContent());
-		db.update(TABLE_EXTRA,cv," Title='"+ob.getTitle()+"'",null);
+		db.update(TABLE_EXTRA,cv," Sid='"+ob.getSid()+"'",null);
 		Log.i(TAG, "update");
-	}
-
-	public boolean CheckExistanceNews(String MColumn,String MIndex,String Column, String Index){
-		Cursor cursor = db.rawQuery("select * from "+ TABLE_NEWS +" where "+ MColumn +" = '"+ MIndex +"'  and "+ Column +" = '"+ Index +"' ;", null);
-		cursor.moveToFirst();
-		int result = cursor.getCount();
-		if(result == 0){
-			Log.i(TAG,"false");
-			return false;
-		}
-		else{
-			Log.i(TAG,"true");
-			return true;
-		}
 	}
 
 	public boolean CheckExistanceExtra(String MColumn,String MIndex){
@@ -218,6 +196,35 @@ public class database extends SQLiteOpenHelper {
 			return true;
 		}
 	}
+
+	public void Update(MyObject ob){
+		ContentValues cv = new ContentValues();
+		cv.put(Sid, ob.getSid());
+		cv.put(Faction,ob.getFaction());
+		cv.put(Title,ob.getTitle());
+		cv.put(Content,ob.getContent());
+		cv.put(ImageUrl,ob.getImage_url());
+		db.update(TABLE_NEWS, cv, " Sid='"+ob.getSid()+"' and "+" Faction='"+ob.getFaction()+"'", null);
+		Log.i(TAG, "update");
+	}
+
+
+
+	public boolean CheckExistanceNews(String MColumn,String MIndex,String Column, String Index){
+		Cursor cursor = db.rawQuery("select * from "+ TABLE_NEWS +" where "+ MColumn +" = '"+ MIndex +"'  and "+ Column +" = '"+ Index +"' ;", null);
+		cursor.moveToFirst();
+		int result = cursor.getCount();
+		if(result == 0){
+			Log.i(TAG,"false");
+			return false;
+		}
+		else{
+			Log.i(TAG,"true");
+			return true;
+		}
+	}
+
+
 
 	public boolean DeleteTabele1(String Column,String Index){
 		Log.i(TAG,"delte");

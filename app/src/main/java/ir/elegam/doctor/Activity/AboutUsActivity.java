@@ -88,7 +88,7 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("درباره دکتر");
+        txtToolbar.setText("معرفی پزشک");
         pDialog= new SweetAlertDialog(AboutUsActivity.this, SweetAlertDialog.PROGRESS_TYPE);
         setSweetDialog();
 
@@ -117,7 +117,7 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
         if(isNetworkAvailable()){
             Async_Extra async = new Async_Extra();
             async.mListener = AboutUsActivity.this;
-            async.execute(URLS.GetAboutUs,Variables.Token);
+            async.execute(URLS.GetAboutUs,Variables.Token,"4");
         }else{
             Toast.makeText(AboutUsActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
@@ -174,15 +174,16 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
+                        String ID = jsonObject2.optString("Id");
                         String Title = jsonObject2.optString("Title");
                         String Content = jsonObject2.getString("Content");
 
                         Log.i(Variables.Tag,"Title: "+Title+" * "+"Content: "+Content);
 
-                        Object_Extra ob = new Object_Extra(Title,Content);
+                        Object_Extra ob = new Object_Extra(ID,Title,Content);
 
                         db.open();
-                        boolean isExist = db.CheckExistanceExtra("Title",Title);
+                        boolean isExist = db.CheckExistanceExtra("Sid",ID);
                         db.close();
                         if(!isExist){
                             db.open();
