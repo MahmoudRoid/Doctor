@@ -148,8 +148,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             // item haye navigation drawer
 
             case R.id.relative_login:
-                DialogRegister();
-                //DialogLogin();
+                DialogLogin();
                 break;
             case R.id.relative_social:
                 show_social_dialog();
@@ -185,21 +184,6 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 startActivity(new Intent(MainActivity.this,SupportActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
-        }
-    }
-
-    private void AskSever(String NationalCode){
-        if (Internet.isNetworkAvailable(MainActivity.this)){
-            Async_Login async = new Async_Login();
-            async.mListener = MainActivity.this;
-            if(NationalCode.equals("e")){
-                isOnReg = true;
-                async.execute(URLS.REGISTER,Variables.Token,NationalCode,DName,DPhone,DEmail);
-            }else{
-                async.execute(URLS.LOGIN,Variables.Token,NationalCode,"","","");
-            }
-        }else{
-            Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -542,6 +526,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         final TextInputLayout till = (TextInputLayout) d.findViewById(R.id.til1_dialoglogin);
         final EditText edtlogin = (EditText) d.findViewById(R.id.edtLogin_dialoglogin);
         final Button btnLogin = (Button) d.findViewById(R.id.btnLogin_dialoglogin);
+        final Button btnShowReg = (Button) d.findViewById(R.id.btnRegShow_dialoglogin);
 
         till.setTypeface(San);
         txtTitleLogin.setTypeface(San);
@@ -549,6 +534,13 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         btnLogin.setTypeface(San);
 
 
+        btnShowReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+                DialogRegister();
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -558,7 +550,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                     Toast.makeText(MainActivity.this, "تعداد ارقام کارت غیر مجاز است.", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    AskSever(DNationalCode);
+                    AskSever(false);
                     d.dismiss();
                 }
             }
@@ -624,11 +616,11 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                         || DNationalCode.length()<9
                         || DName.equals("")
                         || DPhone.equals("")
-                ){
+                        ){
                     Toast.makeText(MainActivity.this, "لطفا اطلاعات خواسته شده را وارد کنید.", Toast.LENGTH_SHORT).show();
 
                 }else{
-                    AskSever("e");
+                    AskSever(true);
                     d.dismiss();
                 }
             }
@@ -636,6 +628,22 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
 
         d.show();
     }// end DialogRegister()
+
+    private void AskSever(boolean isReg){
+        if (Internet.isNetworkAvailable(MainActivity.this)){
+            Async_Login async = new Async_Login();
+            async.mListener = MainActivity.this;
+            if(isReg){
+                isOnReg = true;
+                async.execute(URLS.REGISTER,Variables.Token,DNationalCode,DName,DPhone,DEmail);
+            }else{
+                async.execute(URLS.LOGIN,Variables.Token,DNationalCode,"","","");
+            }
+        }else{
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }// end class
 
