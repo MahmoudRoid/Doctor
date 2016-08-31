@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/Blue_Mazloomi">
+        android:background="@color/V_Blue">
 
         <include
             android:id="@+id/toolbar_clinic_detail_service"

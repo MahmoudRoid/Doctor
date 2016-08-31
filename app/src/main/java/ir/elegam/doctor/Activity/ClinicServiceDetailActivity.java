@@ -18,12 +18,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ir.elegam.Mazloomi.Adapter.CategoryAdapter;
-import ir.elegam.Mazloomi.Classes.RecyclerItemClickListener;
-import ir.elegam.Mazloomi.Classes.Variables;
-import ir.elegam.Mazloomi.Database.database;
-import ir.elegam.Mazloomi.Helper.MyObject;
-import ir.elegam.Mazloomi.R;
+import ir.elegam.doctor.Adapter.CategoryAdapter;
+import ir.elegam.doctor.Classes.RecyclerItemClickListener;
+import ir.elegam.doctor.Classes.Variables;
+import ir.elegam.doctor.Database.database;
+import ir.elegam.doctor.Helper.MyObject;
+import ir.elegam.doctor.R;
 
 public class ClinicServiceDetailActivity extends AppCompatActivity {
 
