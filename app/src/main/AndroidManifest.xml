@@ -125,7 +125,15 @@
             android:name=".Activity.CompetitionActivity"
             android:label=""
             android:screenOrientation="portrait" />
-        <activity android:name=".Activity.CustomerClubActivity"></activity>
+        <activity
+            android:name=".Activity.CustomerClubActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.TamasBaMaActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

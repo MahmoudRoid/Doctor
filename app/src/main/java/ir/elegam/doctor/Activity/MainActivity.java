@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 break;
 
             case R.id.btn_tamas_ba_ma:
-                startActivity(new Intent(MainActivity.this,TamasBaMaDetailActivity.class));
+                startActivity(new Intent(MainActivity.this,TamasBaMaActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
                 break;
 

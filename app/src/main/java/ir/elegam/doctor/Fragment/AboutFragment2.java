@@ -61,7 +61,7 @@ public class AboutFragment2 extends Fragment {
         try {
             db.open();
             // TODO : change Sid get from server panel
-            Content = db.DisplayExtra(3,"Sid","91");
+            Content = db.DisplayExtra(3,"Sid","6");
             db.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -104,8 +104,8 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
         db.open();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         // TODO : change id for each app   91 & 92 should be changed
-        adapter.addFragment(new AboutFragment2(), db.DisplayExtra(2,"Sid","91"));
-        adapter.addFragment(new AboutFragment1(),  db.DisplayExtra(2,"Sid","91"));
+        adapter.addFragment(new AboutFragment2(), db.DisplayExtra(2,"Sid","6"));
+        adapter.addFragment(new AboutFragment1(),  db.DisplayExtra(2,"Sid","7"));
         viewPager.setAdapter(adapter);
         db.close();
     }
@@ -180,8 +180,6 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
                         String ID = jsonObject2.optString("Id");
                         String Title = jsonObject2.optString("Title");
                         String Content = jsonObject2.getString("Content");
-
-                        Log.i(Variables.Tag,"Title: "+Title+" * "+"Content: "+Content);
 
                         Object_Extra ob = new Object_Extra(ID,Title,Content);
 
