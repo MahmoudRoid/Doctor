@@ -17,18 +17,28 @@ public class TamasBaMaActivity extends Activity {
     }
 
     public void onitemclicked(View v) {
-        Intent intent = new Intent(TamasBaMaActivity.this, MainActivity.class);
+        Intent intent = new Intent(TamasBaMaActivity.this, TamasBaMaDetailActivity.class);
 
         switch (v.getId()) {
             case R.id.first:
-                intent.putExtra("doctor", "first");
+                intent.putExtra("khademi", "first");
                 startActivity(intent);
                 break;
 
             case R.id.second:
-                intent.putExtra("doctor", "second");
+                intent.putExtra("khademi", "second");
                 startActivity(intent);
                 break;
+
+            /*case R.id.third:
+                intent.putExtra("khademi", "third");
+                startActivity(intent);
+                break;
+
+            case R.id.forth:
+                intent.putExtra("khademi", "forth");
+                startActivity(intent);
+                break;*/
         }
     }
 

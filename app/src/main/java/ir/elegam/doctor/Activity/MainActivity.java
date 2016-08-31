@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             @Override
             public void onClick(View v) {
                 d.dismiss();
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Variables.getDoctorWebSite));
                 startActivity(browserIntent);
 
             }

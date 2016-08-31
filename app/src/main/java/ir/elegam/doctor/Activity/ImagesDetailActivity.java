@@ -87,6 +87,10 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
                 ImagesDetailGallery cs = new ImagesDetailGallery(list.get(i).getCategory_id(),list.get(i).getid(), list.get(i).getImage_url());
                 arrayList.add(cs);
             }
+            Glide.with(this).load(arrayList.get(0).getImage_url())
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .into(imagesDetailImage);
             showList(arrayList);
         } else {
             // dar gheire in soorat check net va dl
@@ -170,6 +174,11 @@ public class ImagesDetailActivity extends AppCompatActivity implements IWebservi
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new ImageDetailAdapter(ImagesDetailActivity.this, imagesDetailGalleryArrayList);
         mRecyclerView.setAdapter(mAdapter);
+
+        Glide.with(this).load(arrayList.get(0).getImage_url())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(imagesDetailImage);
 
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(ImagesDetailActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override

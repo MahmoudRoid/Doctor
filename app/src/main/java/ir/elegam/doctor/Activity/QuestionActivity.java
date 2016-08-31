@@ -7,11 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import ir.elegam.doctor.Adapter.ExpandableListAdapter;
 import ir.elegam.doctor.AsyncTask.GetData;
+import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Interface.IWebservice;
@@ -42,10 +45,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         define();
-        //init();
-
-        // preparing list data
-        prepareListData();
+        init();
 
     }// end onCreate()
 
@@ -64,6 +64,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         fab = (FloatingActionButton) findViewById(R.id.fab_question);
         elv = (ExpandableListView) findViewById(R.id.elv_question);
         registerForContextMenu(elv);
+
     }// end define()
 
     @Override
@@ -81,8 +82,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
                 finish();
                 break;
             case R.id.action_refresh:
-                GetData getData = new GetData(QuestionActivity.this,QuestionActivity.this, Variables.getFaq);
-                getData.execute();
+                AskServer();
                 break;
 
             default:
@@ -92,24 +92,50 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         return super.onOptionsItemSelected(item);
     }
 
-    private void prepareListData() {
+    public void init(){
+
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
         db.open();
         int count = db.CountAll("Faction","getFaq");
-        for(int i=0;i<count;i++){
-            listDataHeader.add(db.DisplayAll(i,3,"Faction","getFaq"));
-            List<String> comingSoon = new ArrayList<>();
-            comingSoon.add(db.DisplayAll(i,4,"Faction","getFaq"));
-            listDataChild.put(listDataHeader.get(i), comingSoon);
-        }
         db.close();
 
+        Log.i(Variables.Tag,"count: "+count);
+        db.close();
+
+        if(count>0){
+            db.open();
+            for(int i=0;i<count;i++){
+                listDataHeader.add(db.DisplayAll(i,3,"Faction","getFaq"));
+                List<String> comingSoon = new ArrayList<>();
+                comingSoon.add(db.DisplayAll(i,4,"Faction","getFaq"));
+                listDataChild.put(listDataHeader.get(i), comingSoon);
+            }
+            db.close();
+            Refresh();
+        }else{
+            if(Internet.isNetworkAvailable(QuestionActivity.this)){
+                // call webservice
+                AskServer();
+            }
+            else {
+                Toast.makeText(QuestionActivity.this, "هیچ داده ای جهت نمایش وجود ندارد", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }// end init()
+
+    private void AskServer() {
+        GetData getData = new GetData(QuestionActivity.this,QuestionActivity.this, Variables.getFaq);
+        getData.execute();
+    }
+
+    private void Refresh() {
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         elv.setAdapter(listAdapter);
+    }
 
-    }// end prepareListData()
 
     @Override
     public void getResult(Object result) throws Exception {
@@ -120,8 +146,8 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
         tv.setTextColor(Color.WHITE);
         snackbar.show();
-        prepareListData();
-    }
+        init();
+    }// end getResult()
 
     @Override
     public void getError(String ErrorCodeTitle) throws Exception {

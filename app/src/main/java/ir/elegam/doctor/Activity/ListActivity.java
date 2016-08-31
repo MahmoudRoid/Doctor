@@ -126,7 +126,9 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
                         db.DisplayAll(i,3,"Faction",faction),
                         db.DisplayAll(i,4,"Faction",faction),
                         db.DisplayAll(i,5,"Faction",faction),
-                        db.DisplayAll(i,6,"Faction",faction)
+                        db.DisplayAll(i,6,"Faction",faction),
+                        "-",
+                        "-"
                 );
                 Log.i(Variables.Tag,"ob.Title: "+ob.getContent());
                 arrayList.add(ob);

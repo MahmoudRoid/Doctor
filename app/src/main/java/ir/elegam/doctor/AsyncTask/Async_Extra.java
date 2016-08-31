@@ -26,10 +26,8 @@ public class Async_Extra extends AsyncTask <Object, Object, Object> {
     protected Object doInBackground(Object... params) {
         BufferedReader reader = null;
         try {
-            String data = URLEncoder.encode("Token", "UTF8")  +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
-            //data += "&"+  URLEncoder.encode("Code", "UTF8")   +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
-            //data += "&"+  URLEncoder.encode("Class", "UTF8")  +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
-            //data += "&"+  URLEncoder.encode("Faction", "UTF8")+"="+ URLEncoder.encode(params[4].toString(),"UTF8");
+            String data = URLEncoder.encode("Token", "UTF8")    +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Type", "UTF8")       +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
 
             URL link = new URL(params[0].toString());
             HttpURLConnection connect = (HttpURLConnection) link.openConnection();

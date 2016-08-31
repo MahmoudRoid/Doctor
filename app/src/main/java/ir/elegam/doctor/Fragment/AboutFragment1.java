@@ -61,16 +61,12 @@ public class AboutFragment1 extends Fragment {
 
         try {
             db.open();
+            // TODO : change Sid get from server panel
             Content = db.DisplayExtra(3,"Sid","92");
             db.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        /*Content =  "دکتر حمیدرضا مفرد\r\n\r\n\r\n<  \"http://drmofrad.elegam.ir/Archive/Image/20160828110032723-tn.jpeg\" style=\"height:220px; width:220px\" > \r\n\r\n\r\nفوق تحصص جراحی پلاستیك\r\n\r\n \r\n\r\nعضو انجمن جراحان پلاستيك و زيبايي ايران\r\n\r\n \r\n\r\nسوابق علمی و حرفه ای :\r\n\r\n \r\n•فوق تخصص جراحی پلاستیک: دانشگاه علوم پزشکی شهید بهشتی ۱۳۸۹ (دستیار ارشد به مدت یکسال)\r\n• رتبه سوم بورد فوق تخصصی جراحی پلاستیک کشور درسال ۱۳۸۹\r\n• تخصص جراحی عمومی :دانشگاه علوم پزشکی تهران ۱۳۸۵ (دستیار ارشد به مدت یکسال)\r\n• رتبه پنجم بورد تخصصی جراحی عمومی کشور درسال ۱۳۸۵\r\n• دکترای پزشکی عمومی : دانشگاه علوم پزشکی تهران۱۳۷۸\r\n \r\n\r\n \r\n\r\n> جراحي پلاستيك و زيبايي بيني(رينو پلاستي)\r\n\r\n> جراحي زيبايي و جوانسازي صورت(ليفت)\r\n\r\n> جراحي زيبايي پلك و ابرو\r\n\r\n> تزريق ژل و بوتاكس\r\n\r\n> تزريق چربي,تعبيه پروتز گونه\r\n\r\n> جراحي زيبايي سينه,شكم و تعبيه پروتز سينه\r\n\r\n> ليپوساكشن صورت,تنه و اندمها\r\n"
-;
-*/
 
         setContent(Content+"<\"\">");
     }
@@ -96,14 +92,16 @@ public class AboutFragment1 extends Fragment {
     }// end setContent()
 
     private void ctext(String text){
+        text = Html.fromHtml(text).toString();
         Log.i(Variables.Tag,"text: "+text);
         TextView tv=new TextView(getActivity());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tv.setTypeface(San);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 10, 0, 10);
+        lp.gravity= Gravity.TOP;
         tv.setPadding(10, 10, 10, 10);
-        lp.gravity= Gravity.RIGHT & Gravity.TOP;
-        tv.setGravity(Gravity.RIGHT & Gravity.TOP);
-        //lp.gravity= Gravity.TOP;
+        tv.setLineSpacing(30,1);
+        tv.setTypeface(San);
         tv.setText(text);
         lay.addView(tv,lp);
 

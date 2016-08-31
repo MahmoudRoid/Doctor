@@ -13,7 +13,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -41,7 +42,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -72,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -106,7 +109,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -137,7 +141,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -169,7 +174,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -201,7 +207,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"
@@ -236,7 +243,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClick">
+                android:onClick="onClick"
+                android:background="@drawable/shape_normal_button">
 
                 <ir.elegam.doctor.Classes.CustomTextView
                     android:layout_width="match_parent"

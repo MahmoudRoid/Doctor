@@ -51,7 +51,7 @@
                                     android:layout_marginBottom="@dimen/_20sdp"
                                     android:text="text"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_12sdp" />
+                                    android:textSize="@dimen/_12sdp"/>
                             </LinearLayout>
 
                             <View

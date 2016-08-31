@@ -95,7 +95,9 @@ public class FavoriteActivity extends AppCompatActivity {
                         db.DisplayAll(i,3,"Favorite","1"),
                         db.DisplayAll(i,4,"Favorite","1"),
                         db.DisplayAll(i,5,"Favorite","1"),
-                        "1"
+                        "1",
+                        "-",
+                        "-"
                 );
                 db.close();
                 mylist.add(ob);

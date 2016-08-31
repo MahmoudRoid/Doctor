@@ -12,14 +12,14 @@ import java.net.URLEncoder;
 
 import ir.elegam.doctor.Classes.Variables;
 
-public class Async_Login extends AsyncTask <Object, Object, Object> {
+public class Async_Mail extends AsyncTask <Object, Object, Object> {
 
     String res = "";
-    public GetAccess mListener;
+    public SendMail mListener;
 
-    public interface GetAccess {
-        void onStartLogin();
-        void onFinishedLogin(String res);
+    public interface SendMail {
+        void onStartSendingMail();
+        void onMailSend(String res);
     }
 
     @Override
@@ -27,11 +27,9 @@ public class Async_Login extends AsyncTask <Object, Object, Object> {
         BufferedReader reader = null;
         try {
             String data = URLEncoder.encode("Token", "UTF8")    +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("UserName", "UTF8") +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Name", "UTF8")     +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Phone", "UTF8")    +"="+ URLEncoder.encode(params[4].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Email", "UTF8")    +"="+ URLEncoder.encode(params[5].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Family", "UTF8")   +"="+ URLEncoder.encode("jfalfjaldfj","UTF8");
+            data += "&"+  URLEncoder.encode("Sender", "UTF8")   +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Message", "UTF8")  +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
+            data += "&"+  URLEncoder.encode("Receiver", "UTF8")  +"="+ URLEncoder.encode("Admin","UTF8");
 
             URL link = new URL(params[0].toString());
             HttpURLConnection connect = (HttpURLConnection) link.openConnection();
@@ -66,7 +64,7 @@ public class Async_Login extends AsyncTask <Object, Object, Object> {
         if(mListener != null)
         {
             String s = result.toString();
-            mListener.onFinishedLogin(s);
+            mListener.onMailSend(s);
         }
     }
 
@@ -75,7 +73,8 @@ public class Async_Login extends AsyncTask <Object, Object, Object> {
     {
         if(mListener != null)
         {
-            mListener.onStartLogin();
+            mListener.onStartSendingMail();
         }
     }
+
 }// end class

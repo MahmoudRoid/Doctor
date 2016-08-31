@@ -14,9 +14,16 @@ public class URLS {
     public static final String SendMessagePm=DOMAIN+"SendMessagePm";
     public static final String GetAboutUs=DOMAIN+"GetAboutUs";
     public static final String GetFaq=DOMAIN+"GetFaq";
+    public static final String GetFood=DOMAIN+"GetItemsbyType";
     public static final String GetUpdate=DOMAIN+"AppVersion";
+    public static final String GetItemsbyType=DOMAIN+"GetItemsbyType";
+    public static final String GetItemsbyId=DOMAIN+"GetItemsbyId";
+    public static final String GetCategoryByType=DOMAIN+"GetCategoryByType";
+
     public static final String LOGIN = DOMAIN+"login";
     public static final String REGISTER = DOMAIN+"register";
-    public static final String GetItemsbyType=DOMAIN+"GetItemsbyType";
+    public static final String SEND_MAIL = DOMAIN +"InsertMessage";
+    public static final String GET_IMAGE_URLS = DOMAIN +"GetItemsByCategory";
+    public static final String GET_MESSAGES = DOMAIN +"GetUsersChat";
 
 }

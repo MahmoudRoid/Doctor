@@ -161,9 +161,8 @@ public class SupportActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 d.dismiss();
-                callIntent.setData(Uri.parse("tel:" + Uri.encode("02632775620")));
-                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(callIntent);
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "02632775620", null));
+                startActivity(intent);
 
             }
         });
@@ -172,9 +171,8 @@ public class SupportActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 d.dismiss();
-                callIntent.setData(Uri.parse("tel:" + Uri.encode("02632775612")));
-                callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(callIntent);
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "02632775612", null));
+                startActivity(intent);
 
             }
         });

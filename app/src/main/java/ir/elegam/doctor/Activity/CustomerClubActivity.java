@@ -1,5 +1,6 @@
 package ir.elegam.doctor.Activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,7 +10,11 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,9 +37,10 @@ public class CustomerClubActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.btn_care:
                 Intent intent_care=new Intent(CustomerClubActivity.this,ListActivity.class);
-                intent_care.putExtra("faction", Variables.getCare);
+                intent_care.putExtra("faction",Variables.getCareAfter);
                 startActivity(intent_care);
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                //show_care_dialog();
                 break;
 
             case R.id.btn_porsesh_pasokh:
@@ -47,10 +53,62 @@ public class CustomerClubActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn_competition:
-                startActivity(new Intent(CustomerClubActivity.this,CompetitionActivity.class));
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                Toast.makeText(CustomerClubActivity.this, "این امکان در ورژن بعدی موجود است.", Toast.LENGTH_SHORT).show();
+                /*startActivity(new Intent(CustomerClubActivity.this,CompetitionActivity.class));
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);*/
                 break;
         }
+    }
+
+    public void show_care_dialog(){
+        final Dialog d = new Dialog(this);
+        d.setCancelable(true);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.linear_choose_dialog_2taee);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(lp);
+
+        final LinearLayout linear_1=(LinearLayout)d.findViewById(R.id.dialog_linear_1);
+        final LinearLayout linear_12=(LinearLayout)d.findViewById(R.id.dialog_linear_2);
+
+        final TextView txtOne= (TextView) d.findViewById(R.id.dilog_text_1);
+        final TextView txtTWo = (TextView) d.findViewById(R.id.dilog_text_2);
+
+        txtOne.setText("توصیه های قبل از عمل");
+        txtTWo.setText("مراقبت های پس از عمل");
+
+        linear_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ghable darman
+                d.dismiss();
+                Intent intent_care=new Intent(CustomerClubActivity.this,ListActivity.class);
+                intent_care.putExtra("faction",Variables.getCare);
+                startActivity(intent_care);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+            }
+        });
+
+        linear_12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // bad az darman
+                d.dismiss();
+                Intent intent_care=new Intent(CustomerClubActivity.this,ListActivity.class);
+                intent_care.putExtra("faction",Variables.getCareAfter);
+                startActivity(intent_care);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+            }
+        });
+
+        d.show();
     }
 
     private void openTelegramChannel() {
@@ -58,7 +116,7 @@ public class CustomerClubActivity extends AppCompatActivity {
         final boolean isAppInstalled = isAppAvailable(getApplicationContext(), appName);
         if (isAppInstalled) {
             Intent telegram = new Intent(android.content.Intent.ACTION_VIEW);
-            telegram.setData(Uri.parse("https://telegram.me/xxx"));
+            telegram.setData(Uri.parse("https://telegram.me/Drmazloomi"));
             telegram.setPackage("org.telegram.messenger");
             CustomerClubActivity.this.startActivity(Intent.createChooser(telegram, ""));
         }

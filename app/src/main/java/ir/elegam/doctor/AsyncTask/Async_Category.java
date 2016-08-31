@@ -12,14 +12,14 @@ import java.net.URLEncoder;
 
 import ir.elegam.doctor.Classes.Variables;
 
-public class Async_Login extends AsyncTask <Object, Object, Object> {
+public class Async_Category extends AsyncTask <Object, Object, Object> {
 
     String res = "";
-    public GetAccess mListener;
+    public GetServices mListener;
 
-    public interface GetAccess {
-        void onStartLogin();
-        void onFinishedLogin(String res);
+    public interface GetServices {
+        void onStartAskServer();
+        void onServiceNamesGotten(String res);
     }
 
     @Override
@@ -27,12 +27,9 @@ public class Async_Login extends AsyncTask <Object, Object, Object> {
         BufferedReader reader = null;
         try {
             String data = URLEncoder.encode("Token", "UTF8")    +"="+ URLEncoder.encode(params[1].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("UserName", "UTF8") +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Name", "UTF8")     +"="+ URLEncoder.encode(params[3].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Phone", "UTF8")    +"="+ URLEncoder.encode(params[4].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Email", "UTF8")    +"="+ URLEncoder.encode(params[5].toString(),"UTF8");
-            data += "&"+  URLEncoder.encode("Family", "UTF8")   +"="+ URLEncoder.encode("jfalfjaldfj","UTF8");
+            data += "&"+  URLEncoder.encode("Type", "UTF8")     +"="+ URLEncoder.encode(params[2].toString(),"UTF8");
 
+            Log.i(Variables.Tag,"url: "+params[0].toString());
             URL link = new URL(params[0].toString());
             HttpURLConnection connect = (HttpURLConnection) link.openConnection();
             connect.setRequestMethod("POST");
@@ -66,16 +63,18 @@ public class Async_Login extends AsyncTask <Object, Object, Object> {
         if(mListener != null)
         {
             String s = result.toString();
-            mListener.onFinishedLogin(s);
+            mListener.onServiceNamesGotten(s);
         }
     }
 
-    @Override
+
     protected void onPreExecute()
     {
         if(mListener != null)
         {
-            mListener.onStartLogin();
+            mListener.onStartAskServer();
         }
     }
+
 }// end class
+

@@ -19,6 +19,7 @@ public class Variables {
     public static final String getInsurance="getInsurance";
     public static final String getCare="getCare";
     public static final String getFaq="getFaq";
+    public static final String getFood="getFood";
     public static final String getCareAfter="getCareAfter";
     public static final String getVideosCategory="getVideosCategory";
     public static final String getImagesCategory="getImagesCategory";
@@ -26,11 +27,7 @@ public class Variables {
     public static final String getVideosDetail = "getVideosDetail";
     public static final String getImagesDetail = "getImagesDetail";
 
-
-
-
-
-    public static final String getDoctorWebSite="http://google.com";
+    public static final String getDoctorWebSite="http://www.google.com/";
 
 
 }// end Variables

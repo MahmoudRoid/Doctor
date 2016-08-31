@@ -51,13 +51,19 @@
                                     android:layout_marginBottom="@dimen/_15sdp"
                                     android:text="text"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_14sdp" />
+                                    android:textSize="@dimen/_14sdp"
+                                    android:gravity="center_vertical"
+                                    android:drawablePadding="10dp"
+                                    android:lineSpacingExtra="5dp"
+                                    android:drawableRight="@drawable/telegram_small"/>
                             </LinearLayout>
 
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@drawable/horizontal"></View>
+                                android:background="@drawable/horizontal">
+
+                            </View>
 
                             <LinearLayout
                                 android:id="@+id/dialog_linear_2"
@@ -73,15 +79,21 @@
                                     android:layout_marginTop="@dimen/_15sdp"
                                     android:layout_marginBottom="@dimen/_15sdp"
                                     android:text="text"
+                                    android:lineSpacingExtra="5dp"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_14sdp"/>
+                                    android:textSize="@dimen/_14sdp"
+                                    android:gravity="center_vertical"
+                                    android:drawablePadding="10dp"
+                                    android:drawableRight="@drawable/instagram_small"/>
 
                             </LinearLayout>
 
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@drawable/horizontal"></View>
+                                android:background="@drawable/horizontal">
+
+                            </View>
 
 
                             <LinearLayout
@@ -97,8 +109,12 @@
                                     android:layout_gravity="center_horizontal|center_vertical"
                                     android:layout_marginTop="@dimen/_15sdp"
                                     android:text="text"
+                                    android:lineSpacingExtra="5dp"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/_14sdp"/>
+                                    android:textSize="@dimen/_14sdp"
+                                    android:gravity="center_vertical"
+                                    android:drawablePadding="10dp"
+                                    android:drawableRight="@drawable/website_small"/>
 
                             </LinearLayout>
 

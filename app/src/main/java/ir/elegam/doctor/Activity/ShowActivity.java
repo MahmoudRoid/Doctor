@@ -130,7 +130,7 @@ public class ShowActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(ImageUrl)
                 .override(200,200)
-                .placeholder(R.drawable.icon_launcher)
+                .placeholder(R.mipmap.ic_launcher)
                 .into(ivHeader);
 
 
@@ -167,17 +167,15 @@ public class ShowActivity extends AppCompatActivity {
     private void ctext(String text){
         text = Html.fromHtml(text).toString();
         Log.i(Variables.Tag,"text: "+text);
-//        TextView tv=new TextView(ShowActivity.this);
-        TextViewEx tv=new TextViewEx(ShowActivity.this);
+        TextView tv=new TextView(ShowActivity.this);
         tv.setTypeface(San);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(10, 10, 10, 10);
-//        tv.setPadding(10, 10, 10, 10);
-        tv.setLineSpacing(20,1);
-
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0, 10, 0, 10);
         lp.gravity= Gravity.TOP;
-
-        tv.setText(text,true);
+        tv.setPadding(10, 10, 10, 10);
+        tv.setLineSpacing(30,1);
+        tv.setTypeface(San);
+        tv.setText(text);
         lay.addView(tv,lp);
 
     }// end ctext()

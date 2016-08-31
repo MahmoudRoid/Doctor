@@ -17,8 +17,7 @@ import ir.elegam.doctor.R;
 public class MapsActivity extends Activity {
 
     private GoogleMap mMap;
-    public final LatLng tehran_latLng =  new LatLng(35.7112131,51.3707238);
-    public final LatLng karaj_latLng =  new LatLng(35.8194156,50.9939849);
+    public LatLng tehran_latLng =  null;
 
 
     @Override
@@ -26,44 +25,23 @@ public class MapsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        if(getIntent().getExtras().getString("city").equals("tehran")){
+        String lat = getIntent().getStringExtra("lat");
+        String lng = getIntent().getStringExtra("lng");
+        tehran_latLng = new LatLng(Float.parseFloat(lat), Float.parseFloat(lng));
 
+        try {
 
-            try {
+            mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            CameraUpdate cam= CameraUpdateFactory.newLatLngZoom(tehran_latLng,17);
+            mMap.animateCamera(cam);
 
-                mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-                CameraUpdate cam= CameraUpdateFactory.newLatLngZoom(tehran_latLng,17);
-                mMap.animateCamera(cam);
+            Marker marker=mMap.addMarker(new MarkerOptions().position(tehran_latLng)
+                    .title("")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-                Marker marker=mMap.addMarker(new MarkerOptions().position(tehran_latLng)
-                        .title("کلینیک دکتر مفرد")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+        } // end try
+        catch (Exception e) { e.printStackTrace(); }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    }// end onCreate()
 
-        }
-        else {
-
-
-            try {
-
-                mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-                CameraUpdate cam= CameraUpdateFactory.newLatLngZoom(karaj_latLng,17);
-                mMap.animateCamera(cam);
-
-                Marker marker=mMap.addMarker(new MarkerOptions().position(karaj_latLng)
-                        .title("کلینیک دکتر مفرد")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
-
-
-    }
-}
+}// end class
