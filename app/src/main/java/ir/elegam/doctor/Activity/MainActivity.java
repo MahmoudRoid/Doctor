@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -69,8 +71,25 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         mDrawerList = (RelativeLayout) findViewById(R.id.relativeLayout2);
 
         checkForUpdate();
+        MakeRoots();
 
     }
+
+    private void MakeRoots(){
+        File root = new File(Environment.getExternalStorageDirectory(),"Doctor");
+        File Fimage = new File(Variables.ROOT,"images");
+        File Fvideo = new File(Variables.ROOT,"videos");
+        File Fpdf = new File(Variables.ROOT,"PDFs");
+        File Fvoice = new File(Variables.ROOT,"voice");
+        if(!root.exists())
+        {
+            root.   mkdir();
+            Fimage. mkdir();
+            Fvideo. mkdir();
+            Fpdf.   mkdir();
+            Fvoice. mkdir();
+        }
+    }// end MakeRoots()
 
     private void checkForUpdate() {
         if(Internet.isNetworkAvailable(MainActivity.this)){
