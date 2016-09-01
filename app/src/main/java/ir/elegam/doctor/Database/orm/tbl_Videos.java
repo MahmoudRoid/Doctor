@@ -8,7 +8,7 @@ public class tbl_Videos extends SugarRecord {
     int id;
     String title,thumbnail,video_url;
 
-
+// taghir dadim
     public tbl_Videos(){}
 
     public tbl_Videos(String category_id,int id, String title, String thumbnail, String video_url){
