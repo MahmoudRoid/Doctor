@@ -146,10 +146,12 @@
             android:name=".Activity.VideoGallaryActivity"
             android:label=""
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Activity.ShowVideoActivity"
             android:label=""
-            android:screenOrientation="portrait" />
+            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+            android:theme="@style/AppTheme" />
 
     </application>
 

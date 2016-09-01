@@ -54,7 +54,7 @@ public class Async_GetVideoInfo extends AsyncTask<Object, Object, Object> {
             }
 
             res = sb.toString();
-          //  Log.i(Variables.Tag, "my out is: " + res);
+            //  Log.i(Variables.Tag, "my out is: " + res);
 
         }catch(Exception e){e.printStackTrace();}
         finally

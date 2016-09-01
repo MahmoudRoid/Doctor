@@ -55,13 +55,12 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
     private SweetAlertDialog pDialog ;
     final AppCompatActivity activity = null;
     private String URL = URLS.WEB_SERVICE_URL, TOKEN="";
-    public String category_id;
+    private String categoryId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_gallary);
-        this.category_id=getIntent().getExtras().getString("id");
         define();
         init();
 
@@ -119,21 +118,27 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
         gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
         horizontal_recycler_view.setLayoutManager(gaggeredGridLayoutManager);
 
+        getMyIntent();
         ArcLoader();
 
     }// end define()
 
+    private void getMyIntent() {
+        int category_id = getIntent().getExtras().getInt("cat_id");
+        this.categoryId=String.valueOf(category_id);
+    }
+
     public void init(){
         myList.clear();
         //  check offline database
-       // List<tbl_Videos> list= Select.from(tbl_Videos.class).list();
+        // List<tbl_Videos> list= Select.from(tbl_Videos.class).list();
 
-        List<tbl_Videos> list = Select.from(tbl_Videos.class).where(Condition.prop("category_id").eq(this.category_id)).list();
+        List<tbl_Videos> list = Select.from(tbl_Videos.class).where(Condition.prop("categoryid").eq(this.categoryId)).list();
 
         if(list.size()>0){
             for(int i=0;i<list.size();i++){
                 myList.add(new Object_Video(
-                        category_id,
+                        this.categoryId,
                         list.get(i).getid()+"",
                         list.get(i).getThumbnail(),
                         list.get(i).getVideo_url(),
@@ -177,10 +182,10 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
 
         try {
 
-            List<tbl_Videos> list = Select.from(tbl_Videos.class).where(Condition.prop("category_id").eq(this.category_id)).list();
+            List<tbl_Videos> list = Select.from(tbl_Videos.class).where(Condition.prop("categoryid").eq(this.categoryId)).list();
 
             if(list.size()>0){
-                tbl_Videos.deleteAll(tbl_Videos.class,"category_id = ?", String.valueOf(this.category_id));
+                tbl_Videos.deleteAll(tbl_Videos.class,"categoryid = ?", String.valueOf(this.categoryId));
             }
             myList.clear();
         }
@@ -191,30 +196,36 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
 
             Log.i(Variables.Tag,"res: "+res);
 
-            JSONArray jsonArray = new JSONArray(res);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
+            JSONObject jsonObject_main = new JSONObject(res);
+            if(jsonObject_main.getInt("Status")==1){
+                JSONArray jsonArray = jsonObject_main.getJSONArray("Data");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                int id = jsonObject.optInt("Id");
-                String video_url = jsonObject.optString("Url");
-                String title = jsonObject.optString("Title");
-                title = title.replace(' ','_');
+                    int id = jsonObject.optInt("Id");
+                    String video_url = jsonObject.optString("Url");
+                    String title = jsonObject.optString("Title");
+                    title = title.replace(' ','_');
 //                String content = jsonObject.optString("Content");
 //                String date = jsonObject.optString("datecreated");
 
-                String ImageUrl = URLS.DOMAIN + "image/video/"+ id +".jpg";
+                    String ImageUrl = URLS.DOMAIN + "image/video/"+ id +".jpg";
 
-                myList.add(new Object_Video(category_id,id+"",ImageUrl,video_url,title));
+                    myList.add(new Object_Video(this.categoryId,id+"",ImageUrl,video_url,title));
 
-                // Save in database
-                tbl_Videos tbl_videos = new tbl_Videos(category_id,id,title,ImageUrl,video_url);
-                tbl_videos.save();
+                    // Save in database
+                    tbl_Videos tbl_videos = new tbl_Videos(this.categoryId,id,title,ImageUrl,video_url);
+                    tbl_videos.save();
 
-            }// end for loop
+                }// end for loop
 
-            mAdapter = new Thumbnail_Adapter(myList,San,this);
-            horizontal_recycler_view.setAdapter(mAdapter);
+                mAdapter = new Thumbnail_Adapter(myList,San,this);
+                horizontal_recycler_view.setAdapter(mAdapter);
 
+            }
+            else {
+                // error
+            }
         } // end try
         catch (JSONException e) {e.printStackTrace();
             Toast.makeText(VideoGallaryActivity.this, R.string.error_server, Toast.LENGTH_SHORT).show();}
@@ -229,7 +240,7 @@ public class VideoGallaryActivity extends AppCompatActivity implements Async_Get
             Async_GetVideoInfo async_getVideoInfo = new Async_GetVideoInfo();
             async_getVideoInfo.mListener = VideoGallaryActivity.this;
             pDialog.show();
-            async_getVideoInfo.execute(URLS.GetVideosById,Variables.Token,getIntent().getExtras().getString("id"));
+            async_getVideoInfo.execute(URLS.GetVideosById,Variables.Token,this.categoryId);
         }else{
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }

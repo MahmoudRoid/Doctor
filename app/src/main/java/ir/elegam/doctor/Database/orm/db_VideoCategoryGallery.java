@@ -20,3 +20,4 @@ public class db_VideoCategoryGallery extends SugarRecord {
     public int getVideocategoryid(){return  this.videocategoryid;}
     public String getCategory_neame(){return this.category_neame;}
 }
+
