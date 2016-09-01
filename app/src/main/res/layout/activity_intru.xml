@@ -11,7 +11,7 @@
         android:layout_height="fill_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="@drawable/back"
+        android:background="@drawable/backintru"
         android:weightSum="1">
 
         <RelativeLayout
