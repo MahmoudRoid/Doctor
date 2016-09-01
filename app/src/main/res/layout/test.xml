@@ -1,0 +1,170 @@
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout_intru"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_intru"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@drawable/back"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.4">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager_intru"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/drawer"
+                android:layout_alignParentRight="true"
+                android:id="@+id/img_drawer_intru" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/main_ll_main"
+            android:gravity="center|fill"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv1_inru"
+                    android:layout_gravity="fill"
+                    android:background="@drawable/c1"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv2_inru"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/c2"
+                    android:onClick="onClick" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv3_inru"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick"
+                    android:background="@drawable/c1" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv4_inru"
+                    android:layout_gravity="fill"
+                    android:background="@drawable/c6"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv5_inru"
+                    android:layout_gravity="fill"
+                    android:background="@drawable/c5"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv6_inru"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/c4"
+                    android:onClick="onClick" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv7_inru"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick"
+                    android:background="@drawable/c7" />
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv8_inru"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/c1"
+                    android:onClick="onClick" />
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/iv9_inru"
+                    android:layout_gravity="fill"
+                    android:background="@drawable/c1"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:onClick="onClick" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/menu" />
+
+</android.support.v4.widget.DrawerLayout>
