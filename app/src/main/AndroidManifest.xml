@@ -133,6 +133,10 @@
             android:name=".Activity.TamasBaMaActivity"
             android:label=""
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.QuestionFactionsActivity"
+            android:label=""
+            android:screenOrientation="portrait" />
 
     </application>
 

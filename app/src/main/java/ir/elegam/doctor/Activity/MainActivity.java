@@ -45,6 +45,7 @@ import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.R;
 
 public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion , Async_Login.GetAccess{
+
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mDrawerList;
     private Typeface San;
@@ -644,7 +645,6 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
     }
-
 
 }// end class
 
