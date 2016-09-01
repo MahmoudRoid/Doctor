@@ -237,7 +237,8 @@ public class ShowVideoActivity extends AppCompatActivity implements EasyVideoCal
                             DownloadManager.Request.NETWORK_WIFI
                                     | DownloadManager.Request.NETWORK_MOBILE)
                             .setAllowedOverRoaming(false).setTitle("دانلود ویدئو")
-                            .setDestinationInExternalPublicDir("/SCHOOL/videos", fileName);
+                            // TODO : Channge Root file for each application
+                            .setDestinationInExternalPublicDir("/DOCTOR/videos", fileName);
                     mgr.enqueue(request);
                 }else{
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();

@@ -114,7 +114,7 @@ public class IntruActivity extends AppCompatActivity implements
     }// end define()
 
     private void MakeRoots(){
-        File root = new File(Environment.getExternalStorageDirectory(),"Doctor");
+        File root = new File(Variables.ROOT);
         File Fimage = new File(Variables.ROOT,"images");
         File Fvideo = new File(Variables.ROOT,"videos");
         File Fpdf = new File(Variables.ROOT,"PDFs");
