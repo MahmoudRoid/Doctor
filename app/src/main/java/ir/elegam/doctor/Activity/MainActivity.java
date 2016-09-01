@@ -510,6 +510,7 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     }// end onFinishedLogin()
 
     private void DialogLogin(){
+
         final Dialog d = new Dialog(this);
         d.setCancelable(true);
         d.requestWindowFeature(Window.FEATURE_NO_TITLE);
