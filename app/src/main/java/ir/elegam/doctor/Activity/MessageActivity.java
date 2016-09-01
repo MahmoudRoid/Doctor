@@ -177,7 +177,13 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
             edtPhone.setError(getString(R.string.error_empty));
             focusView = edtPhone;
             cancel = true;
-        } else if (!isInputValid(phone1)) {
+        }
+        else if(phone1.length()!=11){
+            edtPhone.setError("تعداد ارقام وارد شده صحیح نیست");
+            focusView = edtPhone;
+            cancel = true;
+        }
+        else if (!isInputValid(phone1)) {
             edtPhone.setError(getString(R.string.error_invalid));
             focusView = edtPhone;
             cancel = true;
@@ -189,6 +195,13 @@ public class MessageActivity extends AppCompatActivity implements Async_SendMess
         } else if (!isEmailValid(email)) {
             edtEmail.setError(getString(R.string.error_invalid));
             focusView = edtEmail;
+            cancel = true;
+        }
+
+        // check content
+        if (TextUtils.isEmpty(content)) {
+            edtMessage.setError(getString(R.string.error_empty));
+            focusView = edtMessage;
             cancel = true;
         }
 
