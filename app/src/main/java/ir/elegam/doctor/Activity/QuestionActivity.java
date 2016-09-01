@@ -1,9 +1,7 @@
 package ir.elegam.doctor.Activity;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,21 +11,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import ir.elegam.doctor.Adapter.ExpandableListAdapter;
-import ir.elegam.doctor.AsyncTask.GetData;
-import ir.elegam.doctor.Classes.Internet;
 import ir.elegam.doctor.Classes.Variables;
 import ir.elegam.doctor.Database.database;
-import ir.elegam.doctor.Interface.IWebservice;
 import ir.elegam.doctor.R;
 
-public class QuestionActivity extends AppCompatActivity implements IWebservice {
+public class QuestionActivity extends AppCompatActivity {
 
     private Typeface San;
     private Toolbar toolbar;
@@ -39,13 +33,15 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
     private HashMap<String, List<String>> listDataChild;
     private ExpandableListAdapter listAdapter;
     private View snack_view;
+    private String faction = Variables.getFaq;
+    private String QuestionCategory="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         define();
-        init();
+        getWhat();
 
     }// end onCreate()
 
@@ -69,7 +65,7 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
     }
 
@@ -81,9 +77,6 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
             case android.R.id.home:
                 finish();
                 break;
-            case R.id.action_refresh:
-                AskServer();
-                break;
 
             default:
                 break;
@@ -92,72 +85,33 @@ public class QuestionActivity extends AppCompatActivity implements IWebservice {
         return super.onOptionsItemSelected(item);
     }
 
-    public void init(){
+    private void getWhat() {
+        QuestionCategory = getIntent().getStringExtra("faq");
+        txtToolbar.setText(QuestionCategory);
 
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
         db.open();
-        int count = db.CountAll("Faction","getFaq");
-        db.close();
-
+        int count = db.CountAllService("Faction",faction,"Category",QuestionCategory);
         Log.i(Variables.Tag,"count: "+count);
         db.close();
 
-        if(count>0){
-            db.open();
-            for(int i=0;i<count;i++){
-                listDataHeader.add(db.DisplayAll(i,3,"Faction","getFaq"));
-                List<String> comingSoon = new ArrayList<>();
-                comingSoon.add(db.DisplayAll(i,4,"Faction","getFaq"));
-                listDataChild.put(listDataHeader.get(i), comingSoon);
-            }
-            db.close();
-            Refresh();
-        }else{
-            if(Internet.isNetworkAvailable(QuestionActivity.this)){
-                // call webservice
-                AskServer();
-            }
-            else {
-                Toast.makeText(QuestionActivity.this, "هیچ داده ای جهت نمایش وجود ندارد", Toast.LENGTH_SHORT).show();
-            }
+        db.open();
+        for(int i=0;i<count;i++){
+            listDataHeader.add(db.DisplayAll(i,3,"Faction",faction,"Category",QuestionCategory));
+            List<String> comingSoon = new ArrayList<>();
+            comingSoon.add(db.DisplayAll(i,4,"Faction",faction,"Category",QuestionCategory));
+            listDataChild.put(listDataHeader.get(i), comingSoon);
         }
+        db.close();
+        Refresh();
 
-    }// end init()
-
-    private void AskServer() {
-        GetData getData = new GetData(QuestionActivity.this,QuestionActivity.this, Variables.getFaq);
-        getData.execute();
-    }
+    }// end getWhat()
 
     private void Refresh() {
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         elv.setAdapter(listAdapter);
     }
-
-
-    @Override
-    public void getResult(Object result) throws Exception {
-        Snackbar snackbar = Snackbar
-                .make(findViewById(R.id.question_coordinator), "با موفقیت آپدیت شد", Snackbar.LENGTH_LONG);
-        snack_view = snackbar.getView();
-        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
-        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);
-        snackbar.show();
-        init();
-    }// end getResult()
-
-    @Override
-    public void getError(String ErrorCodeTitle) throws Exception {
-        Snackbar snackbar = Snackbar
-                .make(findViewById(R.id.question_coordinator), "مشکلی پیش آمده است . مجددا تلاش نمایید", Snackbar.LENGTH_LONG);
-        snack_view = snackbar.getView();
-        snack_view.setBackgroundColor(getResources().getColor(R.color.pri500));
-        TextView tv = (TextView) snack_view.findViewById(android.support.design.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);
-        snackbar.show();
-    }// end getError()
 
 }// end class

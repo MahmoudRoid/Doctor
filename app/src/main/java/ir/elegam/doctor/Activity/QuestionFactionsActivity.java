@@ -48,19 +48,18 @@ public class QuestionFactionsActivity extends AppCompatActivity implements Async
     private Toolbar toolbar;
     private Typeface San;
     private TextView txtToolbar;
-    private String faction = Variables.getServices;
+    private String faction = Variables.getFaq;
     private database db;
     boolean isDetails = false;
     private SweetAlertDialog pDialog;
     private HashMap<String,String> CatList = new HashMap<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_factions);
         define();
         init();
-        // TestInit();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,20 +76,13 @@ public class QuestionFactionsActivity extends AppCompatActivity implements Async
         rv.addOnItemTouchListener(new RecyclerItemClickListener(QuestionFactionsActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getApplicationContext(),QuestionFactionsActivity.class);
-                intent.putExtra("service",rvList.get(position));
+                Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
+                intent.putExtra("faq",rvList.get(position));
                 startActivity(intent);
             }
         }));
 
     }// end onCreate()
-
-    private void TestInit() {
-        for (int i=0;i<3;i++){
-            rvList.add("new");
-        }
-        Refresh();
-    }
 
     private void define() {
         db = new database(this);
@@ -263,6 +255,7 @@ public class QuestionFactionsActivity extends AppCompatActivity implements Async
                         JSONArray jsonArray = jsonObject.getJSONArray("Data");
                         CatList.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
+                            Log.i(Variables.Tag,"jsonArray size: "+jsonArray.length());
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
                             String id = jsonObject2.optString("Id");
@@ -329,19 +322,17 @@ public class QuestionFactionsActivity extends AppCompatActivity implements Async
         if(Internet.isNetworkAvailable(QuestionFactionsActivity.this)){
             Async_Category async = new Async_Category();
             async.mListener = QuestionFactionsActivity.this;
-            async.execute(URLS.GetCategoryByType,Variables.Token,3);
+            async.execute(URLS.GetCategoryByType,Variables.Token,13);
         }else{
             Snackbar_show("اتصال اینترنت خود را چک نمایید");
         }
     }// end AskServer()
 
     private void AskAllServer(){
-       /* GetData getdata = new GetData(getApplicationContext(),ClinicServicesActivity.this,faction);
-        getdata.execute();*/
         isDetails = true;
         Async_Category async = new Async_Category();
         async.mListener = QuestionFactionsActivity.this;
-        async.execute(URLS.GetItemsbyType,Variables.Token,3);
+        async.execute(URLS.GetItemsbyType,Variables.Token,13);
 
     }
 
