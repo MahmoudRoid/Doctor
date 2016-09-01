@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.ViewPager;
@@ -108,7 +109,25 @@ public class IntruActivity extends AppCompatActivity implements
         ArcLoader();
         checkForUpdate();
 
+        MakeRoots();
+
     }// end define()
+
+    private void MakeRoots(){
+        File root = new File(Environment.getExternalStorageDirectory(),"Doctor");
+        File Fimage = new File(Variables.ROOT,"images");
+        File Fvideo = new File(Variables.ROOT,"videos");
+        File Fpdf = new File(Variables.ROOT,"PDFs");
+        File Fvoice = new File(Variables.ROOT,"voice");
+        if(!root.exists())
+        {
+            root.   mkdir();
+            Fimage. mkdir();
+            Fvideo. mkdir();
+            Fpdf.   mkdir();
+            Fvoice. mkdir();
+        }
+    }// end MakeRoots()
 
     private void LoadImagePager() {
         vp = (ViewPager) findViewById(R.id.viewPager_intru);
