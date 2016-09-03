@@ -10,8 +10,9 @@ public class URLS {
     public static final String GetVideos=DOMAIN+"GetCategoryByType";
     public static final String GetImages=DOMAIN+"GetCategoryByType";
     public static final String GetVideosById=DOMAIN+"GetItemsbyCategory";
+    public static final String GetImagesById=DOMAIN+"GetItemsByCategory";
     public static final String SendMessagePm=DOMAIN+"SendMessagePm";
-    public static final String GetAboutUs=DOMAIN+"GetAboutUs";
+    public static final String GetAboutUs=DOMAIN+"GetItemsbyType";
     public static final String GetFaq=DOMAIN+"GetFaq";
     public static final String GetFood=DOMAIN+"GetItemsbyType";
     public static final String GetUpdate=DOMAIN+"AppVersion";

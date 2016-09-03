@@ -282,8 +282,8 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         final TextView txtOne= (TextView) d.findViewById(R.id.dilog_text_1);
         final TextView txtTWo = (TextView) d.findViewById(R.id.dilog_text_2);
 
-        txtOne.setText("مراقبت های قبل از درمان");
-        txtTWo.setText("مراقبت های پس از درمان");
+        txtOne.setText("توصیه های قبل از عمل");
+        txtTWo.setText("مراقبت های پس از عمل");
 
         linear_1.setOnClickListener(new View.OnClickListener() {
             @Override

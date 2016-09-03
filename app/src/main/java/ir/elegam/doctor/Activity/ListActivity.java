@@ -93,17 +93,18 @@ public class ListActivity extends AppCompatActivity implements IWebservice{
         Log.i(Variables.Tag,"faction: "+faction);
         switch (faction){
             case "getServices":
-                txtToolbar.setText("خدمات");
+                txtToolbar.setText("خدمات کلینیک");
                 break;
             case "getMagazine":
-                txtToolbar.setText("مجله");
+                txtToolbar.setText("مجله خبری");
                 break;
-
             case "getCare":
-                txtToolbar.setText("مراقبت ها");
+                txtToolbar.setText("توصیه های قبل از عمل");
                 break;
+            case Variables.getCareAfter:
+                txtToolbar.setText("مراقبت های پس از عمل");
             case "getInsurance":
-                txtToolbar.setText("بیمه");
+                txtToolbar.setText("بیمه های تحت پوشش");
                 break;
         }
     }
