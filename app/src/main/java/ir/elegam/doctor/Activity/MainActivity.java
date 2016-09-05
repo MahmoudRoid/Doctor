@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
     private View snack_view;
     private SweetAlertDialog pDialog;
     private String DName, DPhone, DEmail, DNationalCode;
-    private boolean isOnReg = false;
+    private boolean isOnReg = false, isLogedIn;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
 
         database db = new database(this);
         db.useable();
+
+        prefs = getApplicationContext().getSharedPreferences("doctor", 0);
+        isLogedIn = prefs.getBoolean("isLogedIn",false);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (RelativeLayout) findViewById(R.id.relativeLayout2);
@@ -116,13 +121,12 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         switch (view.getId()){
 
             case R.id.img_drawer:
-//                if (mDrawerLayout.isDrawerOpen(mDrawerList))
-//                    mDrawerLayout.closeDrawer(mDrawerList);
-//                else
-//                    mDrawerLayout.openDrawer(mDrawerList);
-                startActivity(new Intent(MainActivity.this,CustomerClubActivity.class));
-
+                if (mDrawerLayout.isDrawerOpen(mDrawerList))
+                    mDrawerLayout.closeDrawer(mDrawerList);
+                else
+                    mDrawerLayout.openDrawer(mDrawerList);
                 break;
+
             case R.id.btn_aboutdoctor:
                 startActivity(new Intent(MainActivity.this,AboutUsActivity.class));
                 overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
@@ -168,7 +172,11 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
             // item haye navigation drawer
 
             case R.id.relative_login:
-                DialogLogin();
+                if(isLogedIn){
+                    LoginSeccessfully();
+                }else{
+                    DialogLogin();
+                }
                 break;
             case R.id.relative_social:
                 show_social_dialog();
@@ -206,6 +214,20 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 break;
         }
     }
+
+    private void LoginSeccessfully(){
+        if(!isLogedIn){
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isLogedIn",true);
+            editor.putString("NC",DNationalCode);
+            editor.commit();
+            editor.apply();
+            isLogedIn = true;
+        }
+
+        startActivity(new Intent(MainActivity.this,CustomerClubActivity.class));
+
+    }// end LoginSeccessfully()
 
     public  void show_social_dialog(){
         final Dialog d = new Dialog(this);
@@ -503,25 +525,19 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 JSONObject jsonObject = new JSONObject(result);
                 int Type = jsonObject.getInt("Status");
                 if (Type == 1) {
-                    // Open Activity Bashgahe moshtarian
+                    LoginSeccessfully();
                 } else {
-                    Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.error_server), Toast.LENGTH_SHORT).show();
                 }
             }else{
                 JSONObject jsonObject = new JSONObject(result);
                 int Type = jsonObject.getInt("Status");
                 if (Type == 1) {
-                    // gotten answer ok
-
                     String res = jsonObject.optString("res");
-                    if(res.equals("ok")){
-                        // start activity bashgahe moshtarian
-                    }else{
-                        DialogRegister();
-                    }
+                    LoginSeccessfully();
 
                 } else {
-                    Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.error_server), Toast.LENGTH_SHORT).show();
                 }
             }
         }// end try
