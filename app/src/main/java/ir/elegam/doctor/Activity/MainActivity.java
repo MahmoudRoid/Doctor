@@ -189,15 +189,14 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
                 startActivity(new Intent(MainActivity.this,MessageActivity.class));
                 break;
             case R.id.relative_introduce:
-
                 try{
-                    String shareBody = "  زیبایی را به خودتان هدیه کنید."+"\n "+"http://cafebazaar.ir/app/ir.elegam/?l=fa"+"";
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, ""+ "\n\n");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                    startActivity(Intent.createChooser(sharingIntent, "اشتراک گذاری"));
-                }catch (Exception e) {}
+                    ArrayList<Uri> uris = new ArrayList<>();
+                    Intent sendIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+                    sendIntent.setType("application/*");
+                    uris.add(Uri.fromFile(new File(getApplicationInfo().publicSourceDir)));
+                    sendIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+                    startActivity(Intent.createChooser(sendIntent, null));
+                }catch(Exception e){e.printStackTrace();}
 
                 break;
             case R.id.relative_favorite:
