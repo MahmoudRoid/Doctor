@@ -181,7 +181,7 @@ public class AboutUsActivity extends AppCompatActivity implements Async_Extra.Ge
                         String Title = jsonObject2.optString("Title");
                         String Content = jsonObject2.getString("Content");
 
-                        Object_Extra ob = new Object_Extra(ID,Title,Content);
+                        Object_Extra ob = new Object_Extra(ID,Title,Content,"0");
 
                         db.open();
                         boolean isExist = db.CheckExistanceExtra("Sid",ID);

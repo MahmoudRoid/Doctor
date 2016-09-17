@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View;
@@ -29,6 +30,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +41,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import ir.elegam.doctor.AsyncTask.Async_ApplicationInfo;
 import ir.elegam.doctor.AsyncTask.Async_GetVersion;
 import ir.elegam.doctor.AsyncTask.Async_Login;
 import ir.elegam.doctor.AsyncTask.Async_SendMessage;
@@ -47,7 +52,10 @@ import ir.elegam.doctor.Database.database;
 import ir.elegam.doctor.Helper.MyObject;
 import ir.elegam.doctor.R;
 
-public class MainActivity extends AppCompatActivity implements Async_GetVersion.GetVersion , Async_Login.GetAccess{
+public class MainActivity extends AppCompatActivity implements
+        Async_GetVersion.GetVersion,
+        Async_Login.GetAccess,
+        Async_ApplicationInfo.GetAppInfo{
 
     private DrawerLayout mDrawerLayout;
     private RelativeLayout mDrawerList;
@@ -77,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
 
         checkForUpdate();
         MakeRoots();
+
+        Async_ApplicationInfo async = new Async_ApplicationInfo();
+        async.mListener = MainActivity.this;
+        async.execute("http://mohad.ir/Android/Elegam/info.php");
 
     }
 
@@ -678,6 +690,46 @@ public class MainActivity extends AppCompatActivity implements Async_GetVersion.
         }else{
             Toast.makeText(MainActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void DialogInfo(String DContext) {
+        final Dialog d = new Dialog(MainActivity.this);
+        d.setCancelable(false);
+        d.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        d.setContentView(R.layout.dialog_info);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        Window window = d.getWindow();
+        lp.copyFrom(window.getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        window.setAttributes(lp);
+
+        final ImageView ivDialog = (ImageView) d.findViewById(R.id.iv_dialog_info);
+        Glide.with(getApplicationContext()).load(DContext)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(ivDialog)
+        ;
+
+        d.show();
+    }// end DialogChoose()
+
+    @Override
+    public void onGetAppInfo(String res) {
+        try{
+            JSONObject jsonObject = new JSONObject(res);
+            String Type = jsonObject.optString("info");
+            Log.i(Variables.Tag,"info: "+Type);
+            if(Type.equals("info")){
+                String link = jsonObject.optString("link");
+                DialogInfo(link);
+            }else{
+
+            }
+        }// end try
+        catch (JSONException e){ e.printStackTrace(); }
+        catch (Exception e){ e.printStackTrace(); }
     }
 
 }// end class

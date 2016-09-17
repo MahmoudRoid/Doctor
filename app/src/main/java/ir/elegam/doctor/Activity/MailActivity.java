@@ -241,6 +241,7 @@ public class MailActivity extends AppCompatActivity implements
             int Type = jsonObject.getInt("Status");
             if (Type == 1) {
                 mylist.add(new ObjectMessage("من",edtSend.getText().toString(),true));
+                refreshAdapter();
             } else {
                 Toast.makeText(MailActivity.this, getResources().getString(R.string.error_internet), Toast.LENGTH_SHORT).show();
             }

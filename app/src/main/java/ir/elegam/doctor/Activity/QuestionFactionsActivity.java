@@ -223,7 +223,7 @@ public class QuestionFactionsActivity extends AppCompatActivity implements Async
                             String image_url = jsonObject2.getString("Url");
 
 
-                            MyObject myObject=new MyObject(id,faction,title,content,image_url,"0",Category,"1");
+                            MyObject myObject=new MyObject(id,faction,title,content,image_url,"0",Category,"1","0");
                             myList.add(myObject);
 
                             db.open();

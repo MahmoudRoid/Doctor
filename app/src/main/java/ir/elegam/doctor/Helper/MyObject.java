@@ -9,6 +9,7 @@ public class MyObject {
     public String favorite;
     public String Category;
     public String CategoryT;
+    public String Eng;
 
     public MyObject(
             String sid,
@@ -18,7 +19,8 @@ public class MyObject {
             String image_url,
             String favorite,
             String Category,
-            String CategoryT)
+            String CategoryT,
+            String Eng)
     {
         this.sid=sid;
         this.faction=faction;
@@ -28,6 +30,7 @@ public class MyObject {
         this.favorite=favorite;
         this.Category=Category;
         this.CategoryT=CategoryT;
+        this.Eng = Eng;
 
     }
 
@@ -93,6 +96,14 @@ public class MyObject {
 
     public void setCategoryT(String categoryT) {
         CategoryT = categoryT;
+    }
+
+    public String getEng() {
+        return Eng;
+    }
+
+    public void setEng(String eng) {
+        Eng = eng;
     }
 
 }// end class

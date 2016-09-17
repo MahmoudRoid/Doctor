@@ -81,7 +81,8 @@ public class ClinicServiceDetailActivity extends AppCompatActivity {
                     db.DisplayAll(i,5,"Faction",faction,"Category",ClinicService),
                     db.DisplayAll(i,6,"Faction",faction,"Category",ClinicService),
                     ClinicService,
-                    db.DisplayAll(i,8,"Faction",faction,"Category",ClinicService)
+                    db.DisplayAll(i,8,"Faction",faction,"Category",ClinicService),
+                    "0"
             ));
             rvList.add(db.DisplayAll(i,3,"Faction",faction,"Category",ClinicService));
         }

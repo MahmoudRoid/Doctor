@@ -8,11 +8,13 @@ public class Object_Extra {
     public String Sid;
     public String Title;
     public String Content;
+    public String Eng;
 
-    public Object_Extra(String Sid,String Title, String Content){
+    public Object_Extra(String Sid,String Title, String Content,String Eng){
         this.Sid = Sid;
         this.Title = Title;
         this.Content = Content;
+        this.Eng = Eng;
     }
 
     public String getSid() {
@@ -39,4 +41,11 @@ public class Object_Extra {
         Content = content;
     }
 
+    public String getEng() {
+        return Eng;
+    }
+
+    public void setEng(String eng) {
+        Eng = eng;
+    }
 }// end class

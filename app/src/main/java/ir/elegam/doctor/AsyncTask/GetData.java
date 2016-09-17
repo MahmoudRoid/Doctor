@@ -224,7 +224,7 @@ public class GetData extends AsyncTask<Void,Void,String> {
                         }
                         else image_url ="";
 
-                        MyObject myObject=new MyObject(id,faction,title,content,image_url,"0","1","1");
+                        MyObject myObject=new MyObject(id,faction,title,content,image_url,"0","1","1","0");
                         myObjectArrayList.add(myObject);
 
 
